@@ -1,0 +1,1058 @@
+ <!-- Shared Resources and Components -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: {
+                        border: "hsl(240 5.9% 90%)",
+                        input: "hsl(240 5.9% 90%)",
+                        ring: "hsl(240 5% 64.9%)",
+                        background: "hsl(0 0% 100%)",
+                        foreground: "hsl(240 10% 3.9%)",
+                        primary: {
+                            DEFAULT: "hsl(240 5.9% 10%)",
+                            foreground: "hsl(0 0% 98%)",
+                        },
+                        muted: {
+                            DEFAULT: "hsl(240 4.8% 95.9%)",
+                            foreground: "hsl(240 3.8% 46.1%)",
+                        },
+                        accent: {
+                            DEFAULT: "hsl(240 4.8% 95.9%)",
+                            foreground: "hsl(240 5.9% 10%)",
+                        },
+                    },
+                    boxShadow: {
+                        'glass': '0 8px 32px 0 rgba(31, 38, 135, 0.15)',
+                    }
+                }
+            }
+        }
+    </script>
+ <style>
+
+          .glass-panel {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+
+        .hero-overlay {
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.4) 50%, rgba(0, 0, 0, 0.6) 100%);
+        }
+
+        /* MEGA MENU DROPDOWN STYLES */
+        .mega-menu {
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .group:hover .mega-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .chat-enter { animation: slideUp 0.3s ease-out forwards; }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .modal-enter { animation: modalIn 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        .modal-exit { animation: modalOut 0.15s ease-in forwards; }
+        @keyframes modalIn {
+            from { opacity: 0; transform: translate(-50%, -48%) scale(0.96); }
+            to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+        }
+        @keyframes modalOut {
+            from { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+            to { opacity: 0; transform: translate(-50%, -48%) scale(0.96); }
+        }
+
+        .backdrop-enter { animation: fadeIn 0.2s ease-out forwards; }
+        .backdrop-exit { animation: fadeOut 0.2s ease-in forwards; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes fadeOut { from { opacity: 1; } to { opacity: 0; } }
+
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+         
+        /* Hide scrollbars but keep functionality */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Custom hover effects */
+        .nav-item:hover i {
+            color: #0054a6;
+            transition: color 0.3s;
+        }
+
+        /* Tab Active State Classes */
+        .tab-active {
+            background-color: #0054a6;
+            color: white;
+            border-color: #0054a6;
+        }
+
+        .tab-inactive {
+            background-color: white;
+            color: #4b5563;
+            border-color: #d1d5db;
+        }
+
+        .filter-active {
+            background-color: #1f2937;
+            color: white;
+        }
+
+        .filter-inactive {
+            color: #4b5563;
+            background-color: transparent;
+        }
+
+        .filter-inactive:hover {
+            background-color: #f3f4f6;
+        }
+
+
+           .form-label { font-size: 14px; font-weight: 500; color: #004a7c; margin-bottom: 4px; display: block; }
+        .form-input { 
+            width: 100%; 
+            padding: 10px 14px; 
+            background-color: #f3f4f6; 
+            border: 1px solid #d1d5db; 
+            border-radius: 8px; 
+            font-size: 14px;
+            color: #374151;
+            transition: all 0.2s;
+        }
+        .form-input:focus { 
+            outline: none; 
+            border-color: #3b82f6; 
+            background-color: #fff; 
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1); 
+        }
+        .form-input::placeholder { color: #9ca3af; }
+        
+        /* Custom Select Styling to match image */
+        .custom-select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%239ca3af' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 0.5rem center;
+            background-size: 1.5em 1.5em;
+            padding-right: 2.5rem;
+        }
+    </style>
+    <style>
+        
+        /* Hide scrollbars but keep functionality */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Custom hover effects */
+        .nav-item:hover i {
+            color: #0054a6;
+            transition: color 0.3s;
+        }
+
+        /* Tab Active State Classes */
+        .tab-active {
+            background-color: #0054a6;
+            color: white;
+            border-color: #0054a6;
+        }
+
+        .tab-inactive {
+            background-color: white;
+            color: #4b5563;
+            border-color: #d1d5db;
+        }
+
+        .filter-active {
+            background-color: #1f2937;
+            color: white;
+        }
+
+        .filter-inactive {
+            color: #4b5563;
+            background-color: transparent;
+        }
+
+        .filter-inactive:hover {
+            background-color: #f3f4f6;
+        }
+    </style>
+    <style>
+        * {
+            font-family: 'Poppins', sans-serif;
+        }
+        .hero-gradient {
+            background: linear-gradient(135deg, #1a2980 0%, #26d0ce 100%);
+        }
+        .price-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #f97316;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        .cruise-card:hover {
+            transform: translateY(-5px);
+            transition: transform 0.3s ease;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        .booking-form {
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        .selected-cruise {
+            border-left: 4px solid #3b82f6;
+        }
+            .glass-panel {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+
+        .hero-overlay {
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.4) 50%, rgba(0, 0, 0, 0.6) 100%);
+        }
+
+        /* MEGA MENU DROPDOWN STYLES */
+        .mega-menu {
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .group:hover .mega-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .chat-enter { animation: slideUp 0.3s ease-out forwards; }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .modal-enter { animation: modalIn 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        .modal-exit { animation: modalOut 0.15s ease-in forwards; }
+        @keyframes modalIn {
+            from { opacity: 0; transform: translate(-50%, -48%) scale(0.96); }
+            to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+        }
+        @keyframes modalOut {
+            from { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+            to { opacity: 0; transform: translate(-50%, -48%) scale(0.96); }
+        }
+
+        .backdrop-enter { animation: fadeIn 0.2s ease-out forwards; }
+        .backdrop-exit { animation: fadeOut 0.2s ease-in forwards; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes fadeOut { from { opacity: 1; } to { opacity: 0; } }
+
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-gray-50">
+   
+ <!-- Navbar Component -->
+    
+   <nav id="navbar" class="fixed top-0 z-50 w-full transition-all duration-300 border-b border-transparent py-2">
+        <div class="container mx-auto flex h-16 items-center justify-between px-4 md:px-6 ">
+            <div class="flex items-center gap-2">
+                <div class="bg-primary text-white p-1.5 rounded-lg">
+                    <i data-lucide="plane" class="h-5 w-5"></i>
+                </div>
+                <a href="index.html" id="brand-text" class="text-xl font-bold tracking-tight text-white transition-colors cursor-pointer">TRAVELLER CHOICE</a>
+            </div>
+
+            <div class="hidden md:flex gap-8 text-sm font-medium h-full items-center">
+                <a href="index.html" class="nav-link text-white/90 hover:text-white transition-colors">Home</a>
+                <a href="flights.html" class="nav-link text-white/90 hover:text-white transition-colors">Flights</a>
+                
+                <a href="visa.html" class="nav-link text-white/90 hover:text-white transition-colors">Visa Services</a>
+                
+                <div class="group h-full flex items-center">
+                    <a  class="nav-link text-white/90 hover:text-white transition-colors flex items-center gap-1">
+                        Travel Packages <i data-lucide="chevron-down" class="h-3 w-3"></i>
+                    </a>
+                    
+                    <div class="mega-menu absolute top-full left-0 w-100 ">
+                        <div class="bg-white shadow-2xl border-t border-gray-100 p-8 text-gray-800">
+                            <div class="container mx-auto grid grid-cols-4 gap-8">
+                                <div>
+                                    <h4 class="font-bold text-primary mb-4 uppercase text-xs tracking-widest border-b pb-2">India Tours</h4>
+                                    <ul class="space-y-2 text-sm">
+                                        <li><a href="/holiday_packages_goa.html" class="hover:text-red-500 transition-colors">Goa Packages</a></li>
+                                        <li><a href="#" class="hover:text-red-500 transition-colors">Kerala Backwaters</a></li>
+                                        <li><a href="#" class="hover:text-red-500 transition-colors">Himachal Special</a></li>
+                                        <li><a href="#" class="hover:text-red-500 transition-colors">Rajasthan Royal</a></li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-primary mb-4 uppercase text-xs tracking-widest border-b pb-2">International</h4>
+                                    <ul class="space-y-2 text-sm">
+                                        <li><a href="#" class="hover:text-red-500 transition-colors">Bali Adventure</a></li>
+                                        <li><a href="#" class="hover:text-red-500 transition-colors">Thailand Getaway</a></li>
+                                        <li><a href="#" class="hover:text-red-500 transition-colors">Dubai Luxury</a></li>
+                                        <li><a href="#" class="hover:text-red-500 transition-colors">Europe Wonders</a></li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-primary mb-4 uppercase text-xs tracking-widest border-b pb-2">By Theme</h4>
+                                    <ul class="space-y-2 text-sm">
+                                        <li><a href="#" class="hover:text-red-500 transition-colors">Honeymoon Specials</a></li>
+                                        <li><a href="#" class="hover:text-red-500 transition-colors">Family Holidays</a></li>
+                                        <li><a href="#" class="hover:text-red-500 transition-colors">Adventure Tours</a></li>
+                                        <li><a href="#" class="hover:text-red-500 transition-colors">Luxury Cruises</a></li>
+                                    </ul>
+                                </div>
+                                <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+                                    <h4 class="font-bold text-primary mb-2 text-sm">Summer Sale 2026</h4>
+                                    <p class="text-xs text-slate-500 mb-4 leading-relaxed">Book your international holiday before February 28th and get a flat 15% discount.</p>
+                                    <button class="w-full bg-red-500 text-white text-xs font-bold py-2 rounded hover:bg-red-600 transition">View Offers</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                    <a href="cruise.html" class="nav-link text-white/90 hover:text-white transition-colors">Cruise</a>
+                <a href="forex.html" class="nav-link text-white/90 hover:text-white transition-colors">Forex</a>
+
+                <a href="contact.html" class="nav-link text-white/90 hover:text-white transition-colors">Contact</a>
+            </div>
+
+            <div class="flex items-center gap-4">
+                <button onclick="openModal('login-modal')" class="nav-link text-sm font-medium text-white hover:underline transition-colors">Sign In</button>
+                <button onclick="openModal('signup-modal')" class="inline-flex h-9 items-center justify-center rounded-md bg-white text-black px-4 py-2 text-sm font-medium shadow hover:bg-gray-100 transition-colors">
+                    Join Free
+                </button>
+            </div>
+        </div>
+    </nav>  
+   <main>
+<section class="relative min-h-[50vh] flex items-center pt-20">
+        <div class="absolute inset-0"><img src="https://images.unsplash.com/photo-1552832230-c0197dd311b5?q=80&w=2000" class="w-full h-full object-cover"><div class="hero-overlay absolute inset-0"></div></div>
+        <div class="container relative z-10 mx-auto px-4 text-center text-white">
+            <h1 class="text-6xl font-bold mb-4 drop-shadow-lg">Cruise</h1>
+            <p class="text-xl text-gray-100 max-w-2xl mx-auto drop-shadow-md">Discover the world's most beautiful destinations with our exclusive cruise experiences</p>
+        </div>
+    </section> 
+
+    <!-- Main Content -->
+    <div class="container mx-auto px-4 py-8">
+        <div class="flex flex-col lg:flex-row gap-8">
+            <!-- Left Column - Filters and Cruise Listings -->
+            <div class="lg:w-2/3">
+                <!-- Search Filters -->
+                <div class="bg-white rounded-xl shadow-sm p-6 mb-8">
+                    <h2 class="text-xl font-bold text-gray-800 mb-6">Find Your Perfect Cruise</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                        <div>
+                            <label class="block text-gray-700 text-sm font-medium mb-2">Destination</label>
+                            <select class="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                <option>Any Destination</option>
+                                <option>Caribbean</option>
+                                <option>Mediterranean</option>
+                                <option>Alaska</option>
+                                <option>Northern Europe</option>
+                                <option>Asia</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 text-sm font-medium mb-2">Departure Date</label>
+                            <input type="date" class="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 text-sm font-medium mb-2">Duration</label>
+                            <select class="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                <option>Any Duration</option>
+                                <option>3-5 Nights</option>
+                                <option>6-9 Nights</option>
+                                <option>10+ Nights</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 text-sm font-medium mb-2">Passengers</label>
+                            <select class="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                <option>2 Adults</option>
+                                <option>1 Adult</option>
+                                <option>2 Adults, 1 Child</option>
+                                <option>2 Adults, 2 Children</option>
+                                <option>Group (5+)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="mt-6 flex justify-between items-center">
+                        <button class="text-blue-600 font-medium flex items-center">
+                            <i class="fas fa-sliders-h mr-2"></i> More Filters
+                        </button>
+                        <button class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg flex items-center">
+                            <i class="fas fa-search mr-2"></i> Search Cruises
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Cruise Listings -->
+                <div class="mb-8">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6">Featured Cruises</h2>
+                    
+                    <!-- Cruise Card 1 -->
+                    <div class="bg-white rounded-xl shadow-sm overflow-hidden mb-6 cruise-card selected-cruise">
+                        <div class="md:flex">
+                            <div class="md:w-1/3 relative">
+                                <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+                                     alt="Caribbean Cruise" class="w-full h-64 md:h-full object-cover">
+                                <div class="price-badge">Best Seller</div>
+                            </div>
+                            <div class="md:w-2/3 p-6">
+                                <div class="flex justify-between items-start">
+                                    <div>
+                                        <h3 class="text-xl font-bold text-gray-800">Caribbean Paradise</h3>
+                                        <div class="flex items-center mt-2">
+                                            <div class="flex text-yellow-400">
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star-half-alt"></i>
+                                            </div>
+                                            <span class="text-gray-600 ml-2">4.5 (1,234 reviews)</span>
+                                        </div>
+                                        <div class="mt-3 flex flex-wrap gap-2">
+                                            <span class="bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full">
+                                                <i class="fas fa-map-marker-alt mr-1"></i> Miami, Bahamas, Jamaica
+                                            </span>
+                                            <span class="bg-green-100 text-green-800 text-xs font-medium px-3 py-1 rounded-full">
+                                                <i class="fas fa-clock mr-1"></i> 7 Nights
+                                            </span>
+                                            <span class="bg-purple-100 text-purple-800 text-xs font-medium px-3 py-1 rounded-full">
+                                                <i class="fas fa-ship mr-1"></i> Royal Caribbean
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="text-right">
+                                        <div class="text-3xl font-bold text-blue-600">$1,299</div>
+                                        <div class="text-gray-500 text-sm">per person</div>
+                                    </div>
+                                </div>
+                                <p class="mt-4 text-gray-600">Experience the turquoise waters and white sand beaches of the Caribbean on our premium luxury cruise. Includes all meals, entertainment, and port excursions.</p>
+                                <div class="mt-6 flex justify-between items-center">
+                                    <div class="text-gray-700">
+                                        <i class="fas fa-calendar-alt text-blue-600 mr-2"></i>
+                                        <span class="font-medium">Next Departure:</span> Oct 15, 2023
+                                    </div>
+                                    <button class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded-lg">
+                                        Select Cruise
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cruise Card 2 -->
+                    <div class="bg-white rounded-xl shadow-sm overflow-hidden mb-6 cruise-card">
+                        <div class="md:flex">
+                            <div class="md:w-1/3 relative">
+                                <img src="https://images.unsplash.com/photo-1551970634-747846a548cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+                                     alt="Alaska Cruise" class="w-full h-64 md:h-full object-cover">
+                                <div class="price-badge" style="background: #10b981;">15% Off</div>
+                            </div>
+                            <div class="md:w-2/3 p-6">
+                                <div class="flex justify-between items-start">
+                                    <div>
+                                        <h3 class="text-xl font-bold text-gray-800">Alaskan Wilderness</h3>
+                                        <div class="flex items-center mt-2">
+                                            <div class="flex text-yellow-400">
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="far fa-star"></i>
+                                            </div>
+                                            <span class="text-gray-600 ml-2">4.2 (876 reviews)</span>
+                                        </div>
+                                        <div class="mt-3 flex flex-wrap gap-2">
+                                            <span class="bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full">
+                                                <i class="fas fa-map-marker-alt mr-1"></i> Seattle, Juneau, Glacier Bay
+                                            </span>
+                                            <span class="bg-green-100 text-green-800 text-xs font-medium px-3 py-1 rounded-full">
+                                                <i class="fas fa-clock mr-1"></i> 10 Nights
+                                            </span>
+                                            <span class="bg-purple-100 text-purple-800 text-xs font-medium px-3 py-1 rounded-full">
+                                                <i class="fas fa-ship mr-1"></i> Princess Cruises
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="text-right">
+                                        <div class="text-3xl font-bold text-blue-600">$1,899</div>
+                                        <div class="text-gray-500 text-sm">per person</div>
+                                    </div>
+                                </div>
+                                <p class="mt-4 text-gray-600">Witness breathtaking glaciers, wildlife, and stunning landscapes on this unforgettable Alaskan adventure. All-inclusive package with guided tours included.</p>
+                                <div class="mt-6 flex justify-between items-center">
+                                    <div class="text-gray-700">
+                                        <i class="fas fa-calendar-alt text-blue-600 mr-2"></i>
+                                        <span class="font-medium">Next Departure:</span> Jun 5, 2023
+                                    </div>
+                                    <button class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded-lg">
+                                        Select Cruise
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cruise Card 3 -->
+                    <div class="bg-white rounded-xl shadow-sm overflow-hidden cruise-card">
+                        <div class="md:flex">
+                            <div class="md:w-1/3 relative">
+                                <img src="https://images.unsplash.com/photo-1516496636080-14fb876e029d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+                                     alt="Mediterranean Cruise" class="w-full h-64 md:h-full object-cover">
+                                <div class="price-badge" style="background: #8b5cf6;">Luxury</div>
+                            </div>
+                            <div class="md:w-2/3 p-6">
+                                <div class="flex justify-between items-start">
+                                    <div>
+                                        <h3 class="text-xl font-bold text-gray-800">Mediterranean Discovery</h3>
+                                        <div class="flex items-center mt-2">
+                                            <div class="flex text-yellow-400">
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                            </div>
+                                            <span class="text-gray-600 ml-2">4.9 (2,145 reviews)</span>
+                                        </div>
+                                        <div class="mt-3 flex flex-wrap gap-2">
+                                            <span class="bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full">
+                                                <i class="fas fa-map-marker-alt mr-1"></i> Barcelona, Rome, Athens
+                                            </span>
+                                            <span class="bg-green-100 text-green-800 text-xs font-medium px-3 py-1 rounded-full">
+                                                <i class="fas fa-clock mr-1"></i> 12 Nights
+                                            </span>
+                                            <span class="bg-purple-100 text-purple-800 text-xs font-medium px-3 py-1 rounded-full">
+                                                <i class="fas fa-ship mr-1"></i> Celebrity Cruises
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="text-right">
+                                        <div class="text-3xl font-bold text-blue-600">$2,499</div>
+                                        <div class="text-gray-500 text-sm">per person</div>
+                                    </div>
+                                </div>
+                                <p class="mt-4 text-gray-600">Explore the historic ports and beautiful coastlines of the Mediterranean. Luxury accommodations, gourmet dining, and exclusive shore excursions included.</p>
+                                <div class="mt-6 flex justify-between items-center">
+                                    <div class="text-gray-700">
+                                        <i class="fas fa-calendar-alt text-blue-600 mr-2"></i>
+                                        <span class="font-medium">Next Departure:</span> Aug 22, 2023
+                                    </div>
+                                    <button class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded-lg">
+                                        Select Cruise
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column - Booking Form -->
+            <div class="lg:w-1/3">
+                <div class="bg-white rounded-xl shadow-sm p-6 sticky top-6 booking-form">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6">Complete Your Booking</h2>
+                    
+                    <!-- Selected Cruise Info -->
+                    <div class="bg-blue-50 border border-blue-100 rounded-lg p-4 mb-6">
+                        <h3 class="font-bold text-gray-800 flex items-center">
+                            <i class="fas fa-ship text-blue-600 mr-2"></i> Selected Cruise
+                        </h3>
+                        <div class="mt-2">
+                            <div class="font-bold text-lg">Caribbean Paradise</div>
+                            <div class="text-gray-600 text-sm">7 Nights • Royal Caribbean • Departs Oct 15, 2023</div>
+                            <div class="flex justify-between mt-3">
+                                <div>
+                                    <div class="text-gray-700">2 Adults</div>
+                                    <div class="text-gray-500 text-sm">$1,299 x 2</div>
+                                </div>
+                                <div class="text-right">
+                                    <div class="text-gray-700 font-bold">$2,598</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Booking Form -->
+                    <form>
+                        <div class="mb-6">
+                            <h3 class="font-bold text-gray-800 mb-4">Traveler Information</h3>
+                            <div class="space-y-4">
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="block text-gray-700 text-sm font-medium mb-2">First Name</label>
+                                        <input type="text" class="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="John">
+                                    </div>
+                                    <div>
+                                        <label class="block text-gray-700 text-sm font-medium mb-2">Last Name</label>
+                                        <input type="text" class="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Doe">
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="block text-gray-700 text-sm font-medium mb-2">Email Address</label>
+                                    <input type="email" class="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="john@example.com">
+                                </div>
+                                <div>
+                                    <label class="block text-gray-700 text-sm font-medium mb-2">Phone Number</label>
+                                    <input type="tel" class="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="(123) 456-7890">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-6">
+                            <h3 class="font-bold text-gray-800 mb-4">Cabin Selection</h3>
+                            <div class="space-y-3">
+                                <div class="flex items-center">
+                                    <input type="radio" id="cabin1" name="cabin" class="h-5 w-5 text-blue-600" checked>
+                                    <label for="cabin1" class="ml-3 flex-1">
+                                        <div class="font-medium">Interior Stateroom</div>
+                                        <div class="text-gray-600 text-sm">Comfortable cabin with all basic amenities</div>
+                                    </label>
+                                    <span class="font-bold">+$0</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <input type="radio" id="cabin2" name="cabin" class="h-5 w-5 text-blue-600">
+                                    <label for="cabin2" class="ml-3 flex-1">
+                                        <div class="font-medium">Ocean View</div>
+                                        <div class="text-gray-600 text-sm">Window with ocean view</div>
+                                    </label>
+                                    <span class="font-bold">+$299</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <input type="radio" id="cabin3" name="cabin" class="h-5 w-5 text-blue-600">
+                                    <label for="cabin3" class="ml-3 flex-1">
+                                        <div class="font-medium">Balcony Suite</div>
+                                        <div class="text-gray-600 text-sm">Private balcony with premium amenities</div>
+                                    </label>
+                                    <span class="font-bold">+$599</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-8">
+                            <h3 class="font-bold text-gray-800 mb-4">Add-ons</h3>
+                            <div class="space-y-3">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center">
+                                        <input type="checkbox" id="addon1" class="h-5 w-5 text-blue-600 rounded">
+                                        <label for="addon1" class="ml-3">
+                                            <div class="font-medium">Premium Drink Package</div>
+                                            <div class="text-gray-600 text-sm">Unlimited beverages</div>
+                                        </label>
+                                    </div>
+                                    <span class="font-bold">+$199</span>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center">
+                                        <input type="checkbox" id="addon2" class="h-5 w-5 text-blue-600 rounded">
+                                        <label for="addon2" class="ml-3">
+                                            <div class="font-medium">Wi-Fi Package</div>
+                                            <div class="text-gray-600 text-sm">High-speed internet for 2 devices</div>
+                                        </label>
+                                    </div>
+                                    <span class="font-bold">+$89</span>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center">
+                                        <input type="checkbox" id="addon3" class="h-5 w-5 text-blue-600 rounded" checked>
+                                        <label for="addon3" class="ml-3">
+                                            <div class="font-medium">Travel Protection</div>
+                                            <div class="text-gray-600 text-sm">Trip cancellation & medical insurance</div>
+                                        </label>
+                                    </div>
+                                    <span class="font-bold">+$129</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Price Summary -->
+                        <div class="border-t border-gray-200 pt-6 mb-6">
+                            <div class="space-y-3">
+                                <div class="flex justify-between">
+                                    <span class="text-gray-600">Cruise Fare (2 adults)</span>
+                                    <span class="font-medium">$2,598</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-600">Cabin Upgrade</span>
+                                    <span class="font-medium">$0</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-600">Add-ons</span>
+                                    <span class="font-medium">$129</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-600">Taxes & Fees</span>
+                                    <span class="font-medium">$210</span>
+                                </div>
+                                <div class="flex justify-between text-lg font-bold pt-3 border-t border-gray-200">
+                                    <span>Total</span>
+                                    <span class="text-blue-600">$2,937</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-4 px-6 rounded-lg text-lg flex items-center justify-center">
+                            <i class="fas fa-lock mr-3"></i> Complete Booking
+                        </button>
+                        <p class="text-center text-gray-500 text-sm mt-4">
+                            <i class="fas fa-shield-alt mr-1"></i> Secure booking • Best price guarantee • 24/7 support
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </main>
+
+        <!-- Footer Component -->
+  <!-- Footer Component -->
+    <footer class="bg-slate-950 text-slate-300 pt-16 pb-8 border-t border-slate-900">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col lg:flex-row justify-between items-center pb-12 border-b border-slate-800 mb-12 gap-8">
+                <div class="max-w-xl">
+                    <h3 class="text-2xl font-bold text-white mb-2">Join our newsletter</h3>
+                    <p class="text-slate-400">We'll send you the best travel deals, visa updates, and destination guides once a week. No spam.</p>
+                </div>
+                <div class="flex w-full max-w-sm gap-2">
+                    <input type="email" placeholder="Enter your email" class="w-full px-4 py-2.5 rounded-lg bg-slate-900 border border-slate-800 text-white placeholder-slate-500 focus:outline-none focus:border-slate-600 focus:ring-1 focus:ring-slate-600">
+                    <button class="px-6 py-2.5 bg-white text-black font-semibold rounded-lg hover:bg-gray-200 transition-colors whitespace-nowrap">Subscribe</button>
+                </div>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 mb-16">
+                <div class="col-span-2 lg:col-span-2">
+                    <div class="flex items-center gap-2 mb-6">
+                        <div class="bg-white text-black p-1.5 rounded"><i data-lucide="plane" class="h-5 w-5"></i></div>
+                        <span class="text-xl font-bold text-white">TRAVELLER CHOICE</span>
+                    </div>
+                    <p class="text-slate-400 mb-6 max-w-sm leading-relaxed">
+                        Your trusted partner for AI-powered travel planning. We make exploring the world seamless, from visa applications to luxury stays.
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="#" class="h-10 w-10 rounded-full bg-slate-900 flex items-center justify-center hover:bg-slate-800 hover:text-white transition-colors"><i data-lucide="twitter" class="h-5 w-5"></i></a>
+                        <a href="#" class="h-10 w-10 rounded-full bg-slate-900 flex items-center justify-center hover:bg-slate-800 hover:text-white transition-colors"><i data-lucide="instagram" class="h-5 w-5"></i></a>
+                        <a href="#" class="h-10 w-10 rounded-full bg-slate-900 flex items-center justify-center hover:bg-slate-800 hover:text-white transition-colors"><i data-lucide="facebook" class="h-5 w-5"></i></a>
+                        <a href="#" class="h-10 w-10 rounded-full bg-slate-900 flex items-center justify-center hover:bg-slate-800 hover:text-white transition-colors"><i data-lucide="youtube" class="h-5 w-5"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-6">Company</h4>
+                    <ul class="space-y-4 text-sm">
+                        <li><a href="#" class="hover:text-white transition-colors">About Us</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Careers</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Press</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Blog</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Sustainability</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-6">Support</h4>
+                    <ul class="space-y-4 text-sm">
+                        <li><a href="#" class="hover:text-white transition-colors">Help Center</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Terms of Service</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Legal</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Status</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-6">Top Routes</h4>
+                    <ul class="space-y-4 text-sm">
+                        <li><a href="#" class="hover:text-white transition-colors">Flights to London</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Flights to Paris</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Flights to Tokyo</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Flights to New York</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Flights to Dubai</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-sm text-slate-500">&copy; 2025 TRAVELLER CHOICEInc. All rights reserved.</p>
+                <div class="flex items-center gap-6">
+                    <div class="flex items-center gap-2 text-slate-500 text-sm"><i data-lucide="globe" class="h-4 w-4"></i><span>English (US)</span></div>
+                    <div class="flex items-center gap-2 text-slate-500 text-sm"><i data-lucide="dollar-sign" class="h-4 w-4"></i><span>USD</span></div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Chat Widget -->
+    <div class="fixed bottom-6 right-6 z-50 flex flex-col items-end">
+        <div id="chat-window" class="hidden flex-col w-[350px] bg-white rounded-2xl shadow-2xl border border-gray-200 mb-4 overflow-hidden transition-all origin-bottom-right">
+            <div class="bg-primary p-4 flex items-center justify-between text-white">
+                <div class="flex items-center gap-2">
+                    <div class="h-8 w-8 rounded-full bg-white/20 flex items-center justify-center"><i data-lucide="bot" class="h-5 w-5"></i></div>
+                    <div>
+                        <p class="font-bold text-sm">Travel Assistant</p>
+                        <p class="text-xs text-white/70">Online now</p>
+                    </div>
+                </div>
+                <button onclick="toggleChat()" class="text-white/80 hover:text-white"><i data-lucide="x" class="h-5 w-5"></i></button>
+            </div>
+            <div class="p-4 h-80 overflow-y-auto bg-slate-50 space-y-4">
+                <div class="flex gap-2">
+                    <div class="h-8 w-8 rounded-full bg-gray-200 flex-shrink-0 flex items-center justify-center"><i data-lucide="bot" class="h-4 w-4 text-gray-600"></i></div>
+                    <div class="bg-white p-3 rounded-r-xl rounded-bl-xl shadow-sm border text-sm text-gray-700">Hello! I'm your AI travel guide. How can I help you plan your next adventure today?</div>
+                </div>
+                <div class="flex gap-2 justify-end">
+                    <div class="bg-primary text-white p-3 rounded-l-xl rounded-br-xl shadow-sm text-sm">Looking for a beach trip under $1000.</div>
+                </div>
+                <div class="flex gap-2">
+                    <div class="h-8 w-8 rounded-full bg-gray-200 flex-shrink-0 flex items-center justify-center"><i data-lucide="bot" class="h-4 w-4 text-gray-600"></i></div>
+                    <div class="bg-white p-3 rounded-r-xl rounded-bl-xl shadow-sm border text-sm text-gray-700">I found great deals for Bali and Thailand within that budget! Would you like to see the flight details?</div>
+                </div>
+            </div>
+            <div class="p-3 border-t bg-white flex gap-2">
+                <input type="text" placeholder="Type a message..." class="flex-1 text-sm border-none focus:ring-0 outline-none px-2">
+                <button class="p-2 bg-primary text-white rounded-lg hover:bg-primary/90"><i data-lucide="send" class="h-4 w-4"></i></button>
+            </div>
+        </div>
+        <button onclick="toggleChat()" class="h-14 w-14 rounded-full bg-primary text-white shadow-lg flex items-center justify-center hover:scale-110 transition-transform focus:outline-none">
+            <i data-lucide="message-circle" class="h-7 w-7"></i>
+        </button>
+    </div>
+
+    <!-- Login Modal -->
+    <div id="login-modal" class="relative z-[100] hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        <div class="fixed inset-0 bg-black/80 backdrop-blur-sm transition-opacity" onclick="closeModal('login-modal')"></div>
+        <div class="fixed left-[50%] top-[50%] z-[101] grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border bg-background p-6 shadow-lg duration-200 sm:rounded-lg md:w-full">
+            <div class="flex flex-col space-y-2 text-center sm:text-left">
+                <h2 class="text-lg font-semibold leading-none tracking-tight">Sign In</h2>
+                <p class="text-sm text-muted-foreground">Enter your email below to sign in to your account</p>
+            </div>
+            <div class="grid gap-4">
+                <div class="grid gap-2">
+                    <button class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium border border-input bg-background hover:bg-slate-100 hover:text-accent-foreground h-10 px-4 py-2 w-full transition-colors">
+                        <svg class="mr-2 h-4 w-4" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="github" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path></svg>
+                        GitHub
+                    </button>
+                    <button class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium border border-input bg-background hover:bg-slate-100 hover:text-accent-foreground h-10 px-4 py-2 w-full transition-colors">
+                        <svg class="mr-2 h-4 w-4" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="google" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 488 512"><path fill="currentColor" d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z"></path></svg>
+                        Google
+                    </button>
+                </div>
+                <div class="relative">
+                    <div class="absolute inset-0 flex items-center"><span class="w-full border-t"></span></div>
+                    <div class="relative flex justify-center text-xs uppercase"><span class="bg-background px-2 text-muted-foreground">Or continue with</span></div>
+                </div>
+                <div class="grid gap-2">
+                    <div class="grid gap-1">
+                        <label class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70" for="email">Email</label>
+                        <input class="flex h-10 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50" id="email" placeholder="m@example.com" type="email" autocapitalize="none" autocomplete="email" autocorrect="off">
+                    </div>
+                    <div class="grid gap-1">
+                        <label class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70" for="password">Password</label>
+                        <input class="flex h-10 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50" id="password" type="password">
+                    </div>
+                    <button class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground shadow hover:bg-primary/90 h-10 px-4 py-2 w-full mt-2">
+                        Sign In with Email
+                    </button>
+                </div>
+                <div class="text-center text-sm text-muted-foreground">
+                    Don't have an account? <button onclick="switchToSignup()" class="underline underline-offset-4 hover:text-primary font-medium">Join Free</button>
+                </div>
+            </div>
+            <button onclick="closeModal('login-modal')" class="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground">
+                <i data-lucide="x" class="h-4 w-4"></i><span class="sr-only">Close</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Signup Modal -->
+    <div id="signup-modal" class="relative z-[100] hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        <div class="fixed inset-0 bg-black/80 backdrop-blur-sm transition-opacity" onclick="closeModal('signup-modal')"></div>
+        <div class="fixed left-[50%] top-[50%] z-[101] grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border bg-background p-6 shadow-lg duration-200 sm:rounded-lg md:w-full">
+            <div class="flex flex-col space-y-2 text-center sm:text-left">
+                <h2 class="text-lg font-semibold leading-none tracking-tight">Create an account</h2>
+                <p class="text-sm text-muted-foreground">Enter your email below to create your account</p>
+            </div>
+            <div class="grid gap-4">
+                <div class="grid gap-2">
+                    <button class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium border border-input bg-background hover:bg-slate-100 hover:text-accent-foreground h-10 px-4 py-2 w-full transition-colors">
+                        <svg class="mr-2 h-4 w-4" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="github" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path></svg>
+                        GitHub
+                    </button>
+                    <button class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium border border-input bg-background hover:bg-slate-100 hover:text-accent-foreground h-10 px-4 py-2 w-full transition-colors">
+                        <svg class="mr-2 h-4 w-4" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="google" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 488 512"><path fill="currentColor" d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z"></path></svg>
+                        Google
+                    </button>
+                </div>
+                <div class="relative">
+                    <div class="absolute inset-0 flex items-center"><span class="w-full border-t"></span></div>
+                    <div class="relative flex justify-center text-xs uppercase"><span class="bg-background px-2 text-muted-foreground">Or continue with</span></div>
+                </div>
+                <div class="grid gap-2">
+                    <div class="grid gap-1">
+                        <label class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70" for="signup-name">Full Name</label>
+                        <input class="flex h-10 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50" id="signup-name" type="text" placeholder="John Doe">
+                    </div>
+                    <div class="grid gap-1">
+                        <label class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70" for="signup-email">Email</label>
+                        <input class="flex h-10 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50" id="signup-email" placeholder="m@example.com" type="email" autocapitalize="none" autocomplete="email" autocorrect="off">
+                    </div>
+                    <div class="grid gap-1">
+                        <label class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70" for="signup-password">Password</label>
+                        <input class="flex h-10 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50" id="signup-password" type="password">
+                    </div>
+                    <button class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground shadow hover:bg-primary/90 h-10 px-4 py-2 w-full mt-2">
+                        Create Account
+                    </button>
+                </div>
+                <div class="text-center text-sm text-muted-foreground">
+                    Already have an account? <button onclick="switchToLogin()" class="underline underline-offset-4 hover:text-primary font-medium">Sign In</button>
+                </div>
+            </div>
+            <button onclick="closeModal('signup-modal')" class="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground">
+                <i data-lucide="x" class="h-4 w-4"></i><span class="sr-only">Close</span>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Initialize Icons
+        lucide.createIcons();
+
+        // Navbar Scroll Effect
+        const navbar = document.getElementById('navbar');
+        const brandText = document.getElementById('brand-text');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('bg-white', 'shadow-md');
+                navbar.classList.remove('border-transparent', 'py-2');
+                brandText.classList.remove('text-white');
+                brandText.classList.add('text-black');
+
+                navLinks.forEach(link => {
+                    link.classList.remove('text-white', 'text-white/90');
+                    link.classList.add('text-black', 'hover:text-primary');
+                });
+            } else {
+                navbar.classList.remove('bg-white', 'shadow-md');
+                navbar.classList.add('border-transparent', 'py-2');
+                brandText.classList.add('text-white');
+                brandText.classList.remove('text-black');
+
+                navLinks.forEach(link => {
+                    link.classList.add('text-white', 'text-white/90');
+                    link.classList.remove('text-black', 'hover:text-primary');
+                });
+            }
+        });
+
+        // Chatbot Toggle
+        function toggleChat() {
+            const chatWindow = document.getElementById('chat-window');
+            if (chatWindow.classList.contains('hidden')) {
+                chatWindow.classList.remove('hidden');
+                chatWindow.classList.add('flex', 'chat-enter');
+            } else {
+                chatWindow.classList.add('hidden');
+                chatWindow.classList.remove('flex', 'chat-enter');
+            }
+        }
+
+        /* --- MODAL LOGIC --- */
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            const overlay = modal.querySelector('.fixed.inset-0');
+            const content = modal.querySelector('.fixed.left-\\[50\\%\\]');
+
+            modal.classList.remove('hidden');
+
+            overlay.classList.remove('backdrop-exit');
+            overlay.classList.add('backdrop-enter');
+
+            content.classList.remove('modal-exit');
+            content.classList.add('modal-enter');
+        }
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            const overlay = modal.querySelector('.fixed.inset-0');
+            const content = modal.querySelector('.fixed.left-\\[50\\%\\]');
+
+            overlay.classList.remove('backdrop-enter');
+            overlay.classList.add('backdrop-exit');
+
+            content.classList.remove('modal-enter');
+            content.classList.add('modal-exit');
+
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 150);
+        }
+
+        function switchToSignup() {
+            closeModal('login-modal');
+            setTimeout(() => {
+                openModal('signup-modal');
+            }, 160);
+        }
+
+        function switchToLogin() {
+            closeModal('signup-modal');
+            setTimeout(() => {
+                openModal('login-modal');
+            }, 160);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,2415 @@
+<!-- Shared Resources and Components -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: {
+                        border: "hsl(240 5.9% 90%)",
+                        input: "hsl(240 5.9% 90%)",
+                        ring: "hsl(240 5% 64.9%)",
+                        background: "hsl(0 0% 100%)",
+                        foreground: "hsl(240 10% 3.9%)",
+                        primary: {
+                            DEFAULT: "hsl(240 5.9% 10%)",
+                            foreground: "hsl(0 0% 98%)",
+                        },
+                        muted: {
+                            DEFAULT: "hsl(240 4.8% 95.9%)",
+                            foreground: "hsl(240 3.8% 46.1%)",
+                        },
+                        accent: {
+                            DEFAULT: "hsl(240 4.8% 95.9%)",
+                            foreground: "hsl(240 5.9% 10%)",
+                        },
+                    },
+                    boxShadow: {
+                        'glass': '0 8px 32px 0 rgba(31, 38, 135, 0.15)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        
+        /* Hide scrollbars but keep functionality */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Custom hover effects */
+        .nav-item:hover i {
+            color: #0054a6;
+            transition: color 0.3s;
+        }
+
+        /* Tab Active State Classes */
+        .tab-active {
+            background-color: #0054a6;
+            color: white;
+            border-color: #0054a6;
+        }
+
+        .tab-inactive {
+            background-color: white;
+            color: #4b5563;
+            border-color: #d1d5db;
+        }
+
+        .filter-active {
+            background-color: #1f2937;
+            color: white;
+        }
+
+        .filter-inactive {
+            color: #4b5563;
+            background-color: transparent;
+        }
+
+        .filter-inactive:hover {
+            background-color: #f3f4f6;
+        }
+    </style>
+<style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+
+        .hero-overlay {
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.4) 50%, rgba(0, 0, 0, 0.6) 100%);
+        }
+
+        /* MEGA MENU DROPDOWN STYLES */
+        .mega-menu {
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .group:hover .mega-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .chat-enter { animation: slideUp 0.3s ease-out forwards; }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .modal-enter { animation: modalIn 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        .modal-exit { animation: modalOut 0.15s ease-in forwards; }
+        @keyframes modalIn {
+            from { opacity: 0; transform: translate(-50%, -48%) scale(0.96); }
+            to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+        }
+        @keyframes modalOut {
+            from { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+            to { opacity: 0; transform: translate(-50%, -48%) scale(0.96); }
+        }
+
+        .backdrop-enter { animation: fadeIn 0.2s ease-out forwards; }
+        .backdrop-exit { animation: fadeOut 0.2s ease-in forwards; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes fadeOut { from { opacity: 1; } to { opacity: 0; } }
+
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar Component -->
+    
+    <nav id="navbar" class="fixed top-0 z-50 w-full transition-all duration-300 border-b border-transparent py-2">
+        <div class="container mx-auto flex h-16 items-center justify-between px-4 md:px-6 ">
+            <div class="flex items-center gap-2">
+                <div class="bg-primary text-white p-1.5 rounded-lg">
+                    <i data-lucide="plane" class="h-5 w-5"></i>
+                </div>
+                <a href="index.html" id="brand-text" class="text-xl font-bold tracking-tight text-white transition-colors cursor-pointer">TRAVELLER CHOICE</a>
+            </div>
+
+            <div class="hidden md:flex gap-8 text-sm font-medium h-full items-center">
+                <a href="index.html" class="nav-link text-white/90 hover:text-white transition-colors">Home</a>
+                <a href="flights.html" class="nav-link text-white/90 hover:text-white transition-colors">Flights</a>
+                
+                <a href="visa.html" class="nav-link text-white/90 hover:text-white transition-colors">Visa Services</a>
+                
+                <div class="group h-full flex items-center">
+                    <a  class="nav-link text-white/90 hover:text-white transition-colors flex items-center gap-1">
+                        Travel Packages <i data-lucide="chevron-down" class="h-3 w-3"></i>
+                    </a>
+                    
+                    <div class="mega-menu absolute top-full left-0 w-100 ">
+                        <div class="bg-white shadow-2xl border-t border-gray-100 p-8 text-gray-800">
+                            <div class="container mx-auto grid grid-cols-4 gap-8">
+                                <div>
+                                    <h4 class="font-bold text-primary mb-4 uppercase text-xs tracking-widest border-b pb-2">India Tours</h4>
+                                    <ul class="space-y-2 text-sm">
+                                        <li><a href="/holiday_packages_goa.html" class="hover:text-red-500 transition-colors">Goa Packages</a></li>
+                                        <li><a href="#" class="hover:text-red-500 transition-colors">Kerala Backwaters</a></li>
+                                        <li><a href="#" class="hover:text-red-500 transition-colors">Himachal Special</a></li>
+                                        <li><a href="#" class="hover:text-red-500 transition-colors">Rajasthan Royal</a></li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-primary mb-4 uppercase text-xs tracking-widest border-b pb-2">International</h4>
+                                    <ul class="space-y-2 text-sm">
+                                        <li><a href="#" class="hover:text-red-500 transition-colors">Bali Adventure</a></li>
+                                        <li><a href="#" class="hover:text-red-500 transition-colors">Thailand Getaway</a></li>
+                                        <li><a href="#" class="hover:text-red-500 transition-colors">Dubai Luxury</a></li>
+                                        <li><a href="#" class="hover:text-red-500 transition-colors">Europe Wonders</a></li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-primary mb-4 uppercase text-xs tracking-widest border-b pb-2">By Theme</h4>
+                                    <ul class="space-y-2 text-sm">
+                                        <li><a href="#" class="hover:text-red-500 transition-colors">Honeymoon Specials</a></li>
+                                        <li><a href="#" class="hover:text-red-500 transition-colors">Family Holidays</a></li>
+                                        <li><a href="#" class="hover:text-red-500 transition-colors">Adventure Tours</a></li>
+                                        <li><a href="#" class="hover:text-red-500 transition-colors">Luxury Cruises</a></li>
+                                    </ul>
+                                </div>
+                                <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+                                    <h4 class="font-bold text-primary mb-2 text-sm">Summer Sale 2026</h4>
+                                    <p class="text-xs text-slate-500 mb-4 leading-relaxed">Book your international holiday before February 28th and get a flat 15% discount.</p>
+                                    <button class="w-full bg-red-500 text-white text-xs font-bold py-2 rounded hover:bg-red-600 transition">View Offers</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="cruise.html" class="nav-link text-white/90 hover:text-white transition-colors">Cruise</a>
+                <a href="forex.html" class="nav-link text-white/90 hover:text-white transition-colors">Forex</a>
+
+                <a href="contact.html" class="nav-link text-white/90 hover:text-white transition-colors">Contact</a>
+            </div>
+
+            <div class="flex items-center gap-4">
+                <button onclick="openModal('login-modal')" class="nav-link text-sm font-medium text-white hover:underline transition-colors">Sign In</button>
+                <button onclick="openModal('signup-modal')" class="inline-flex h-9 items-center justify-center rounded-md bg-white text-black px-4 py-2 text-sm font-medium shadow hover:bg-gray-100 transition-colors">
+                    Join Free
+                </button>
+            </div>
+        </div>
+    </nav>
+
+
+
+
+
+    <main>
+
+        <section class="relative min-h-[100vh] flex items-center pt-20">
+            <div class="absolute inset-0 z-0">
+                <img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?q=80&w=2000&auto=format&fit=crop"
+                    class="h-full w-full object-cover" alt="Swiss Alps">
+                <div class="hero-overlay absolute inset-0"></div>
+            </div>
+
+            <div class="container relative z-10 mx-auto px-4 grid lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-7 space-y-6 text-white pt-10">
+                    <div
+                        class="inline-flex items-center rounded-full border border-white/30 bg-white/10 px-3 py-1 text-xs font-medium backdrop-blur-md">
+                        <span class="mr-1 h-2 w-2 rounded-full bg-green-400"></span>
+                        AI Trip Planner Live
+                    </div>
+                    <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight leading-[1.1] drop-shadow-sm">
+                        Discover the <br>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-200 to-white">Unseen
+                            World.</span>
+                    </h1>
+                    <p class="text-sm  text-gray-100 max-w-2xl font-light leading-relaxed drop-shadow-md">
+                        Don't just book a flight. Design an experience. Use our AI to curate personalized itineraries,
+                        visa guides, and luxury stays.
+                    </p>
+
+                    <div class="relative max-w-lg mt-8 group">
+                        <div
+                            class="absolute -inset-1 bg-gradient-to-r from-blue-400 to-purple-400 rounded-lg blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200">
+                        </div>
+                        
+                    </div>
+                </div>
+
+                <div class="lg:col-span-5">
+                    <div class="glass-panel rounded-xl border border-white/20 shadow-glass p-6 text-foreground">
+                        <div class="flex p-1 space-x-1 bg-slate-100/80 rounded-lg mb-6">
+                            <button onclick="switchTab('flights')" id="btn-flights"
+                                class="w-full py-2 text-sm font-medium leading-5 text-black bg-white rounded-md shadow-sm ring-1 ring-black/5 focus:outline-none transition-all">Flights</button>
+                            <button onclick="switchTab('hotels')" id="btn-hotels"
+                                class="w-full py-2 text-sm font-medium leading-5 text-gray-500 rounded-md hover:text-black hover:bg-white/60 focus:outline-none transition-all">Hotels</button>
+                            <button onclick="switchTab('cars')" id="btn-cars"
+                                class="w-full py-2 text-sm font-medium leading-5 text-gray-500 rounded-md hover:text-black hover:bg-white/60 focus:outline-none transition-all">Rentals</button>
+                        </div>
+
+                        <div id="tab-flights" class="hero-tab-content space-y-4">
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="space-y-1">
+                                    <label class="text-xs font-semibold uppercase text-muted-foreground">From</label>
+                                    <div class="relative">
+                                        <i data-lucide="plane-takeoff"
+                                            class="absolute left-3 top-3 h-4 w-4 text-muted-foreground"></i>
+                                        <input type="text" value="New York (JFK)"
+                                            class="pl-9 flex h-10 w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
+                                    </div>
+                                </div>
+                                <div class="space-y-1">
+                                    <label class="text-xs font-semibold uppercase text-muted-foreground">To</label>
+                                    <div class="relative">
+                                        <i data-lucide="plane-landing"
+                                            class="absolute left-3 top-3 h-4 w-4 text-muted-foreground"></i>
+                                        <input type="text" placeholder="City or Airport"
+                                            class="pl-9 flex h-10 w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="space-y-1">
+                                <label class="text-xs font-semibold uppercase text-muted-foreground">Departure</label>
+                                <input type="date"
+                                    class="flex h-10 w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
+                            </div>
+                            <button
+                                class="w-full h-11 inline-flex items-center justify-center rounded-md bg-primary text-primary-foreground text-sm font-medium shadow transition-colors hover:bg-primary/90 mt-2">Search
+                                Flights</button>
+                        </div>
+
+                        <div id="tab-hotels" class="hero-tab-content hidden space-y-4">
+                            <div class="space-y-1">
+                                <label class="text-xs font-semibold uppercase text-muted-foreground">Destination</label>
+                                <div class="relative">
+                                    <i data-lucide="map-pin"
+                                        class="absolute left-3 top-3 h-4 w-4 text-muted-foreground"></i>
+                                    <input type="text" placeholder="Where are you going?"
+                                        class="pl-9 flex h-10 w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm">
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="space-y-1">
+                                    <label
+                                        class="text-xs font-semibold uppercase text-muted-foreground">Check-in</label>
+                                    <input type="date"
+                                        class="flex h-10 w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm">
+                                </div>
+                                <div class="space-y-1">
+                                    <label class="text-xs font-semibold uppercase text-muted-foreground">Guests</label>
+                                    <input type="number" min="1" value="2"
+                                        class="flex h-10 w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm">
+                                </div>
+                            </div>
+                            <button
+                                class="w-full h-11 inline-flex items-center justify-center rounded-md bg-primary text-primary-foreground text-sm font-medium shadow transition-colors hover:bg-primary/90 mt-2">Find
+                                Stays</button>
+                        </div>
+
+                        <div id="tab-cars" class="hero-tab-content hidden space-y-4">
+                            <div class="text-center py-8 text-muted-foreground text-sm">
+                                <i data-lucide="car" class="h-10 w-10 mx-auto mb-3 opacity-50"></i>
+                                <p>Luxury rentals coming soon.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-8 bg-slate-50">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold text-slate-900 mb-8">Travel Guides & Tips</h2>
+                <div class="flex flex-col md:flex-row gap-6">
+                    <div class="flex-1 relative rounded-xl overflow-hidden h-64 md:h-auto group cursor-pointer">
+                        <img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?q=80&w=800&auto=format&fit=crop"
+                            class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-6">
+                            <span
+                                class="text-xs font-bold text-white bg-accent px-2 py-1 rounded w-fit mb-2">Tips</span>
+                            <h3 class="text-2xl font-bold text-white">How to pack for a 2-week Europe trip</h3>
+                        </div>
+                    </div>
+                    <div class="flex-1 space-y-4">
+                        <div class="flex gap-4 items-center group cursor-pointer">
+                            <div class="w-24 h-24 rounded-lg overflow-hidden shrink-0">
+                                <img src="https://images.unsplash.com/photo-1527631746610-bca00a040d60?q=80&w=200&auto=format&fit=crop"
+                                    class="w-full h-full object-cover">
+                            </div>
+                            <div>
+                                <span class="text-xs font-semibold text-slate-400">Feb 12, 2025</span>
+                                <h4 class="font-bold text-slate-900 group-hover:text-primary">Safe Travel: A complete
+                                    guide to travel insurance</h4>
+                                <p class="text-sm text-slate-500 line-clamp-2">Understanding policies, deductibles, and
+                                    emergency contacts.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4 items-center group cursor-pointer">
+                            <div class="w-24 h-24 rounded-lg overflow-hidden shrink-0">
+                                <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=200&auto=format&fit=crop"
+                                    class="w-full h-full object-cover">
+                            </div>
+                            <div>
+                                <span class="text-xs font-semibold text-slate-400">Jan 28, 2025</span>
+                                <h4 class="font-bold text-slate-900 group-hover:text-primary">Top 10 Budget Destinations
+                                    for 2025</h4>
+                                <p class="text-sm text-slate-500 line-clamp-2">Explore the world without breaking the
+                                    bank. Hidden gems included.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4 items-center group cursor-pointer">
+                            <div class="w-24 h-24 rounded-lg overflow-hidden shrink-0">
+                                <img src="https://images.unsplash.com/photo-1530789253388-582c481c54b0?q=80&w=200&auto=format&fit=crop"
+                                    class="w-full h-full object-cover">
+                            </div>
+                            <div>
+                                <span class="text-xs font-semibold text-slate-400">Jan 10, 2025</span>
+                                <h4 class="font-bold text-slate-900 group-hover:text-primary">Visa-Free countries for US
+                                    Citizens</h4>
+                                <p class="text-sm text-slate-500 line-clamp-2">Updated list of countries you can visit
+                                    without a visa this year.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-8 bg-slate-100">
+            <div class="container mx-auto px-4">
+                <div class="flex items-center justify-between mb-8">
+                    <h2 class="text-2xl font-bold tracking-tight flex items-center gap-2">
+                        <i data-lucide="flame" class="h-5 w-5 text-orange-500 fill-orange-500"></i> Trending Now
+                    </h2>
+                    <a href="#" class="text-sm font-semibold hover:underline">See all</a>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="relative rounded-2xl overflow-hidden aspect-[4/3] group cursor-pointer shadow-md">
+                        <img src="https://images.unsplash.com/photo-1599394022918-6c2776530abb?q=80&w=800&auto=format&fit=crop"
+                            class="object-cover w-full h-full transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent">
+                        </div>
+                        <div class="absolute bottom-4 left-4 text-white">
+                            <h3 class="text-xl font-bold">Cappadocia, Turkey</h3>
+                            <p class="text-sm opacity-90">Hot air balloon season</p>
+                        </div>
+                    </div>
+                    <div class="relative rounded-2xl overflow-hidden aspect-[4/3] group cursor-pointer shadow-md">
+                        <img src="https://images.unsplash.com/photo-1548013146-72479768bada?q=80&w=800&auto=format&fit=crop"
+                            class="object-cover w-full h-full transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent">
+                        </div>
+                        <div class="absolute bottom-4 left-4 text-white">
+                            <h3 class="text-xl font-bold">Agra, India</h3>
+                            <p class="text-sm opacity-90">Cultural heritage tours</p>
+                        </div>
+                    </div>
+                    <div class="relative rounded-2xl overflow-hidden aspect-[4/3] group cursor-pointer shadow-md">
+                        <img src="https://images.unsplash.com/photo-1506929562872-bb421503ef21?q=80&w=800&auto=format&fit=crop"
+                            class="object-cover w-full h-full transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent">
+                        </div>
+                        <div class="absolute bottom-4 left-4 text-white">
+                            <h3 class="text-xl font-bold">The Maldives</h3>
+                            <p class="text-sm opacity-90">Luxury overwater villas</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        
+
+        <section class="py-8 bg-slate-50"> 
+        <div class="container mx-auto px-4 py-6 space-y-12">
+
+            <div>
+
+                <div class="lg:col-span-8 space-y-8">
+
+                     
+
+                    <div class="relative group">
+                        <h2 class="text-lg font-bold text-gray-800 mb-4">Explore Tour Packages by Theme</h2>
+                        <button onclick="scrollContainer('themes-scroll', -200)"
+                            class="absolute left-[-15px] top-[60%] z-10 w-8 h-8 bg-white rounded-full shadow-md flex items-center justify-center hover:bg-gray-100 border border-gray-100 transition hover:scale-110"><i
+                                class="fas fa-chevron-left text-gray-600"></i></button>
+                        <button onclick="scrollContainer('themes-scroll', 200)"
+                            class="absolute right-[-15px] top-[60%] z-10 w-8 h-8 bg-white rounded-full shadow-md flex items-center justify-center hover:bg-gray-100 border border-gray-100 transition hover:scale-110"><i
+                                class="fas fa-chevron-right text-gray-600"></i></button>
+
+                        <div id="themes-scroll" class="flex gap-4 overflow-x-auto no-scrollbar scroll-smooth pb-2">
+
+
+                            <div
+                                class="min-w-[140px] h-[160px] relative rounded-xl overflow-hidden cursor-pointer hover:-translate-y-1 transition transform duration-300 shadow-sm">
+                                <img src="https://images.unsplash.com/photo-1507608616759-54f48f0af0ee?auto=format&fit=crop&w=300&q=80"
+                                    class="w-full h-full object-cover">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                                <span class="absolute bottom-3 left-3 text-white font-bold text-sm leading-tight">Super
+                                    Saver</span>
+                            </div>
+                            <div
+                                class="min-w-[140px] h-[160px] relative rounded-xl overflow-hidden cursor-pointer hover:-translate-y-1 transition transform duration-300 shadow-sm">
+                                <img src="https://images.unsplash.com/photo-1483921020237-2ff51e8e4b22?auto=format&fit=crop&w=300&q=80"
+                                    class="w-full h-full object-cover">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                                <span class="absolute bottom-3 left-3 text-white font-bold text-sm">Winter Tours</span>
+                            </div>
+                            <div
+                                class="min-w-[140px] h-[160px] relative rounded-xl overflow-hidden cursor-pointer hover:-translate-y-1 transition transform duration-300 shadow-sm">
+                                <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=300&q=80"
+                                    class="w-full h-full object-cover">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                                <span class="absolute bottom-3 left-3 text-white font-bold text-sm">Honeymoon</span>
+                            </div>
+                            <div
+                                class="min-w-[140px] h-[160px] relative rounded-xl overflow-hidden cursor-pointer hover:-translate-y-1 transition transform duration-300 shadow-sm">
+                                <img src="https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&w=300&q=80"
+                                    class="w-full h-full object-cover">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                                <span class="absolute bottom-3 left-3 text-white font-bold text-sm">Group Tours</span>
+                            </div>
+                            <div
+                                class="min-w-[140px] h-[160px] relative rounded-xl overflow-hidden cursor-pointer hover:-translate-y-1 transition transform duration-300 shadow-sm">
+                                <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=300&q=80"
+                                    class="w-full h-full object-cover">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                                <span class="absolute bottom-3 left-3 text-white font-bold text-sm">Short Breaks</span>
+                            </div>
+
+                            <div
+                                class="min-w-[140px] h-[160px] relative rounded-xl overflow-hidden cursor-pointer hover:-translate-y-1 transition transform duration-300 shadow-sm">
+                                <img src="https://images.unsplash.com/photo-1507608616759-54f48f0af0ee?auto=format&fit=crop&w=300&q=80"
+                                    class="w-full h-full object-cover">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                                <span class="absolute bottom-3 left-3 text-white font-bold text-sm leading-tight">Super
+                                    Saver</span>
+                            </div>
+                            <div
+                                class="min-w-[140px] h-[160px] relative rounded-xl overflow-hidden cursor-pointer hover:-translate-y-1 transition transform duration-300 shadow-sm">
+                                <img src="https://images.unsplash.com/photo-1507608616759-54f48f0af0ee?auto=format&fit=crop&w=300&q=80"
+                                    class="w-full h-full object-cover">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                                <span class="absolute bottom-3 left-3 text-white font-bold text-sm leading-tight">Super
+                                    Saver</span>
+                            </div>
+                            <div
+                                class="min-w-[140px] h-[160px] relative rounded-xl overflow-hidden cursor-pointer hover:-translate-y-1 transition transform duration-300 shadow-sm">
+                                <img src="https://images.unsplash.com/photo-1507608616759-54f48f0af0ee?auto=format&fit=crop&w=300&q=80"
+                                    class="w-full h-full object-cover">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                                <span class="absolute bottom-3 left-3 text-white font-bold text-sm leading-tight">Super
+                                    Saver</span>
+                            </div>
+                            <div
+                                class="min-w-[140px] h-[160px] relative rounded-xl overflow-hidden cursor-pointer hover:-translate-y-1 transition transform duration-300 shadow-sm">
+                                <img src="https://images.unsplash.com/photo-1507608616759-54f48f0af0ee?auto=format&fit=crop&w=300&q=80"
+                                    class="w-full h-full object-cover">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                                <span class="absolute bottom-3 left-3 text-white font-bold text-sm leading-tight">Super
+                                    Saver</span>
+                            </div>
+                            <div
+                                class="min-w-[140px] h-[160px] relative rounded-xl overflow-hidden cursor-pointer hover:-translate-y-1 transition transform duration-300 shadow-sm">
+                                <img src="https://images.unsplash.com/photo-1507608616759-54f48f0af0ee?auto=format&fit=crop&w=300&q=80"
+                                    class="w-full h-full object-cover">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                                <span class="absolute bottom-3 left-3 text-white font-bold text-sm leading-tight">Super
+                                    Saver</span>
+                            </div>
+                            <div
+                                class="min-w-[140px] h-[160px] relative rounded-xl overflow-hidden cursor-pointer hover:-translate-y-1 transition transform duration-300 shadow-sm">
+                                <img src="https://images.unsplash.com/photo-1507608616759-54f48f0af0ee?auto=format&fit=crop&w=300&q=80"
+                                    class="w-full h-full object-cover">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                                <span class="absolute bottom-3 left-3 text-white font-bold text-sm leading-tight">Super
+                                    Saver</span>
+                            </div>
+                            <div
+                                class="min-w-[140px] h-[160px] relative rounded-xl overflow-hidden cursor-pointer hover:-translate-y-1 transition transform duration-300 shadow-sm">
+                                <img src="https://images.unsplash.com/photo-1507608616759-54f48f0af0ee?auto=format&fit=crop&w=300&q=80"
+                                    class="w-full h-full object-cover">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                                <span class="absolute bottom-3 left-3 text-white font-bold text-sm leading-tight">Super
+                                    Saver</span>
+                            </div>
+                            <div
+                                class="min-w-[140px] h-[160px] relative rounded-xl overflow-hidden cursor-pointer hover:-translate-y-1 transition transform duration-300 shadow-sm">
+                                <img src="https://images.unsplash.com/photo-1507608616759-54f48f0af0ee?auto=format&fit=crop&w=300&q=80"
+                                    class="w-full h-full object-cover">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                                <span class="absolute bottom-3 left-3 text-white font-bold text-sm leading-tight">Super
+                                    Saver</span>
+                            </div>
+                            <div
+                                class="min-w-[140px] h-[160px] relative rounded-xl overflow-hidden cursor-pointer hover:-translate-y-1 transition transform duration-300 shadow-sm">
+                                <img src="https://images.unsplash.com/photo-1507608616759-54f48f0af0ee?auto=format&fit=crop&w=300&q=80"
+                                    class="w-full h-full object-cover">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                                <span class="absolute bottom-3 left-3 text-white font-bold text-sm leading-tight">Super
+                                    Saver</span>
+                            </div>
+                            <div
+                                class="min-w-[140px] h-[160px] relative rounded-xl overflow-hidden cursor-pointer hover:-translate-y-1 transition transform duration-300 shadow-sm">
+                                <img src="https://images.unsplash.com/photo-1507608616759-54f48f0af0ee?auto=format&fit=crop&w=300&q=80"
+                                    class="w-full h-full object-cover">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                                <span class="absolute bottom-3 left-3 text-white font-bold text-sm leading-tight">Super
+                                    Saver</span>
+                            </div>
+                            <div
+                                class="min-w-[140px] h-[160px] relative rounded-xl overflow-hidden cursor-pointer hover:-translate-y-1 transition transform duration-300 shadow-sm">
+                                <img src="https://images.unsplash.com/photo-1507608616759-54f48f0af0ee?auto=format&fit=crop&w=300&q=80"
+                                    class="w-full h-full object-cover">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                                <span class="absolute bottom-3 left-3 text-white font-bold text-sm leading-tight">Super
+                                    Saver</span>
+                            </div>
+                            <div
+                                class="min-w-[140px] h-[160px] relative rounded-xl overflow-hidden cursor-pointer hover:-translate-y-1 transition transform duration-300 shadow-sm">
+                                <img src="https://images.unsplash.com/photo-1507608616759-54f48f0af0ee?auto=format&fit=crop&w=300&q=80"
+                                    class="w-full h-full object-cover">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                                <span class="absolute bottom-3 left-3 text-white font-bold text-sm leading-tight">Super
+                                    Saver</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="relative group">
+                        <div class="flex justify-between items-center mb-4">
+                            <h2 class="text-lg font-bold text-gray-800">Travel Offers by traveller</h2>
+                            <div class="flex gap-2">
+                                <button onclick="toggleTab(this, 'offer-tab')"
+                                    class="offer-tab tab-active px-4 py-1 text-xs font-bold rounded-full border transition">Tour
+                                    Packages</button>
+                                <button onclick="toggleTab(this, 'offer-tab')"
+                                    class="offer-tab tab-inactive px-4 py-1 text-xs font-bold rounded-full border transition">Hotels</button>
+                            </div>
+                        </div>
+
+                        <button onclick="scrollContainer('offers-scroll', -360)"
+                            class="absolute left-[-15px] top-[55%] z-10 w-8 h-8 bg-white rounded-full shadow-md flex items-center justify-center hover:bg-gray-100 border border-gray-100 transition hover:scale-110"><i
+                                class="fas fa-chevron-left text-gray-600"></i></button>
+                        <button onclick="scrollContainer('offers-scroll', 360)"
+                            class="absolute right-[-15px] top-[55%] z-10 w-8 h-8 bg-white rounded-full shadow-md flex items-center justify-center hover:bg-gray-100 border border-gray-100 transition hover:scale-110"><i
+                                class="fas fa-chevron-right text-gray-600"></i></button>
+
+                        <div id="offers-scroll" class="flex gap-5 overflow-x-auto no-scrollbar scroll-smooth pb-4">
+                            <div
+                                class="min-w-[360px] bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex hover:shadow-md transition">
+                                <div class="w-2/5 relative">
+                                    <img src="https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&w=300&q=80"
+                                        class="w-full h-full object-cover">
+                                </div>
+                                <div class="w-3/5 p-4 flex flex-col justify-between">
+                                    <div>
+                                        <h3 class="font-bold text-sm text-gray-800 mb-1">Vietnam Saver Tour</h3>
+                                        <div class="text-yellow-400 text-xs mb-1"><i class="fas fa-star"></i><i
+                                                class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                                class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
+                                    </div>
+                                    <div>
+                                        <p class="text-xs text-gray-500">Starting From</p>
+                                        <p class="text-lg font-bold text-gray-800">₹ 1,03,117</p>
+                                        <button onclick="toggleModal(true)"
+                                            class="mt-2 bg-traveller-blue text-white text-xs px-4 py-1.5 rounded hover:bg-blue-800 transition">view
+                                            details</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div
+                                class="min-w-[360px] bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex hover:shadow-md transition">
+                                <div class="w-2/5 relative">
+                                    <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=300&q=80"
+                                        class="w-full h-full object-cover">
+                                </div>
+                                <div class="w-3/5 p-4 flex flex-col justify-between">
+                                    <div>
+                                        <h3 class="font-bold text-sm text-gray-800 mb-1">Bali Discovery</h3>
+                                        <div class="text-yellow-400 text-xs mb-1"><i class="fas fa-star"></i><i
+                                                class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                                class="fas fa-star"></i></div>
+                                    </div>
+                                    <div>
+                                        <p class="text-xs text-gray-500">Starting From</p>
+                                        <p class="text-lg font-bold text-gray-800">₹ 1,00,010</p>
+                                        <button onclick="toggleModal(true)"
+                                            class="mt-2 bg-traveller-blue text-white text-xs px-4 py-1.5 rounded hover:bg-blue-800 transition">view
+                                            details</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div
+                                class="min-w-[360px] bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex hover:shadow-md transition">
+                                <div class="w-2/5 relative">
+                                    <img src="https://images.unsplash.com/photo-1506929562872-bb421503ef21?auto=format&fit=crop&w=300&q=80"
+                                        class="w-full h-full object-cover">
+                                </div>
+                                <div class="w-3/5 p-4 flex flex-col justify-between">
+                                    <div>
+                                        <h3 class="font-bold text-sm text-gray-800 mb-1">Thailand Getaway</h3>
+                                        <div class="text-yellow-400 text-xs mb-1"><i class="fas fa-star"></i><i
+                                                class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                                    </div>
+                                    <div>
+                                        <p class="text-xs text-gray-500">Starting From</p>
+                                        <p class="text-lg font-bold text-gray-800">₹ 45,500</p>
+                                        <button onclick="toggleModal(true)"
+                                            class="mt-2 bg-traveller-blue text-white text-xs px-4 py-1.5 rounded hover:bg-blue-800 transition">view
+                                            details</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+               
+            </div>
+
+            <div class="relative group">
+                <h2 class="text-lg font-bold text-gray-800 mb-4">Top Trending Travel Destinations</h2>
+                <button onclick="scrollContainer('trending-scroll', -200)"
+                    class="absolute left-[-20px] top-[60%] z-10 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-gray-100 border border-gray-100 text-gray-600 transition hover:scale-110"><i
+                        class="fas fa-chevron-left"></i></button>
+                <button onclick="scrollContainer('trending-scroll', 200)"
+                    class="absolute right-[-20px] top-[60%] z-10 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-gray-100 border border-gray-100 text-gray-600 transition hover:scale-110"><i
+                        class="fas fa-chevron-right"></i></button>
+
+                <div id="trending-scroll" class="flex gap-4 overflow-x-auto no-scrollbar scroll-smooth pb-4 p-2">
+                    <div class="min-w-[180px] group/card cursor-pointer">
+                        <div class="h-[220px] rounded-2xl overflow-hidden relative mb-2 shadow-md">
+                            <img src="https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=300&q=80"
+                                class="w-full h-full object-cover group-hover/card:scale-110 transition duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent">
+                            </div>
+                            <div class="absolute bottom-3 left-3 text-white">
+                                <h3 class="font-bold text-lg leading-none mb-1">South Africa</h3>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center text-xs">
+                            <span class="text-gray-500">10+ Packages</span>
+                            <span class="text-green-600 font-bold">From ₹ 1,50,000</span>
+                        </div>
+                    </div>
+                    <div class="min-w-[180px] group/card cursor-pointer">
+                        <div class="h-[220px] rounded-2xl overflow-hidden relative mb-2 shadow-md">
+                            <img src="https://images.unsplash.com/photo-1528164344705-47542687000d?auto=format&fit=crop&w=300&q=80"
+                                class="w-full h-full object-cover group-hover/card:scale-110 transition duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent">
+                            </div>
+                            <div class="absolute bottom-3 left-3 text-white">
+                                <h3 class="font-bold text-lg leading-none mb-1">Japan</h3>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center text-xs">
+                            <span class="text-gray-500">20+ Packages</span>
+                            <span class="text-green-600 font-bold">From ₹ 1,85,000</span>
+                        </div>
+                    </div>
+                    <div class="min-w-[180px] group/card cursor-pointer">
+                        <div class="h-[220px] rounded-2xl overflow-hidden relative mb-2 shadow-md">
+                            <img src="https://images.unsplash.com/photo-1476900543704-4312b78632f8?auto=format&fit=crop&w=300&q=80"
+                                class="w-full h-full object-cover group-hover/card:scale-110 transition duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent">
+                            </div>
+                            <div class="absolute bottom-3 left-3 text-white">
+                                <h3 class="font-bold text-lg leading-none mb-1">All Of Europe</h3>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center text-xs">
+                            <span class="text-gray-500">50+ Packages</span>
+                            <span class="text-green-600 font-bold">From ₹ 2,00,000</span>
+                        </div>
+                    </div>
+                    <div class="min-w-[180px] group/card cursor-pointer">
+                        <div class="h-[220px] rounded-2xl overflow-hidden relative mb-2 shadow-md">
+                            <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=300&q=80"
+                                class="w-full h-full object-cover group-hover/card:scale-110 transition duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent">
+                            </div>
+                            <div class="absolute bottom-3 left-3 text-white">
+                                <h3 class="font-bold text-lg leading-none mb-1">New Zealand</h3>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center text-xs">
+                            <span class="text-gray-500">15+ Packages</span>
+                            <span class="text-green-600 font-bold">From ₹ 3,15,500</span>
+                        </div>
+                    </div>
+                    <div class="min-w-[180px] group/card cursor-pointer">
+                        <div class="h-[220px] rounded-2xl overflow-hidden relative mb-2 shadow-md">
+                            <img src="https://images.unsplash.com/photo-1559592413-7cec4d0ea49b?auto=format&fit=crop&w=300&q=80"
+                                class="w-full h-full object-cover group-hover/card:scale-110 transition duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent">
+                            </div>
+                            <div class="absolute bottom-3 left-3 text-white">
+                                <h3 class="font-bold text-lg leading-none mb-1">Vietnam</h3>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center text-xs">
+                            <span class="text-gray-500">18+ Packages</span>
+                            <span class="text-green-600 font-bold">From ₹ 55,000</span>
+                        </div>
+                    </div>
+                    <div class="min-w-[180px] group/card cursor-pointer">
+                        <div class="h-[220px] rounded-2xl overflow-hidden relative mb-2 shadow-md">
+                            <img src="https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=300&q=80"
+                                class="w-full h-full object-cover group-hover/card:scale-110 transition duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent">
+                            </div>
+                            <div class="absolute bottom-3 left-3 text-white">
+                                <h3 class="font-bold text-lg leading-none mb-1">UAE - Dubai</h3>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center text-xs">
+                            <span class="text-gray-500">100+ Packages</span>
+                            <span class="text-green-600 font-bold">From ₹ 40,000</span>
+                        </div>
+                    </div>
+                    <div class="min-w-[180px] group/card cursor-pointer">
+                        <div class="h-[220px] rounded-2xl overflow-hidden relative mb-2 shadow-md">
+                            <img src="https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=300&q=80"
+                                class="w-full h-full object-cover group-hover/card:scale-110 transition duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent">
+                            </div>
+                            <div class="absolute bottom-3 left-3 text-white">
+                                <h3 class="font-bold text-lg leading-none mb-1">UAE - Dubai</h3>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center text-xs">
+                            <span class="text-gray-500">100+ Packages</span>
+                            <span class="text-green-600 font-bold">From ₹ 40,000</span>
+                        </div>
+                    </div>
+                    <div class="min-w-[180px] group/card cursor-pointer">
+                        <div class="h-[220px] rounded-2xl overflow-hidden relative mb-2 shadow-md">
+                            <img src="https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=300&q=80"
+                                class="w-full h-full object-cover group-hover/card:scale-110 transition duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent">
+                            </div>
+                            <div class="absolute bottom-3 left-3 text-white">
+                                <h3 class="font-bold text-lg leading-none mb-1">UAE - Dubai</h3>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center text-xs">
+                            <span class="text-gray-500">100+ Packages</span>
+                            <span class="text-green-600 font-bold">From ₹ 40,000</span>
+                        </div>
+                    </div>
+                    <div class="min-w-[180px] group/card cursor-pointer">
+                        <div class="h-[220px] rounded-2xl overflow-hidden relative mb-2 shadow-md">
+                            <img src="https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=300&q=80"
+                                class="w-full h-full object-cover group-hover/card:scale-110 transition duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent">
+                            </div>
+                            <div class="absolute bottom-3 left-3 text-white">
+                                <h3 class="font-bold text-lg leading-none mb-1">UAE - Dubai</h3>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center text-xs">
+                            <span class="text-gray-500">100+ Packages</span>
+                            <span class="text-green-600 font-bold">From ₹ 40,000</span>
+                        </div>
+                    </div>
+                    <div class="min-w-[180px] group/card cursor-pointer">
+                        <div class="h-[220px] rounded-2xl overflow-hidden relative mb-2 shadow-md">
+                            <img src="https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=300&q=80"
+                                class="w-full h-full object-cover group-hover/card:scale-110 transition duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent">
+                            </div>
+                            <div class="absolute bottom-3 left-3 text-white">
+                                <h3 class="font-bold text-lg leading-none mb-1">UAE - Dubai</h3>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center text-xs">
+                            <span class="text-gray-500">100+ Packages</span>
+                            <span class="text-green-600 font-bold">From ₹ 40,000</span>
+                        </div>
+                    </div>
+                    <div class="min-w-[180px] group/card cursor-pointer">
+                        <div class="h-[220px] rounded-2xl overflow-hidden relative mb-2 shadow-md">
+                            <img src="https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=300&q=80"
+                                class="w-full h-full object-cover group-hover/card:scale-110 transition duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent">
+                            </div>
+                            <div class="absolute bottom-3 left-3 text-white">
+                                <h3 class="font-bold text-lg leading-none mb-1">UAE - Dubai</h3>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center text-xs">
+                            <span class="text-gray-500">100+ Packages</span>
+                            <span class="text-green-600 font-bold">From ₹ 40,000</span>
+                        </div>
+                    </div>
+                    <div class="min-w-[180px] group/card cursor-pointer">
+                        <div class="h-[220px] rounded-2xl overflow-hidden relative mb-2 shadow-md">
+                            <img src="https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=300&q=80"
+                                class="w-full h-full object-cover group-hover/card:scale-110 transition duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent">
+                            </div>
+                            <div class="absolute bottom-3 left-3 text-white">
+                                <h3 class="font-bold text-lg leading-none mb-1">UAE - Dubai</h3>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center text-xs">
+                            <span class="text-gray-500">100+ Packages</span>
+                            <span class="text-green-600 font-bold">From ₹ 40,000</span>
+                        </div>
+                    </div>
+                    <div class="min-w-[180px] group/card cursor-pointer">
+                        <div class="h-[220px] rounded-2xl overflow-hidden relative mb-2 shadow-md">
+                            <img src="https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=300&q=80"
+                                class="w-full h-full object-cover group-hover/card:scale-110 transition duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent">
+                            </div>
+                            <div class="absolute bottom-3 left-3 text-white">
+                                <h3 class="font-bold text-lg leading-none mb-1">UAE - Dubai</h3>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center text-xs">
+                            <span class="text-gray-500">100+ Packages</span>
+                            <span class="text-green-600 font-bold">From ₹ 40,000</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="relative group">
+                <h2 class="text-lg font-bold text-gray-800 mb-4">Happy Travellers</h2>
+                <button onclick="scrollContainer('testimonial-scroll', -350)"
+                    class="absolute left-[-20px] top-[50%] z-10 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-gray-100 border border-gray-100 text-gray-600 transition hover:scale-110"><i
+                        class="fas fa-chevron-left"></i></button>
+                <button onclick="scrollContainer('testimonial-scroll', 350)"
+                    class="absolute right-[-20px] top-[50%] z-10 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-gray-100 border border-gray-100 text-gray-600 transition hover:scale-110"><i
+                        class="fas fa-chevron-right"></i></button>
+
+                <div id="testimonial-scroll" class="flex gap-6 overflow-x-auto no-scrollbar scroll-smooth pb-2 p-1">
+                    <div
+                        class="min-w-[400px] bg-white p-5 rounded-2xl shadow-sm hover:shadow-md transition border border-gray-100 flex gap-4">
+                        <div class="flex-1">
+                            <h3 class="font-bold text-sm text-gray-800 mb-1 leading-tight">Beautiful Memories with
+                                traveller
+                                Transworld</h3>
+                            <p class="text-xs text-gray-500 font-semibold mb-2">Ms. Stuti Patel</p>
+                            <p class="text-xs text-gray-600 line-clamp-3 mb-2">We had an unforgettable experience in
+                                Paris
+                                and Switzerland with traveller. The hotels were top notch...</p>
+                            <a href="#" class="text-xs text-blue-500 font-bold hover:underline">read more</a>
+                            <div class="mt-3 flex gap-2 text-xs text-gray-400">
+                                <span><i class="fas fa-thumbs-up"></i> Santa Europe</span>
+                            </div>
+                        </div>
+                        <div class="w-24 flex flex-col items-center justify-center gap-2">
+                            <img src="https://randomuser.me/api/portraits/women/44.jpg"
+                                class="w-16 h-16 rounded-full object-cover border-2 border-white shadow-sm">
+                            <button
+                                class="text-[10px] border border-blue-400 text-blue-500 px-2 py-1 rounded bg-blue-50 hover:bg-blue-100">View
+                                Tour</button>
+                        </div>
+                    </div>
+                    <div
+                        class="min-w-[400px] bg-white p-5 rounded-2xl shadow-sm hover:shadow-md transition border border-gray-100 flex gap-4">
+                        <div class="flex-1">
+                            <h3 class="font-bold text-sm text-gray-800 mb-1 leading-tight">Dream Trip to France and
+                                Swiss
+                            </h3>
+                            <p class="text-xs text-gray-500 font-semibold mb-2">Mr. Dharmesh Shah</p>
+                            <p class="text-xs text-gray-600 line-clamp-3 mb-2">Me and my family had an amazing
+                                experience on
+                                our first trip. The management was excellent.</p>
+                            <a href="#" class="text-xs text-blue-500 font-bold hover:underline">read more</a>
+                            <div class="mt-3 flex gap-2 text-xs text-gray-400">
+                                <span><i class="fas fa-thumbs-up"></i> Europe</span>
+                            </div>
+                        </div>
+                        <div class="w-24 flex flex-col items-center justify-center gap-2">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg"
+                                class="w-16 h-16 rounded-full object-cover border-2 border-white shadow-sm">
+                            <button
+                                class="text-[10px] border border-blue-400 text-blue-500 px-2 py-1 rounded bg-blue-50 hover:bg-blue-100">View
+                                Tour</button>
+                        </div>
+                    </div>
+                    <div
+                        class="min-w-[400px] bg-white p-5 rounded-2xl shadow-sm hover:shadow-md transition border border-gray-100 flex gap-4">
+                        <div class="flex-1">
+                            <h3 class="font-bold text-sm text-gray-800 mb-1 leading-tight">Dream Trip to France and
+                                Swiss
+                            </h3>
+                            <p class="text-xs text-gray-500 font-semibold mb-2">Mr. Dharmesh Shah</p>
+                            <p class="text-xs text-gray-600 line-clamp-3 mb-2">Me and my family had an amazing
+                                experience on
+                                our first trip. The management was excellent.</p>
+                            <a href="#" class="text-xs text-blue-500 font-bold hover:underline">read more</a>
+                            <div class="mt-3 flex gap-2 text-xs text-gray-400">
+                                <span><i class="fas fa-thumbs-up"></i> Europe</span>
+                            </div>
+                        </div>
+                        <div class="w-24 flex flex-col items-center justify-center gap-2">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg"
+                                class="w-16 h-16 rounded-full object-cover border-2 border-white shadow-sm">
+                            <button
+                                class="text-[10px] border border-blue-400 text-blue-500 px-2 py-1 rounded bg-blue-50 hover:bg-blue-100">View
+                                Tour</button>
+                        </div>
+                    </div>
+                    <div
+                        class="min-w-[400px] bg-white p-5 rounded-2xl shadow-sm hover:shadow-md transition border border-gray-100 flex gap-4">
+                        <div class="flex-1">
+                            <h3 class="font-bold text-sm text-gray-800 mb-1 leading-tight">Dream Trip to France and
+                                Swiss
+                            </h3>
+                            <p class="text-xs text-gray-500 font-semibold mb-2">Mr. Dharmesh Shah</p>
+                            <p class="text-xs text-gray-600 line-clamp-3 mb-2">Me and my family had an amazing
+                                experience on
+                                our first trip. The management was excellent.</p>
+                            <a href="#" class="text-xs text-blue-500 font-bold hover:underline">read more</a>
+                            <div class="mt-3 flex gap-2 text-xs text-gray-400">
+                                <span><i class="fas fa-thumbs-up"></i> Europe</span>
+                            </div>
+                        </div>
+                        <div class="w-24 flex flex-col items-center justify-center gap-2">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg"
+                                class="w-16 h-16 rounded-full object-cover border-2 border-white shadow-sm">
+                            <button
+                                class="text-[10px] border border-blue-400 text-blue-500 px-2 py-1 rounded bg-blue-50 hover:bg-blue-100">View
+                                Tour</button>
+                        </div>
+                    </div>
+                    <div
+                        class="min-w-[400px] bg-white p-5 rounded-2xl shadow-sm hover:shadow-md transition border border-gray-100 flex gap-4">
+                        <div class="flex-1">
+                            <h3 class="font-bold text-sm text-gray-800 mb-1 leading-tight">Dream Trip to France and
+                                Swiss
+                            </h3>
+                            <p class="text-xs text-gray-500 font-semibold mb-2">Mr. Dharmesh Shah</p>
+                            <p class="text-xs text-gray-600 line-clamp-3 mb-2">Me and my family had an amazing
+                                experience on
+                                our first trip. The management was excellent.</p>
+                            <a href="#" class="text-xs text-blue-500 font-bold hover:underline">read more</a>
+                            <div class="mt-3 flex gap-2 text-xs text-gray-400">
+                                <span><i class="fas fa-thumbs-up"></i> Europe</span>
+                            </div>
+                        </div>
+                        <div class="w-24 flex flex-col items-center justify-center gap-2">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg"
+                                class="w-16 h-16 rounded-full object-cover border-2 border-white shadow-sm">
+                            <button
+                                class="text-[10px] border border-blue-400 text-blue-500 px-2 py-1 rounded bg-blue-50 hover:bg-blue-100">View
+                                Tour</button>
+                        </div>
+                    </div>
+                    <div
+                        class="min-w-[400px] bg-white p-5 rounded-2xl shadow-sm hover:shadow-md transition border border-gray-100 flex gap-4">
+                        <div class="flex-1">
+                            <h3 class="font-bold text-sm text-gray-800 mb-1 leading-tight">Dream Trip to France and
+                                Swiss
+                            </h3>
+                            <p class="text-xs text-gray-500 font-semibold mb-2">Mr. Dharmesh Shah</p>
+                            <p class="text-xs text-gray-600 line-clamp-3 mb-2">Me and my family had an amazing
+                                experience on
+                                our first trip. The management was excellent.</p>
+                            <a href="#" class="text-xs text-blue-500 font-bold hover:underline">read more</a>
+                            <div class="mt-3 flex gap-2 text-xs text-gray-400">
+                                <span><i class="fas fa-thumbs-up"></i> Europe</span>
+                            </div>
+                        </div>
+                        <div class="w-24 flex flex-col items-center justify-center gap-2">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg"
+                                class="w-16 h-16 rounded-full object-cover border-2 border-white shadow-sm">
+                            <button
+                                class="text-[10px] border border-blue-400 text-blue-500 px-2 py-1 rounded bg-blue-50 hover:bg-blue-100">View
+                                Tour</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="relative group">
+                <h2 class="text-lg font-bold text-gray-800 mb-4">Easy-visa destinations</h2>
+                <button onclick="scrollContainer('visa-scroll', -200)"
+                    class="absolute left-[-20px] top-[50%] z-10 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-gray-100 border border-gray-100 text-gray-600 transition hover:scale-110"><i
+                        class="fas fa-chevron-left"></i></button>
+                <button onclick="scrollContainer('visa-scroll', 200)"
+                    class="absolute right-[-20px] top-[50%] z-10 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-gray-100 border border-gray-100 text-gray-600 transition hover:scale-110"><i
+                        class="fas fa-chevron-right"></i></button>
+
+                <div id="visa-scroll" class="flex gap-8 overflow-x-auto no-scrollbar scroll-smooth py-4 px-2">
+                    <a href="/visa.html"
+                        class="flex flex-col items-center min-w-[100px] cursor-pointer hover:scale-110 transition duration-300">
+                        <img src="https://images.unsplash.com/photo-1565967511849-76a60a516170?auto=format&fit=crop&w=150&q=80"
+                            class="w-24 h-24 rounded-full object-cover shadow-md mb-2 border-2 border-white"
+                            alt="Singapore">
+                        <h3 class="font-bold text-sm text-center">Singapore</h3>
+                        <p class="text-xs text-gray-500">50+ Tours</p>
+                    </a>
+
+                    <a href="/visa.html"
+                        class="flex flex-col items-center min-w-[100px] cursor-pointer hover:scale-110 transition duration-300">
+                        <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=150&q=80"
+                            class="w-24 h-24 rounded-full object-cover shadow-md mb-2 border-2 border-white"
+                            alt="Paris">
+                        <h3 class="font-bold text-sm text-center">Paris</h3>
+                        <p class="text-xs text-gray-500">85+ Tours</p>
+                    </a>
+
+                    <a href="/visa.html"
+                        class="flex flex-col items-center min-w-[100px] cursor-pointer hover:scale-110 transition duration-300">
+                        <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=150&q=80"
+                            class="w-24 h-24 rounded-full object-cover shadow-md mb-2 border-2 border-white" alt="Bali">
+                        <h3 class="font-bold text-sm text-center">Bali</h3>
+                        <p class="text-xs text-gray-500">120+ Tours</p>
+                    </a>
+
+                    <a href="/visa.html"
+                        class="flex flex-col items-center min-w-[100px] cursor-pointer hover:scale-110 transition duration-300">
+                        <img src="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=150&q=80"
+                            class="w-24 h-24 rounded-full object-cover shadow-md mb-2 border-2 border-white"
+                            alt="Tokyo">
+                        <h3 class="font-bold text-sm text-center">Tokyo</h3>
+                        <p class="text-xs text-gray-500">60+ Tours</p>
+                    </a>
+
+                    <a href="/visa.html"
+                        class="flex flex-col items-center min-w-[100px] cursor-pointer hover:scale-110 transition duration-300">
+                        <img src="https://images.unsplash.com/photo-1552832230-c0197dd311b5?auto=format&fit=crop&w=150&q=80"
+                            class="w-24 h-24 rounded-full object-cover shadow-md mb-2 border-2 border-white" alt="Rome">
+                        <h3 class="font-bold text-sm text-center">Rome</h3>
+                        <p class="text-xs text-gray-500">45+ Tours</p>
+                    </a>
+
+                    <a href="/visa.html"
+                        class="flex flex-col items-center min-w-[100px] cursor-pointer hover:scale-110 transition duration-300">
+                        <img src="https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?auto=format&fit=crop&w=150&q=80"
+                            class="w-24 h-24 rounded-full object-cover shadow-md mb-2 border-2 border-white"
+                            alt="New York">
+                        <h3 class="font-bold text-sm text-center">New York</h3>
+                        <p class="text-xs text-gray-500">90+ Tours</p>
+                    </a>
+
+                    <a href="/visa.html"
+                        class="flex flex-col items-center min-w-[100px] cursor-pointer hover:scale-110 transition duration-300">
+                        <img src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=150&q=80"
+                            class="w-24 h-24 rounded-full object-cover shadow-md mb-2 border-2 border-white"
+                            alt="Santorini">
+                        <h3 class="font-bold text-sm text-center">Santorini</h3>
+                        <p class="text-xs text-gray-500">30+ Tours</p>
+                    </a>
+
+                    <a href="/visa.html"
+                        class="flex flex-col items-center min-w-[100px] cursor-pointer hover:scale-110 transition duration-300">
+                        <img src="https://images.unsplash.com/photo-1572252009286-268acec5ca0a?auto=format&fit=crop&w=150&q=80"
+                            class="w-24 h-24 rounded-full object-cover shadow-md mb-2 border-2 border-white"
+                            alt="Cairo">
+                        <h3 class="font-bold text-sm text-center">Cairo</h3>
+                        <p class="text-xs text-gray-500">25+ Tours</p>
+                    </a>
+
+                    <a href="/visa.html"
+                        class="flex flex-col items-center min-w-[100px] cursor-pointer hover:scale-110 transition duration-300">
+                        <img src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=150&q=80"
+                            class="w-24 h-24 rounded-full object-cover shadow-md mb-2 border-2 border-white"
+                            alt="London">
+                        <h3 class="font-bold text-sm text-center">London</h3>
+                        <p class="text-xs text-gray-500">75+ Tours</p>
+                    </a>
+
+                    <a href="/visa.html"
+                        class="flex flex-col items-center min-w-[100px] cursor-pointer hover:scale-110 transition duration-300">
+                        <img src="https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?auto=format&fit=crop&w=150&q=80"
+                            class="w-24 h-24 rounded-full object-cover shadow-md mb-2 border-2 border-white"
+                            alt="Sydney">
+                        <h3 class="font-bold text-sm text-center">Sydney</h3>
+                        <p class="text-xs text-gray-500">20+ Tours</p>
+                    </a>
+
+                    <a href="/visa.html"
+                        class="flex flex-col items-center min-w-[100px] cursor-pointer hover:scale-110 transition duration-300">
+                        <img src="https://images.unsplash.com/photo-1512453979798-5ea932a23518?auto=format&fit=crop&w=150&q=80"
+                            class="w-24 h-24 rounded-full object-cover shadow-md mb-2 border-2 border-white"
+                            alt="Dubai">
+                        <h3 class="font-bold text-sm text-center">Dubai</h3>
+                        <p class="text-xs text-gray-500">100+ Tours</p>
+                    </a>
+                </div>
+            </div>
+
+
+
+            <div class="relative group">
+                <div>
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
+                        <h2 class="text-lg font-bold text-gray-800">Best Budget Travel Destinations</h2>
+                        <div class="flex flex-wrap bg-white rounded-lg p-1 border border-gray-200 shadow-sm">
+                            <button onclick="toggleFilter(this)"
+                                class="budget-filter filter-active px-3 py-1 text-xs font-bold rounded transition">Under
+                                50K</button>
+                            <button onclick="toggleFilter(this)"
+                                class="budget-filter filter-inactive px-3 py-1 text-xs font-bold rounded transition">50K
+                                - 1
+                                Lac</button>
+                            <button onclick="toggleFilter(this)"
+                                class="budget-filter filter-inactive px-3 py-1 text-xs font-bold rounded transition">1
+                                Lac -
+                                2 Lac</button>
+                            <button onclick="toggleFilter(this)"
+                                class="budget-filter filter-inactive px-3 py-1 text-xs font-bold rounded transition">More
+                                than 2 Lac</button>
+                        </div>
+                    </div </div>
+                </div>
+
+                <div class="flex gap-4 overflow-x-auto no-scrollbar pb-4">
+                    <div
+                        class="min-w-[250px] bg-white border border-gray-200 rounded-lg overflow-hidden shadow-sm hover:shadow-xl transition transform hover:-translate-y-1 duration-300">
+                        <div class="h-36 relative">
+                            <img src="https://images.unsplash.com/photo-1573790387438-4da905039392?auto=format&fit=crop&w=300&q=80"
+                                class="w-full h-full object-cover">
+                            <div
+                                class="absolute bottom-2 right-2 bg-white/95 px-2 py-0.5 text-[10px] font-bold rounded shadow text-gray-700">
+                                4N 5D</div>
+                        </div>
+                        <div class="p-3">
+                            <h3 class="font-bold text-sm text-gray-800 mb-2 truncate">Bali Honeymoon Special</h3>
+                            <div class="text-[10px] text-gray-500 mb-2">Bali (4N) | Pool Villa (1N)</div>
+                            <div class="flex justify-between items-end mb-3">
+                                <i class="fas fa-umbrella-beach text-gray-300"></i>
+                                <div class="text-right">
+                                    <span class="block text-lg font-bold text-gray-800">₹ 31,190</span>
+                                    <span class="block text-[10px] text-gray-500">per person</span>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-2 gap-2">
+                                <button onclick="toggleModal(true)"
+                                    class="border border-blue-400 text-blue-500 text-[10px] font-bold py-1 rounded hover:bg-blue-50">View
+                                    Details</button>
+                                <button onclick="toggleModal(true)"
+                                    class="bg-traveller-red text-white text-[10px] font-bold py-1 rounded hover:bg-red-600">Book
+                                    Now</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div
+                        class="min-w-[250px] bg-white border border-gray-200 rounded-lg overflow-hidden shadow-sm hover:shadow-xl transition transform hover:-translate-y-1 duration-300">
+                        <div class="h-36 relative">
+                            <img src="https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?auto=format&fit=crop&w=300&q=80"
+                                class="w-full h-full object-cover">
+                            <div
+                                class="absolute bottom-2 right-2 bg-white/95 px-2 py-0.5 text-[10px] font-bold rounded shadow text-gray-700">
+                                5N 6D</div>
+                        </div>
+                        <div class="p-3">
+                            <h3 class="font-bold text-sm text-gray-800 mb-2 truncate">Simply Bali Seminyak</h3>
+                            <div class="text-[10px] text-gray-500 mb-2">Bali (5N)</div>
+                            <div class="flex justify-between items-end mb-3">
+                                <i class="fas fa-umbrella-beach text-gray-300"></i>
+                                <div class="text-right">
+                                    <span class="block text-lg font-bold text-gray-800">₹ 18,370</span>
+                                    <span class="block text-[10px] text-gray-500">per person</span>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-2 gap-2">
+                                <button onclick="toggleModal(true)"
+                                    class="border border-blue-400 text-blue-500 text-[10px] font-bold py-1 rounded hover:bg-blue-50">View
+                                    Details</button>
+                                <button onclick="toggleModal(true)"
+                                    class="bg-traveller-red text-white text-[10px] font-bold py-1 rounded hover:bg-red-600">Book
+                                    Now</button>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div
+                        class="min-w-[250px] bg-white border border-gray-200 rounded-lg overflow-hidden shadow-sm hover:shadow-xl transition transform hover:-translate-y-1 duration-300">
+                        <div class="h-36 relative">
+                            <img src="https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?auto=format&fit=crop&w=300&q=80"
+                                class="w-full h-full object-cover">
+                            <div
+                                class="absolute bottom-2 right-2 bg-white/95 px-2 py-0.5 text-[10px] font-bold rounded shadow text-gray-700">
+                                4N 5D</div>
+                        </div>
+                        <div class="p-3">
+                            <h3 class="font-bold text-sm text-gray-800 mb-2 truncate">Free And Easy Thailand</h3>
+                            <div class="text-[10px] text-gray-500 mb-2">Pattaya (2N) | Bangkok (2N)</div>
+                            <div class="flex justify-between items-end mb-3">
+                                <i class="fas fa-umbrella-beach text-gray-300"></i>
+                                <div class="text-right">
+                                    <span class="block text-lg font-bold text-gray-800">₹ 18,910</span>
+                                    <span class="block text-[10px] text-gray-500">per person</span>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-2 gap-2">
+                                <button onclick="toggleModal(true)"
+                                    class="border border-blue-400 text-blue-500 text-[10px] font-bold py-1 rounded hover:bg-blue-50">View
+                                    Details</button>
+                                <button onclick="toggleModal(true)"
+                                    class="bg-traveller-red text-white text-[10px] font-bold py-1 rounded hover:bg-red-600">Book
+                                    Now</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div
+                        class="min-w-[250px] bg-white border border-gray-200 rounded-lg overflow-hidden shadow-sm hover:shadow-xl transition transform hover:-translate-y-1 duration-300">
+                        <div class="h-36 relative">
+                            <img src="https://images.unsplash.com/photo-1565967511849-76a60a516170?auto=format&fit=crop&w=300&q=80"
+                                class="w-full h-full object-cover">
+                            <div
+                                class="absolute bottom-2 right-2 bg-white/95 px-2 py-0.5 text-[10px] font-bold rounded shadow text-gray-700">
+                                5N 6D</div>
+                        </div>
+                        <div class="p-3">
+                            <h3 class="font-bold text-sm text-gray-800 mb-2 truncate">Vietnam Classic</h3>
+                            <div class="text-[10px] text-gray-500 mb-2">Hanoi (1N) | Ha Long (1N)</div>
+                            <div class="flex justify-between items-end mb-3">
+                                <i class="fas fa-umbrella-beach text-gray-300"></i>
+                                <div class="text-right">
+                                    <span class="block text-lg font-bold text-gray-800">₹ 37,280</span>
+                                    <span class="block text-[10px] text-gray-500">per person</span>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-2 gap-2">
+                                <button onclick="toggleModal(true)"
+                                    class="border border-blue-400 text-blue-500 text-[10px] font-bold py-1 rounded hover:bg-blue-50">View
+                                    Details</button>
+                                <button onclick="toggleModal(true)"
+                                    class="bg-traveller-red text-white text-[10px] font-bold py-1 rounded hover:bg-red-600">Book
+                                    Now</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div
+                        class="min-w-[250px] bg-white border border-gray-200 rounded-lg overflow-hidden shadow-sm hover:shadow-xl transition transform hover:-translate-y-1 duration-300">
+                        <div class="h-36 relative">
+                            <img src="https://images.unsplash.com/photo-1565967511849-76a60a516170?auto=format&fit=crop&w=300&q=80"
+                                class="w-full h-full object-cover">
+                            <div
+                                class="absolute bottom-2 right-2 bg-white/95 px-2 py-0.5 text-[10px] font-bold rounded shadow text-gray-700">
+                                3N 4D</div>
+                        </div>
+                        <div class="p-3">
+                            <h3 class="font-bold text-sm text-gray-800 mb-2 truncate">Singapore Escape</h3>
+                            <div class="text-[10px] text-gray-500 mb-2">Singapore (3N)</div>
+                            <div class="flex justify-between items-end mb-3">
+                                <i class="fas fa-umbrella-beach text-gray-300"></i>
+                                <div class="text-right">
+                                    <span class="block text-lg font-bold text-gray-800">₹ 35,820</span>
+                                    <span class="block text-[10px] text-gray-500">per person</span>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-2 gap-2">
+                                <button onclick="toggleModal(true)"
+                                    class="border border-blue-400 text-blue-500 text-[10px] font-bold py-1 rounded hover:bg-blue-50">View
+                                    Details</button>
+                                <button onclick="toggleModal(true)"
+                                    class="bg-traveller-red text-white text-[10px] font-bold py-1 rounded hover:bg-red-600">Book
+                                    Now</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+
+            <div class="bg-white p-5 rounded-2xl shadow-sm border border-gray-200">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
+                    <h2 class="text-lg font-bold text-gray-800"> Top Packages By Season</h2>
+                    <div class="flex flex-wrap gap-1">
+                        <button onclick="toggleFilter(this)"
+                            class="budget-filter filter-black-active px-4 py-1.5 text-xs font-bold rounded transition">Summer
+                            Special</button>
+                        <button onclick="toggleFilter(this)"
+                            class="budget-filter filter-black-inactive px-4 py-1.5 text-xs font-bold rounded transition hover:bg-gray-100">Winter
+                            Special</button>
+
+                    </div>
+                </div>
+
+                <div class="flex gap-4 overflow-x-auto no-scrollbar pb-4">
+                    <div
+                        class="min-w-[250px] bg-white border border-gray-200 rounded-lg overflow-hidden hover-card transition duration-300">
+                        <div class="h-36 relative">
+                            <img src="https://images.unsplash.com/photo-1573790387438-4da905039392?auto=format&fit=crop&w=300&q=80"
+                                class="w-full h-full object-cover">
+                            <div
+                                class="absolute top-0 w-full bg-white/90 text-[10px] font-bold text-center py-1 flex justify-center gap-2">
+                                <span>Private Tour</span> <span>|</span> <span>Winter Special</span>
+                            </div>
+                            <div
+                                class="absolute bottom-2 right-2 bg-white px-2 py-0.5 text-[10px] font-bold rounded shadow">
+                                4 Nights / 5 Days</div>
+                        </div>
+                        <div class="p-3 text-center">
+                            <h3 class="font-bold text-gray-800 text-sm mb-1 truncate">Bali Honeymoon Special With Pool
+                                Villa
+                            </h3>
+                            <p class="text-[10px] text-gray-500 mb-2">Bali (4N) | Pool Villa (1N)</p>
+                            <div class="flex items-center justify-center gap-1 mb-2">
+                                <i class="fas fa-umbrella-beach text-traveller-blue text-xs"></i>
+                            </div>
+                            <div class="text-xl font-bold text-gray-800">₹ 31,190</div>
+                            <p class="text-[10px] text-gray-400 mb-3">per person</p>
+                            <div class="flex gap-2">
+                                <button onclick="toggleModal(true)"
+                                    class="flex-1 border border-traveller-blue text-traveller-blue py-1 rounded text-[10px] font-bold">View
+                                    Details</button>
+                                <button onclick="toggleModal(true)"
+                                    class="flex-1 bg-traveller-red text-white py-1 rounded text-[10px] font-bold">View
+                                    Details</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div
+                        class="min-w-[250px] bg-white border border-gray-200 rounded-lg overflow-hidden hover-card transition duration-300">
+                        <div class="h-36 relative">
+                            <img src="https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?auto=format&fit=crop&w=300&q=80"
+                                class="w-full h-full object-cover">
+                            <div
+                                class="absolute top-0 w-full bg-white/90 text-[10px] font-bold text-center py-1 flex justify-center gap-2">
+                                <span>Private Tour</span> <span>|</span> <span>Winter Special</span>
+                            </div>
+                            <div
+                                class="absolute bottom-2 right-2 bg-white px-2 py-0.5 text-[10px] font-bold rounded shadow">
+                                5 Nights / 6 Days</div>
+                        </div>
+                        <div class="p-3 text-center">
+                            <h3 class="font-bold text-gray-800 text-sm mb-1 truncate">Simply Bali With Seminyak</h3>
+                            <p class="text-[10px] text-gray-500 mb-2">Bali (5N)</p>
+                            <div class="flex items-center justify-center gap-1 mb-2">
+                                <i class="fas fa-umbrella-beach text-traveller-blue text-xs"></i>
+                            </div>
+                            <div class="text-xl font-bold text-gray-800">₹ 18,370</div>
+                            <p class="text-[10px] text-gray-400 mb-3">per person</p>
+                            <div class="flex gap-2">
+                                <button onclick="toggleModal(true)"
+                                    class="flex-1 border border-traveller-blue text-traveller-blue py-1 rounded text-[10px] font-bold">View
+                                    Details</button>
+                                <button onclick="toggleModal(true)"
+                                    class="flex-1 bg-traveller-red text-white py-1 rounded text-[10px] font-bold">View
+                                    Details</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div
+                        class="min-w-[250px] bg-white border border-gray-200 rounded-lg overflow-hidden hover-card transition duration-300">
+                        <div class="h-36 relative">
+                            <img src="https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?auto=format&fit=crop&w=300&q=80"
+                                class="w-full h-full object-cover">
+                            <div
+                                class="absolute top-0 w-full bg-white/90 text-[10px] font-bold text-center py-1 flex justify-center gap-2">
+                                <span>Private Tour</span> <span>|</span> <span>Winter Special</span>
+                            </div>
+                            <div
+                                class="absolute bottom-2 right-2 bg-white px-2 py-0.5 text-[10px] font-bold rounded shadow">
+                                4 Nights / 5 Days</div>
+                        </div>
+                        <div class="p-3 text-center">
+                            <h3 class="font-bold text-gray-800 text-sm mb-1 truncate">Free And Easy Thailand Tour</h3>
+                            <p class="text-[10px] text-gray-500 mb-2">Pattaya (2N) | Bangkok (2N)</p>
+                            <div class="flex items-center justify-center gap-1 mb-2">
+                                <i class="fas fa-umbrella-beach text-traveller-blue text-xs"></i>
+                            </div>
+                            <div class="text-xl font-bold text-gray-800">₹ 18,910</div>
+                            <p class="text-[10px] text-gray-400 mb-3">per person</p>
+                            <div class="flex gap-2">
+                                <button onclick="toggleModal(true)"
+                                    class="flex-1 border border-traveller-blue text-traveller-blue py-1 rounded text-[10px] font-bold">View
+                                    Details</button>
+                                <button onclick="toggleModal(true)"
+                                    class="flex-1 bg-traveller-red text-white py-1 rounded text-[10px] font-bold">View
+                                    Details</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div
+                        class="min-w-[250px] bg-white border border-gray-200 rounded-lg overflow-hidden hover-card transition duration-300">
+                        <div class="h-36 relative">
+                            <img src="https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&w=300&q=80"
+                                class="w-full h-full object-cover">
+                            <div
+                                class="absolute top-0 w-full bg-white/90 text-[10px] font-bold text-center py-1 flex justify-center gap-2">
+                                <span>Private Tour</span> <span>|</span> <span>Winter Special</span>
+                            </div>
+                            <div
+                                class="absolute bottom-2 right-2 bg-white px-2 py-0.5 text-[10px] font-bold rounded shadow">
+                                5 Nights / 6 Days</div>
+                        </div>
+                        <div class="p-3 text-center">
+                            <h3 class="font-bold text-gray-800 text-sm mb-1 truncate">Vietnam Classic</h3>
+                            <p class="text-[10px] text-gray-500 mb-2">Hanoi (1N) | Ha Long (1N) | +3</p>
+                            <div class="flex items-center justify-center gap-1 mb-2">
+                                <i class="fas fa-umbrella-beach text-traveller-blue text-xs"></i>
+                            </div>
+                            <div class="text-xl font-bold text-gray-800">₹ 37,280</div>
+                            <p class="text-[10px] text-gray-400 mb-3">per person</p>
+                            <div class="flex gap-2">
+                                <button onclick="toggleModal(true)"
+                                    class="flex-1 border border-traveller-blue text-traveller-blue py-1 rounded text-[10px] font-bold">View
+                                    Details</button>
+                                <button onclick="toggleModal(true)"
+                                    class="flex-1 bg-traveller-red text-white py-1 rounded text-[10px] font-bold">View
+                                    Details</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div
+                        class="min-w-[250px] bg-white border border-gray-200 rounded-lg overflow-hidden hover-card transition duration-300">
+                        <div class="h-36 relative">
+                            <img src="https://images.unsplash.com/photo-1565967511849-76a60a516170?auto=format&fit=crop&w=300&q=80"
+                                class="w-full h-full object-cover">
+                            <div
+                                class="absolute top-0 w-full bg-white/90 text-[10px] font-bold text-center py-1 flex justify-center gap-2">
+                                <span>Private Tour</span> <span>|</span> <span>Winter Special</span>
+                            </div>
+                            <div
+                                class="absolute bottom-2 right-2 bg-white px-2 py-0.5 text-[10px] font-bold rounded shadow">
+                                3 Nights / 4 Days</div>
+                        </div>
+                        <div class="p-3 text-center">
+                            <h3 class="font-bold text-gray-800 text-sm mb-1 truncate">Singapore Escape</h3>
+                            <p class="text-[10px] text-gray-500 mb-2">Singapore (3N)</p>
+                            <div class="flex items-center justify-center gap-1 mb-2">
+                                <i class="fas fa-umbrella-beach text-traveller-blue text-xs"></i>
+                            </div>
+                            <div class="text-xl font-bold text-gray-800">₹ 35,820</div>
+                            <p class="text-[10px] text-gray-400 mb-3">per person</p>
+                            <div class="flex gap-2">
+                                <button onclick="toggleModal(true)"
+                                    class="flex-1 border border-traveller-blue text-traveller-blue py-1 rounded text-[10px] font-bold">View
+                                    Details</button>
+                                <button onclick="toggleModal(true)"
+                                    class="flex-1 bg-traveller-red text-white py-1 rounded text-[10px] font-bold">View
+                                    Details</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+
+                <div class="bg-white p-6 rounded-xl shadow-lg w-full max-w-[1400px]">
+
+                    <div class="flex flex-col md:flex-row justify-between items-center mb-6 gap-4">
+                        <h2 class="text-xl font-bold text-gray-700">Best Budget Travel Destinations</h2>
+
+                        <div class="flex bg-gray-100 p-1 rounded-lg overflow-hidden text-sm font-medium">
+                            <button onclick="switchTab(this)"
+                                class="tab-btn px-4 py-2 rounded-md bg-[#002B45] text-white shadow transition-all">Under
+                                50
+                                K</button>
+                            <button onclick="switchTab(this)"
+                                class="tab-btn px-4 py-2 rounded-md text-gray-600 hover:bg-gray-200 transition-all">50 K
+                                - 1
+                                Lac</button>
+                            <button onclick="switchTab(this)"
+                                class="tab-btn px-4 py-2 rounded-md text-gray-600 hover:bg-gray-200 transition-all">1
+                                Lac -
+                                2 Lac</button>
+                            <button onclick="switchTab(this)"
+                                class="tab-btn px-4 py-2 rounded-md text-gray-600 hover:bg-gray-200 transition-all">More
+                                than 2 Lac</button>
+                        </div>
+                    </div>
+
+                    <div class="flex overflow-x-auto gap-5 pb-4 no-scrollbar scroll-smooth">
+
+                        <div
+                            class="min-w-[300px] max-w-[300px] border border-gray-200 rounded-xl bg-white shadow-sm flex flex-col flex-shrink-0">
+                            <div
+                                class="flex justify-between text-[10px] font-semibold text-gray-700 border-b border-gray-200">
+                                <span class="w-1/2 text-center py-1.5 border-r border-gray-200">Private Van Tour</span>
+                                <span class="w-1/2 text-center py-1.5">Under 50 K</span>
+                            </div>
+
+                            <div class="relative h-40 w-full">
+                                <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+                                    alt="Bali" class="w-full h-full object-cover rounded-none">
+                                <div
+                                    class="absolute bottom-2 right-2 bg-white px-2 py-1 text-xs font-bold rounded shadow text-gray-800">
+                                    5 Nights / 6 Days
+                                </div>
+                            </div>
+
+                            <div class="p-4 flex flex-col flex-grow">
+                                <h3 class="font-bold text-gray-800 text-sm mb-1 leading-tight">Bali Honeymoon Special
+                                    With
+                                    Pool Villa</h3>
+                                <p class="text-xs text-gray-500 mb-4">Bali Island (3N), Bali Island (2N)</p>
+
+                                <div class="mt-auto">
+                                    <div class="flex items-center justify-between mb-1">
+                                        <div class="flex items-center text-xs text-gray-500">
+                                            <i class="fas fa-plane-slash mr-1"></i> <span
+                                                class="text-[10px] italic">Flight
+                                                Not Included</span>
+                                        </div>
+                                        <div class="text-right">
+                                            <span class="text-xl font-bold text-gray-800">₹31,190</span>
+                                        </div>
+                                    </div>
+                                    <div class="flex justify-end mb-3">
+                                        <span class="text-[10px] text-gray-500">per person</span>
+                                    </div>
+                                    <div class="flex justify-end mb-4">
+                                        <a href="#" class="text-[10px] text-blue-500 underline decoration-dotted">EMI
+                                            from
+                                            ₹1,579/month</a>
+                                    </div>
+                                </div>
+
+                                <div class="border-t border-dashed border-gray-300 pt-2 mb-3 text-center">
+                                    <p class="text-[10px] text-gray-500">Valid upto 31 Mar 2026</p>
+                                </div>
+
+                                <div class="grid grid-cols-2 gap-2">
+                                    <button
+                                        class="border border-blue-400 text-blue-400 text-xs font-semibold py-2 rounded hover:bg-blue-50 transition">Call
+                                        Now</button>
+                                    <button
+                                        class="bg-[#ff3b59] text-white text-xs font-semibold py-2 rounded hover:bg-[#e63550] transition">View
+                                        Details</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div
+                            class="min-w-[300px] max-w-[300px] border border-gray-200 rounded-xl bg-white shadow-sm flex flex-col flex-shrink-0">
+                            <div
+                                class="flex justify-between text-[10px] font-semibold text-gray-700 border-b border-gray-200">
+                                <span class="w-1/2 text-center py-1.5 border-r border-gray-200">Private Van Tour</span>
+                                <span class="w-1/2 text-center py-1.5">Under 50 K</span>
+                            </div>
+                            <div class="relative h-40 w-full">
+                                <img src="https://images.unsplash.com/photo-1555400038-63f5ba517a47?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+                                    alt="Bali Seminyak" class="w-full h-full object-cover">
+                                <div
+                                    class="absolute bottom-2 right-2 bg-white px-2 py-1 text-xs font-bold rounded shadow text-gray-800">
+                                    4 Nights / 5 Days
+                                </div>
+                            </div>
+                            <div class="p-4 flex flex-col flex-grow">
+                                <h3 class="font-bold text-gray-800 text-sm mb-1 leading-tight">Simply Bali With Seminyak
+                                </h3>
+                                <p class="text-xs text-gray-500 mb-4">Bali Island (2N), Bali Island (2N)</p>
+                                <div class="mt-auto">
+                                    <div class="flex items-center justify-between mb-1">
+                                        <div class="flex items-center text-xs text-gray-500">
+                                            <i class="fas fa-plane-slash mr-1"></i> <span
+                                                class="text-[10px] italic">Flight
+                                                Not Included</span>
+                                        </div>
+                                        <div class="text-right">
+                                            <span class="text-xl font-bold text-gray-800">₹18,370</span>
+                                        </div>
+                                    </div>
+                                    <div class="flex justify-end mb-3">
+                                        <span class="text-[10px] text-gray-500">per person</span>
+                                    </div>
+                                    <div class="flex justify-end mb-4">
+                                        <a href="#" class="text-[10px] text-blue-500 underline decoration-dotted">EMI
+                                            from
+                                            ₹930/month</a>
+                                    </div>
+                                </div>
+                                <div class="border-t border-dashed border-gray-300 pt-2 mb-3 text-center">
+                                    <p class="text-[10px] text-gray-500">Valid upto 31 Mar 2026</p>
+                                </div>
+                                <div class="grid grid-cols-2 gap-2">
+                                    <button
+                                        class="border border-blue-400 text-blue-400 text-xs font-semibold py-2 rounded hover:bg-blue-50 transition">Call
+                                        Now</button>
+                                    <button
+                                        class="bg-[#ff3b59] text-white text-xs font-semibold py-2 rounded hover:bg-[#e63550] transition">View
+                                        Details</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div
+                            class="min-w-[300px] max-w-[300px] border border-gray-200 rounded-xl bg-white shadow-sm flex flex-col flex-shrink-0">
+                            <div
+                                class="flex justify-between text-[10px] font-semibold text-gray-700 border-b border-gray-200">
+                                <span class="w-1/2 text-center py-1.5 border-r border-gray-200">Private Van Tour</span>
+                                <span class="w-1/2 text-center py-1.5">Under 50 K</span>
+                            </div>
+                            <div class="relative h-40 w-full">
+                                <img src="https://images.unsplash.com/photo-1506665531195-3566af2b4dfa?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+                                    alt="Thailand" class="w-full h-full object-cover">
+                                <div
+                                    class="absolute bottom-2 right-2 bg-white px-2 py-1 text-xs font-bold rounded shadow text-gray-800">
+                                    4 Nights / 5 Days
+                                </div>
+                            </div>
+                            <div class="p-4 flex flex-col flex-grow">
+                                <h3 class="font-bold text-gray-800 text-sm mb-1 leading-tight">Free And Easy Thailand
+                                    Tour
+                                </h3>
+                                <p class="text-xs text-gray-500 mb-4">Pattaya (2N), Bangkok (2N)</p>
+                                <div class="mt-auto">
+                                    <div class="flex items-center justify-between mb-1">
+                                        <div class="flex items-center text-xs text-gray-500">
+                                            <i class="fas fa-plane-slash mr-1"></i> <span
+                                                class="text-[10px] italic">Flight
+                                                Not Included</span>
+                                        </div>
+                                        <div class="text-right">
+                                            <span class="text-xl font-bold text-gray-800">₹18,910</span>
+                                        </div>
+                                    </div>
+                                    <div class="flex justify-end mb-3">
+                                        <span class="text-[10px] text-gray-500">per person</span>
+                                    </div>
+                                    <div class="flex justify-end mb-4">
+                                        <a href="#" class="text-[10px] text-blue-500 underline decoration-dotted">EMI
+                                            from
+                                            ₹958/month</a>
+                                    </div>
+                                </div>
+                                <div class="border-t border-dashed border-gray-300 pt-2 mb-3 text-center">
+                                    <p class="text-[10px] text-gray-500">Valid upto 31 Mar 2026</p>
+                                </div>
+                                <div class="grid grid-cols-2 gap-2">
+                                    <button
+                                        class="border border-blue-400 text-blue-400 text-xs font-semibold py-2 rounded hover:bg-blue-50 transition">Call
+                                        Now</button>
+                                    <button
+                                        class="bg-[#ff3b59] text-white text-xs font-semibold py-2 rounded hover:bg-[#e63550] transition">View
+                                        Details</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div
+                            class="min-w-[300px] max-w-[300px] border border-gray-200 rounded-xl bg-white shadow-sm flex flex-col flex-shrink-0">
+                            <div
+                                class="flex justify-between text-[10px] font-semibold text-gray-700 border-b border-gray-200">
+                                <span class="w-1/2 text-center py-1.5 border-r border-gray-200">Private Van Tour</span>
+                                <span class="w-1/2 text-center py-1.5">Under 50 K</span>
+                            </div>
+                            <div class="relative h-40 w-full">
+                                <img src="https://images.unsplash.com/photo-1559592413-7cec430aa669?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+                                    alt="Vietnam" class="w-full h-full object-cover">
+                                <div
+                                    class="absolute bottom-2 right-2 bg-white px-2 py-1 text-xs font-bold rounded shadow text-gray-800">
+                                    5 Nights / 6 Days
+                                </div>
+                            </div>
+                            <div class="p-4 flex flex-col flex-grow">
+                                <h3 class="font-bold text-gray-800 text-sm mb-1 leading-tight">Vietnam Classic</h3>
+                                <p class="text-xs text-gray-500 mb-4">Hanoi (2N), Halong (1N), <span
+                                        class="font-bold">+1
+                                        more</span></p>
+                                <div class="mt-auto">
+                                    <div class="flex items-center justify-between mb-1">
+                                        <div class="flex items-center text-xs text-gray-500">
+                                            <i class="fas fa-plane-slash mr-1"></i> <span
+                                                class="text-[10px] italic">Flight
+                                                Not Included</span>
+                                        </div>
+                                        <div class="text-right">
+                                            <span class="text-xl font-bold text-gray-800">₹37,280</span>
+                                        </div>
+                                    </div>
+                                    <div class="flex justify-end mb-3">
+                                        <span class="text-[10px] text-gray-500">per person</span>
+                                    </div>
+                                    <div class="flex justify-end mb-4">
+                                        <a href="#" class="text-[10px] text-blue-500 underline decoration-dotted">EMI
+                                            from
+                                            ₹1,888/month</a>
+                                    </div>
+                                </div>
+                                <div class="border-t border-dashed border-gray-300 pt-2 mb-3 text-center">
+                                    <p class="text-[10px] text-gray-500">Valid upto 31 Mar 2026</p>
+                                </div>
+                                <div class="grid grid-cols-2 gap-2">
+                                    <button
+                                        class="border border-blue-400 text-blue-400 text-xs font-semibold py-2 rounded hover:bg-blue-50 transition">Call
+                                        Now</button>
+                                    <button
+                                        class="bg-[#ff3b59] text-white text-xs font-semibold py-2 rounded hover:bg-[#e63550] transition">View
+                                        Details</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div
+                            class="min-w-[300px] max-w-[300px] border border-gray-200 rounded-xl bg-white shadow-sm flex flex-col flex-shrink-0">
+                            <div
+                                class="flex justify-between text-[10px] font-semibold text-gray-700 border-b border-gray-200">
+                                <span class="w-1/2 text-center py-1.5 border-r border-gray-200">Private Van Tour</span>
+                                <span class="w-1/2 text-center py-1.5">Under 50 K</span>
+                            </div>
+                            <div class="relative h-40 w-full">
+                                <img src="https://images.unsplash.com/photo-1525625293386-3f8f99389edd?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+                                    alt="Singapore" class="w-full h-full object-cover">
+                                <div
+                                    class="absolute bottom-2 right-2 bg-white px-2 py-1 text-xs font-bold rounded shadow text-gray-800">
+                                    4 Nights / 5 Days
+                                </div>
+                            </div>
+                            <div class="p-4 flex flex-col flex-grow">
+                                <h3 class="font-bold text-gray-800 text-sm mb-1 leading-tight">Singapore Escape</h3>
+                                <p class="text-xs text-gray-500 mb-4">Singapore (4N)</p>
+                                <div class="mt-auto">
+                                    <div class="flex items-center justify-between mb-1">
+                                        <div class="flex items-center text-xs text-gray-500">
+                                            <i class="fas fa-plane-slash mr-1"></i> <span
+                                                class="text-[10px] italic">Flight
+                                                Not Included</span>
+                                        </div>
+                                        <div class="text-right">
+                                            <span class="text-xl font-bold text-gray-800">₹35,820</span>
+                                        </div>
+                                    </div>
+                                    <div class="flex justify-end mb-3">
+                                        <span class="text-[10px] text-gray-500">per person</span>
+                                    </div>
+                                    <div class="flex justify-end mb-4">
+                                        <a href="#" class="text-[10px] text-blue-500 underline decoration-dotted">EMI
+                                            from
+                                            ₹1,814/month</a>
+                                    </div>
+                                </div>
+                                <div class="border-t border-dashed border-gray-300 pt-2 mb-3 text-center">
+                                    <p class="text-[10px] text-gray-500">Valid upto 31 Mar 2026</p>
+                                </div>
+                                <div class="grid grid-cols-2 gap-2">
+                                    <button
+                                        class="border border-blue-400 text-blue-400 text-xs font-semibold py-2 rounded hover:bg-blue-50 transition">Call
+                                        Now</button>
+                                    <button
+                                        class="bg-[#ff3b59] text-white text-xs font-semibold py-2 rounded hover:bg-[#e63550] transition">View
+                                        Details</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="bg-white p-5 rounded-2xl shadow-sm border border-gray-200">
+                <h2 class="text-lg font-bold text-gray-800 mb-4">Trending travel articles</h2>
+
+                <div class="flex gap-4 overflow-x-auto no-scrollbar pb-4">
+                    <div class="min-w-[260px] border border-gray-100 rounded-xl overflow-hidden hover-card transition">
+                        <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=300&q=80"
+                            class="w-full h-32 object-cover">
+                        <div class="p-3">
+                            <h3 class="font-bold text-xs text-gray-800 mb-1 leading-tight">7-Day Bali Itinerary 2025: A
+                                First-Timer's Blueprint!</h3>
+                            <p class="text-[10px] text-gray-500 mb-2 line-clamp-2">Summary: 7-Day Bali Itinerary -
+                                Planning
+                                your first trip to Bali? This guide covers everything...</p>
+                            <div class="text-[10px] text-traveller-red font-semibold">May 13, 2025 • Siddharth Shah
+                            </div>
+                        </div>
+                    </div>
+                    <div class="min-w-[260px] border border-gray-100 rounded-xl overflow-hidden hover-card transition">
+                        <img src="https://images.unsplash.com/photo-1506929562872-bb421503ef21?auto=format&fit=crop&w=300&q=80"
+                            class="w-full h-32 object-cover">
+                        <div class="p-3">
+                            <h3 class="font-bold text-xs text-gray-800 mb-1 leading-tight">A First-Timer's Guide to
+                                Dreamworld Queensland</h3>
+                            <p class="text-[10px] text-gray-500 mb-2 line-clamp-2">Summary: Dreamworld Queensland -
+                                Planning
+                                your trip to Dreamworld on your next vacation...</p>
+                            <div class="text-[10px] text-traveller-red font-semibold">May 11, 2025 • Meeta Shah</div>
+                        </div>
+                    </div>
+                    <div class="min-w-[260px] border border-gray-100 rounded-xl overflow-hidden hover-card transition">
+                        <img src="https://images.unsplash.com/photo-1512453979798-5ea932a23518?auto=format&fit=crop&w=300&q=80"
+                            class="w-full h-32 object-cover">
+                        <div class="p-3">
+                            <h3 class="font-bold text-xs text-gray-800 mb-1 leading-tight">Yas Island Abu Dhabi 2025:
+                                Ultimate Guide</h3>
+                            <p class="text-[10px] text-gray-500 mb-2 line-clamp-2">Ready for the vacation of a lifetime?
+                                Yas
+                                Island Abu Dhabi is calling your name...</p>
+                            <div class="text-[10px] text-traveller-red font-semibold">May 09, 2025 • Mukti Solanki</div>
+                        </div>
+                    </div>
+                    <div class="min-w-[260px] border border-gray-100 rounded-xl overflow-hidden hover-card transition">
+                        <img src="https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=300&q=80"
+                            class="w-full h-32 object-cover">
+                        <div class="p-3">
+                            <h3 class="font-bold text-xs text-gray-800 mb-1 leading-tight">Khajuraho Temples Travel
+                                Guide
+                                2025</h3>
+                            <p class="text-[10px] text-gray-500 mb-2 line-clamp-2">Holidays are just around the corner,
+                                and
+                                you are thinking about where to go...</p>
+                            <div class="text-[10px] text-traveller-red font-semibold">Apr 30, 2025 • Meeta Shah</div>
+                        </div>
+                    </div>
+                    <div class="min-w-[260px] border border-gray-100 rounded-xl overflow-hidden hover-card transition">
+                        <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=300&q=80"
+                            class="w-full h-32 object-cover">
+                        <div class="p-3">
+                            <h3 class="font-bold text-xs text-gray-800 mb-1 leading-tight">Why Gurudongmar Lake Should
+                                Be on
+                                Your 2025 List!</h3>
+                            <p class="text-[10px] text-gray-500 mb-2 line-clamp-2">Gurudongmar Lake - Northeast India is
+                                one
+                                of those places that feels far away...</p>
+                            <div class="text-[10px] text-traveller-red font-semibold">Apr 27, 2025 • Mukti Solanki</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+           </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- Footer Component -->
+    <footer class="bg-slate-950 text-slate-300 pt-16 pb-8 border-t border-slate-900">
+        <div class="container mx-auto px-4">
+            <div
+                class="flex flex-col lg:flex-row justify-between items-center pb-12 border-b border-slate-800 mb-12 gap-8">
+                <div class="max-w-xl">
+                    <h3 class="text-2xl font-bold text-white mb-2">Join our newsletter</h3>
+                    <p class="text-slate-400">We'll send you the best travel deals, visa updates, and destination guides
+                        once a week. No spam.</p>
+                </div>
+                <div class="flex w-full max-w-sm gap-2">
+                    <input type="email" placeholder="Enter your email"
+                        class="w-full px-4 py-2.5 rounded-lg bg-slate-900 border border-slate-800 text-white placeholder-slate-500 focus:outline-none focus:border-slate-600 focus:ring-1 focus:ring-slate-600">
+                    <button
+                        class="px-6 py-2.5 bg-white text-black font-semibold rounded-lg hover:bg-gray-200 transition-colors whitespace-nowrap">Subscribe</button>
+                </div>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 mb-16">
+                <div class="col-span-2 lg:col-span-2">
+                    <div class="flex items-center gap-2 mb-6">
+                        <div class="bg-white text-black p-1.5 rounded"><i data-lucide="plane" class="h-5 w-5"></i></div>
+                        <span class="text-xl font-bold text-white">TRAVELLER CHOICE</span>
+                    </div>
+                    <p class="text-slate-400 mb-6 max-w-sm leading-relaxed">
+                        Your trusted partner for AI-powered travel planning. We make exploring the world seamless, from
+                        visa applications to luxury stays.
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="#"
+                            class="h-10 w-10 rounded-full bg-slate-900 flex items-center justify-center hover:bg-slate-800 hover:text-white transition-colors"><i
+                                data-lucide="twitter" class="h-5 w-5"></i></a>
+                        <a href="#"
+                            class="h-10 w-10 rounded-full bg-slate-900 flex items-center justify-center hover:bg-slate-800 hover:text-white transition-colors"><i
+                                data-lucide="instagram" class="h-5 w-5"></i></a>
+                        <a href="#"
+                            class="h-10 w-10 rounded-full bg-slate-900 flex items-center justify-center hover:bg-slate-800 hover:text-white transition-colors"><i
+                                data-lucide="facebook" class="h-5 w-5"></i></a>
+                        <a href="#"
+                            class="h-10 w-10 rounded-full bg-slate-900 flex items-center justify-center hover:bg-slate-800 hover:text-white transition-colors"><i
+                                data-lucide="youtube" class="h-5 w-5"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-6">Company</h4>
+                    <ul class="space-y-4 text-sm">
+                        <li><a href="#" class="hover:text-white transition-colors">About Us</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Careers</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Press</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Blog</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Sustainability</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-6">Support</h4>
+                    <ul class="space-y-4 text-sm">
+                        <li><a href="#" class="hover:text-white transition-colors">Help Center</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Terms of Service</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Legal</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Status</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-6">Top Routes</h4>
+                    <ul class="space-y-4 text-sm">
+                        <li><a href="#" class="hover:text-white transition-colors">Flights to London</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Flights to Paris</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Flights to Tokyo</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Flights to New York</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Flights to Dubai</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-sm text-slate-500">&copy; 2025 TRAVELLER CHOICEInc. All rights reserved.</p>
+                <div class="flex items-center gap-6">
+                    <div class="flex items-center gap-2 text-slate-500 text-sm"><i data-lucide="globe"
+                            class="h-4 w-4"></i><span>English (US)</span></div>
+                    <div class="flex items-center gap-2 text-slate-500 text-sm"><i data-lucide="dollar-sign"
+                            class="h-4 w-4"></i><span>USD</span></div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Chat Widget -->
+    <div class="fixed bottom-6 right-6 z-50 flex flex-col items-end">
+        <div id="chat-window"
+            class="hidden flex-col w-[350px] bg-white rounded-2xl shadow-2xl border border-gray-200 mb-4 overflow-hidden transition-all origin-bottom-right">
+            <div class="bg-primary p-4 flex items-center justify-between text-white">
+                <div class="flex items-center gap-2">
+                    <div class="h-8 w-8 rounded-full bg-white/20 flex items-center justify-center"><i data-lucide="bot"
+                            class="h-5 w-5"></i></div>
+                    <div>
+                        <p class="font-bold text-sm">Travel Assistant</p>
+                        <p class="text-xs text-white/70">Online now</p>
+                    </div>
+                </div>
+                <button onclick="toggleChat()" class="text-white/80 hover:text-white"><i data-lucide="x"
+                        class="h-5 w-5"></i></button>
+            </div>
+            <div class="p-4 h-80 overflow-y-auto bg-slate-50 space-y-4">
+                <div class="flex gap-2">
+                    <div class="h-8 w-8 rounded-full bg-gray-200 flex-shrink-0 flex items-center justify-center"><i
+                            data-lucide="bot" class="h-4 w-4 text-gray-600"></i></div>
+                    <div class="bg-white p-3 rounded-r-xl rounded-bl-xl shadow-sm border text-sm text-gray-700">Hello!
+                        I'm your AI travel guide. How can I help you plan your next adventure today?</div>
+                </div>
+                <div class="flex gap-2 justify-end">
+                    <div class="bg-primary text-white p-3 rounded-l-xl rounded-br-xl shadow-sm text-sm">Looking for a
+                        beach trip under $1000.</div>
+                </div>
+                <div class="flex gap-2">
+                    <div class="h-8 w-8 rounded-full bg-gray-200 flex-shrink-0 flex items-center justify-center"><i
+                            data-lucide="bot" class="h-4 w-4 text-gray-600"></i></div>
+                    <div class="bg-white p-3 rounded-r-xl rounded-bl-xl shadow-sm border text-sm text-gray-700">I found
+                        great deals for Bali and Thailand within that budget! Would you like to see the flight details?
+                    </div>
+                </div>
+            </div>
+            <div class="p-3 border-t bg-white flex gap-2">
+                <input type="text" placeholder="Type a message..."
+                    class="flex-1 text-sm border-none focus:ring-0 outline-none px-2">
+                <button class="p-2 bg-primary text-white rounded-lg hover:bg-primary/90"><i data-lucide="send"
+                        class="h-4 w-4"></i></button>
+            </div>
+        </div>
+        <button onclick="toggleChat()"
+            class="h-14 w-14 rounded-full bg-primary text-white shadow-lg flex items-center justify-center hover:scale-110 transition-transform focus:outline-none">
+            <i data-lucide="message-circle" class="h-7 w-7"></i>
+        </button>
+    </div>
+
+    <!-- Login Modal -->
+    <div id="login-modal" class="relative z-[100] hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        <div class="fixed inset-0 bg-black/80 backdrop-blur-sm transition-opacity" onclick="closeModal('login-modal')">
+        </div>
+        <div
+            class="fixed left-[50%] top-[50%] z-[101] grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border bg-background p-6 shadow-lg duration-200 sm:rounded-lg md:w-full">
+            <div class="flex flex-col space-y-2 text-center sm:text-left">
+                <h2 class="text-lg font-semibold leading-none tracking-tight">Sign In</h2>
+                <p class="text-sm text-muted-foreground">Enter your email below to sign in to your account</p>
+            </div>
+            <div class="grid gap-4">
+                <div class="grid gap-2">
+                    <button
+                        class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium border border-input bg-background hover:bg-slate-100 hover:text-accent-foreground h-10 px-4 py-2 w-full transition-colors">
+                        <svg class="mr-2 h-4 w-4" aria-hidden="true" focusable="false" data-prefix="fab"
+                            data-icon="github" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512">
+                            <path fill="currentColor"
+                                d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z">
+                            </path>
+                        </svg>
+                        GitHub
+                    </button>
+                    <button
+                        class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium border border-input bg-background hover:bg-slate-100 hover:text-accent-foreground h-10 px-4 py-2 w-full transition-colors">
+                        <svg class="mr-2 h-4 w-4" aria-hidden="true" focusable="false" data-prefix="fab"
+                            data-icon="google" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 488 512">
+                            <path fill="currentColor"
+                                d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z">
+                            </path>
+                        </svg>
+                        Google
+                    </button>
+                </div>
+                <div class="relative">
+                    <div class="absolute inset-0 flex items-center"><span class="w-full border-t"></span></div>
+                    <div class="relative flex justify-center text-xs uppercase"><span
+                            class="bg-background px-2 text-muted-foreground">Or continue with</span></div>
+                </div>
+                <div class="grid gap-2">
+                    <div class="grid gap-1">
+                        <label
+                            class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                            for="email">Email</label>
+                        <input
+                            class="flex h-10 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
+                            id="email" placeholder="m@example.com" type="email" autocapitalize="none"
+                            autocomplete="email" autocorrect="off">
+                    </div>
+                    <div class="grid gap-1">
+                        <label
+                            class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                            for="password">Password</label>
+                        <input
+                            class="flex h-10 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
+                            id="password" type="password">
+                    </div>
+                    <button
+                        class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground shadow hover:bg-primary/90 h-10 px-4 py-2 w-full mt-2">
+                        Sign In with Email
+                    </button>
+                </div>
+                <div class="text-center text-sm text-muted-foreground">
+                    Don't have an account? <button onclick="switchToSignup()"
+                        class="underline underline-offset-4 hover:text-primary font-medium">Join Free</button>
+                </div>
+            </div>
+            <button onclick="closeModal('login-modal')"
+                class="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground">
+                <i data-lucide="x" class="h-4 w-4"></i><span class="sr-only">Close</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Signup Modal -->
+    <div id="signup-modal" class="relative z-[100] hidden" aria-labelledby="modal-title" role="dialog"
+        aria-modal="true">
+        <div class="fixed inset-0 bg-black/80 backdrop-blur-sm transition-opacity" onclick="closeModal('signup-modal')">
+        </div>
+        <div
+            class="fixed left-[50%] top-[50%] z-[101] grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border bg-background p-6 shadow-lg duration-200 sm:rounded-lg md:w-full">
+            <div class="flex flex-col space-y-2 text-center sm:text-left">
+                <h2 class="text-lg font-semibold leading-none tracking-tight">Create an account</h2>
+                <p class="text-sm text-muted-foreground">Enter your email below to create your account</p>
+            </div>
+            <div class="grid gap-4">
+                <div class="grid gap-2">
+                    <button
+                        class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium border border-input bg-background hover:bg-slate-100 hover:text-accent-foreground h-10 px-4 py-2 w-full transition-colors">
+                        <svg class="mr-2 h-4 w-4" aria-hidden="true" focusable="false" data-prefix="fab"
+                            data-icon="github" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512">
+                            <path fill="currentColor"
+                                d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z">
+                            </path>
+                        </svg>
+                        GitHub
+                    </button>
+                    <button
+                        class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium border border-input bg-background hover:bg-slate-100 hover:text-accent-foreground h-10 px-4 py-2 w-full transition-colors">
+                        <svg class="mr-2 h-4 w-4" aria-hidden="true" focusable="false" data-prefix="fab"
+                            data-icon="google" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 488 512">
+                            <path fill="currentColor"
+                                d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z">
+                            </path>
+                        </svg>
+                        Google
+                    </button>
+                </div>
+                <div class="relative">
+                    <div class="absolute inset-0 flex items-center"><span class="w-full border-t"></span></div>
+                    <div class="relative flex justify-center text-xs uppercase"><span
+                            class="bg-background px-2 text-muted-foreground">Or continue with</span></div>
+                </div>
+                <div class="grid gap-2">
+                    <div class="grid gap-1">
+                        <label
+                            class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                            for="signup-name">Full Name</label>
+                        <input
+                            class="flex h-10 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
+                            id="signup-name" type="text" placeholder="John Doe">
+                    </div>
+                    <div class="grid gap-1">
+                        <label
+                            class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                            for="signup-email">Email</label>
+                        <input
+                            class="flex h-10 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
+                            id="signup-email" placeholder="m@example.com" type="email" autocapitalize="none"
+                            autocomplete="email" autocorrect="off">
+                    </div>
+                    <div class="grid gap-1">
+                        <label
+                            class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                            for="signup-password">Password</label>
+                        <input
+                            class="flex h-10 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
+                            id="signup-password" type="password">
+                    </div>
+                    <button
+                        class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground shadow hover:bg-primary/90 h-10 px-4 py-2 w-full mt-2">
+                        Create Account
+                    </button>
+                </div>
+                <div class="text-center text-sm text-muted-foreground">
+                    Already have an account? <button onclick="switchToLogin()"
+                        class="underline underline-offset-4 hover:text-primary font-medium">Sign In</button>
+                </div>
+            </div>
+            <button onclick="closeModal('signup-modal')"
+                class="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground">
+                <i data-lucide="x" class="h-4 w-4"></i><span class="sr-only">Close</span>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Initialize Icons
+        lucide.createIcons();
+
+        // Navbar Scroll Effect
+        const navbar = document.getElementById('navbar');
+        const brandText = document.getElementById('brand-text');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('bg-white', 'shadow-md');
+                navbar.classList.remove('border-transparent', 'py-2');
+                brandText.classList.remove('text-white');
+                brandText.classList.add('text-black');
+
+                navLinks.forEach(link => {
+                    link.classList.remove('text-white', 'text-white/90');
+                    link.classList.add('text-black', 'hover:text-primary');
+                });
+            } else {
+                navbar.classList.remove('bg-white', 'shadow-md');
+                navbar.classList.add('border-transparent', 'py-2');
+                brandText.classList.add('text-white');
+                brandText.classList.remove('text-black');
+
+                navLinks.forEach(link => {
+                    link.classList.add('text-white', 'text-white/90');
+                    link.classList.remove('text-black', 'hover:text-primary');
+                });
+            }
+        });
+
+        // Chatbot Toggle
+        function toggleChat() {
+            const chatWindow = document.getElementById('chat-window');
+            if (chatWindow.classList.contains('hidden')) {
+                chatWindow.classList.remove('hidden');
+                chatWindow.classList.add('flex', 'chat-enter');
+            } else {
+                chatWindow.classList.add('hidden');
+                chatWindow.classList.remove('flex', 'chat-enter');
+            }
+        }
+
+        /* --- MODAL LOGIC --- */
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            const overlay = modal.querySelector('.fixed.inset-0');
+            const content = modal.querySelector('.fixed.left-\\[50\\%\\]');
+
+            modal.classList.remove('hidden');
+
+            overlay.classList.remove('backdrop-exit');
+            overlay.classList.add('backdrop-enter');
+
+            content.classList.remove('modal-exit');
+            content.classList.add('modal-enter');
+        }
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            const overlay = modal.querySelector('.fixed.inset-0');
+            const content = modal.querySelector('.fixed.left-\\[50\\%\\]');
+
+            overlay.classList.remove('backdrop-enter');
+            overlay.classList.add('backdrop-exit');
+
+            content.classList.remove('modal-enter');
+            content.classList.add('modal-exit');
+
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 150);
+        }
+
+        function switchToSignup() {
+            closeModal('login-modal');
+            setTimeout(() => {
+                openModal('signup-modal');
+            }, 160);
+        }
+
+        function switchToLogin() {
+            closeModal('signup-modal');
+            setTimeout(() => {
+                openModal('login-modal');
+            }, 160);
+        }
+    </script>
+
+    <script>
+        function toggleModal(show) {
+            const modal = document.getElementById('enquiryModal');
+            if (show) {
+                modal.classList.remove('hidden');
+                document.body.style.overflow = 'hidden'; // Stop background scrolling
+            } else {
+                modal.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        function switchFields(type) {
+            // Hide all dynamic groups
+            const groups = document.querySelectorAll('.dynamic-group');
+            groups.forEach(group => group.classList.add('hidden'));
+
+            // Show only the selected group
+            const activeGroup = document.getElementById('section-' + type);
+            activeGroup.classList.remove('hidden');
+        }
+
+        // Close modal if user clicks outside the modal box
+        window.onclick = function (event) {
+            const modal = document.getElementById('enquiryModal');
+            if (event.target == modal) {
+                toggleModal(false);
+            }
+        }
+    </script>
+    <script>
+
+        /**
+         * 1. Horizontal Scroll Logic
+         */
+        function scrollContainer(id, distance) {
+            const container = document.getElementById(id);
+            if (container) {
+                container.scrollBy({ left: distance, behavior: 'smooth' });
+            }
+        }
+
+        /**
+         * 2. Toggle Tab Logic (For Tour Packages / Hotels)
+         */
+        function toggleTab(element, groupClass) {
+            // Get all tabs in this group
+            const tabs = document.querySelectorAll('.' + groupClass);
+
+            // Reset all to inactive
+            tabs.forEach(tab => {
+                tab.classList.remove('tab-active');
+                tab.classList.add('tab-inactive');
+            });
+
+            // Set clicked to active
+            element.classList.remove('tab-inactive');
+            element.classList.add('tab-active');
+        }
+
+        /**
+         * 3. Toggle Filter Logic (For Budget: Under 50k etc.)
+         */
+        function toggleFilter(element) {
+            // Get all filter buttons
+            const filters = document.querySelectorAll('.budget-filter');
+
+            // Reset
+            filters.forEach(btn => {
+                btn.classList.remove('filter-active');
+                btn.classList.add('filter-inactive');
+            });
+
+            // Set Active
+            element.classList.remove('filter-inactive');
+            element.classList.add('filter-active');
+        }
+
+        /**
+         * 4. Vertical Banner Carousel Logic
+         */
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.carousel-slide');
+        const totalSlides = slides.length;
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                if (i === index) {
+                    slide.classList.remove('opacity-0', 'pointer-events-none');
+                    slide.classList.add('opacity-100');
+                } else {
+                    slide.classList.remove('opacity-100');
+                    slide.classList.add('opacity-0', 'pointer-events-none');
+                }
+            });
+        }
+
+        function nextSlide() {
+            if (totalSlides > 0) {
+                currentSlide = (currentSlide + 1) % totalSlides;
+                showSlide(currentSlide);
+            }
+        }
+
+        function prevSlide() {
+            if (totalSlides > 0) {
+                currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+                showSlide(currentSlide);
+            }
+        }
+
+        // Auto-play the banner every 5 seconds
+        setInterval(nextSlide, 5000);
+
+
+        function switchTab(element) {
+            // Remove active classes from all buttons
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('bg-[#002B45]', 'text-white', 'shadow');
+                btn.classList.add('text-gray-600', 'hover:bg-gray-200');
+            });
+
+            // Add active classes to the clicked button
+            element.classList.remove('text-gray-600', 'hover:bg-gray-200');
+            element.classList.add('bg-[#002B45]', 'text-white', 'shadow');
+        }
+    </script>
+</body>
+
+</html>

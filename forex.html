@@ -1,0 +1,2869 @@
+<!-- Shared Resources and Components -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: {
+                        border: "hsl(240 5.9% 90%)",
+                        input: "hsl(240 5.9% 90%)",
+                        ring: "hsl(240 5% 64.9%)",
+                        background: "hsl(0 0% 100%)",
+                        foreground: "hsl(240 10% 3.9%)",
+                        primary: {
+                            DEFAULT: "hsl(240 5.9% 10%)",
+                            foreground: "hsl(0 0% 98%)",
+                        },
+                        muted: {
+                            DEFAULT: "hsl(240 4.8% 95.9%)",
+                            foreground: "hsl(240 3.8% 46.1%)",
+                        },
+                        accent: {
+                            DEFAULT: "hsl(240 4.8% 95.9%)",
+                            foreground: "hsl(240 5.9% 10%)",
+                        },
+                    },
+                    boxShadow: {
+                        'glass': '0 8px 32px 0 rgba(31, 38, 135, 0.15)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+
+        .hero-overlay {
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.4) 50%, rgba(0, 0, 0, 0.6) 100%);
+        }
+
+        .chat-enter { animation: slideUp 0.3s ease-out forwards; }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .modal-enter { animation: modalIn 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        .modal-exit { animation: modalOut 0.15s ease-in forwards; }
+        @keyframes modalIn {
+            from { opacity: 0; transform: translate(-50%, -48%) scale(0.96); }
+            to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+        }
+        @keyframes modalOut {
+            from { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+            to { opacity: 0; transform: translate(-50%, -48%) scale(0.96); }
+        }
+
+        .backdrop-enter { animation: fadeIn 0.2s ease-out forwards; }
+        .backdrop-exit { animation: fadeOut 0.2s ease-in forwards; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes fadeOut { from { opacity: 1; } to { opacity: 0; } }
+
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        traveller: {
+                            blue: '#0054a6',
+                            red: '#ef4050',
+                            dark: '#1a1a2e',
+                            gold: '#ffcc00'
+                        },
+                        gray: {
+                            bg: '#f4f6f9'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Segoe UI', 'Roboto', 'Helvetica', 'Arial', 'sans-serif'],
+                        serif: ['Playfair Display', 'Georgia', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+
+          .glass-panel {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+
+        .hero-overlay {
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.4) 50%, rgba(0, 0, 0, 0.6) 100%);
+        }
+
+        /* MEGA MENU DROPDOWN STYLES */
+        .mega-menu {
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .group:hover .mega-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .chat-enter { animation: slideUp 0.3s ease-out forwards; }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .modal-enter { animation: modalIn 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        .modal-exit { animation: modalOut 0.15s ease-in forwards; }
+        @keyframes modalIn {
+            from { opacity: 0; transform: translate(-50%, -48%) scale(0.96); }
+            to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+        }
+        @keyframes modalOut {
+            from { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+            to { opacity: 0; transform: translate(-50%, -48%) scale(0.96); }
+        }
+
+        .backdrop-enter { animation: fadeIn 0.2s ease-out forwards; }
+        .backdrop-exit { animation: fadeOut 0.2s ease-in forwards; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes fadeOut { from { opacity: 1; } to { opacity: 0; } }
+
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+         
+        /* Hide scrollbars but keep functionality */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Custom hover effects */
+        .nav-item:hover i {
+            color: #0054a6;
+            transition: color 0.3s;
+        }
+
+        /* Tab Active State Classes */
+        .tab-active {
+            background-color: #0054a6;
+            color: white;
+            border-color: #0054a6;
+        }
+
+        .tab-inactive {
+            background-color: white;
+            color: #4b5563;
+            border-color: #d1d5db;
+        }
+
+        .filter-active {
+            background-color: #1f2937;
+            color: white;
+        }
+
+        .filter-inactive {
+            color: #4b5563;
+            background-color: transparent;
+        }
+
+        .filter-inactive:hover {
+            background-color: #f3f4f6;
+        }
+
+
+           .form-label { font-size: 14px; font-weight: 500; color: #004a7c; margin-bottom: 4px; display: block; }
+        .form-input { 
+            width: 100%; 
+            padding: 10px 14px; 
+            background-color: #f3f4f6; 
+            border: 1px solid #d1d5db; 
+            border-radius: 8px; 
+            font-size: 14px;
+            color: #374151;
+            transition: all 0.2s;
+        }
+        .form-input:focus { 
+            outline: none; 
+            border-color: #3b82f6; 
+            background-color: #fff; 
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1); 
+        }
+        .form-input::placeholder { color: #9ca3af; }
+        
+        /* Custom Select Styling to match image */
+        .custom-select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%239ca3af' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 0.5rem center;
+            background-size: 1.5em 1.5em;
+            padding-right: 2.5rem;
+        }
+    </style>
+
+     <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            800: '#1e40af',
+                            900: '#1e3a8a',
+                        },
+                        secondary: '#10b981',
+                        accent: '#f59e0b',
+                        success: '#10b981',
+                        warning: '#f59e0b',
+                        danger: '#ef4444'
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'card': '0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
+                        'card-hover': '0 20px 40px -10px rgba(0, 0, 0, 0.15), 0 10px 10px -5px rgba(0, 0, 0, 0.06)',
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'bounce-slow': 'bounce 2s infinite',
+                        'slide-in': 'slideIn 0.3s ease-out',
+                    },
+                    keyframes: {
+                        slideIn: {
+                            '0%': { transform: 'translateY(-10px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .service-tab.active {
+            border-bottom: 3px solid #3b82f6;
+            color: #1e40af;
+            font-weight: 600;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+        }
+        
+        .promo-badge {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            color: white;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+            box-shadow: 0 4px 6px rgba(239, 68, 68, 0.3);
+        }
+        
+        .currency-flag {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .rate-change-positive {
+            color: #10b981;
+        }
+        
+        .rate-change-negative {
+            color: #ef4444;
+        }
+        
+        .loader {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #3b82f6;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+            display: inline-block;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            animation: slideIn 0.3s ease-out;
+        }
+        
+        .rate-alert-active {
+            animation: pulse 2s infinite;
+            box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.5);
+        }
+    </style>
+</head>
+<body>
+   
+    <nav id="navbar" class="fixed top-0 z-50 w-full transition-all duration-300 border-b border-transparent py-2">
+        <div class="container mx-auto flex h-16 items-center justify-between px-4 md:px-6 ">
+            <div class="flex items-center gap-2">
+                <div class="bg-primary text-white p-1.5 rounded-lg">
+                    <i data-lucide="plane" class="h-5 w-5"></i>
+                </div>
+                <a href="index.html" id="brand-text" class="text-xl font-bold tracking-tight text-white transition-colors cursor-pointer">TRAVELLER CHOICE</a>
+            </div>
+
+            <div class="hidden md:flex gap-8 text-sm font-medium h-full items-center">
+                <a href="index.html" class="nav-link text-white/90 hover:text-white transition-colors">Home</a>
+                <a href="flights.html" class="nav-link text-white/90 hover:text-white transition-colors">Flights</a>
+                
+                <a href="visa.html" class="nav-link text-white/90 hover:text-white transition-colors">Visa Services</a>
+                
+                <div class="group h-full flex items-center">
+                    <a  class="nav-link text-white/90 hover:text-white transition-colors flex items-center gap-1">
+                        Travel Packages <i data-lucide="chevron-down" class="h-3 w-3"></i>
+                    </a>
+                    
+                    <div class="mega-menu absolute top-full left-0 w-100 ">
+                        <div class="bg-white shadow-2xl border-t border-gray-100 p-8 text-gray-800">
+                            <div class="container mx-auto grid grid-cols-4 gap-8">
+                                <div>
+                                    <h4 class="font-bold text-primary mb-4 uppercase text-xs tracking-widest border-b pb-2">India Tours</h4>
+                                    <ul class="space-y-2 text-sm">
+                                        <li><a href="/holiday_packages_goa.html" class="hover:text-red-500 transition-colors">Goa Packages</a></li>
+                                        <li><a href="#" class="hover:text-red-500 transition-colors">Kerala Backwaters</a></li>
+                                        <li><a href="#" class="hover:text-red-500 transition-colors">Himachal Special</a></li>
+                                        <li><a href="#" class="hover:text-red-500 transition-colors">Rajasthan Royal</a></li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-primary mb-4 uppercase text-xs tracking-widest border-b pb-2">International</h4>
+                                    <ul class="space-y-2 text-sm">
+                                        <li><a href="#" class="hover:text-red-500 transition-colors">Bali Adventure</a></li>
+                                        <li><a href="#" class="hover:text-red-500 transition-colors">Thailand Getaway</a></li>
+                                        <li><a href="#" class="hover:text-red-500 transition-colors">Dubai Luxury</a></li>
+                                        <li><a href="#" class="hover:text-red-500 transition-colors">Europe Wonders</a></li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-primary mb-4 uppercase text-xs tracking-widest border-b pb-2">By Theme</h4>
+                                    <ul class="space-y-2 text-sm">
+                                        <li><a href="#" class="hover:text-red-500 transition-colors">Honeymoon Specials</a></li>
+                                        <li><a href="#" class="hover:text-red-500 transition-colors">Family Holidays</a></li>
+                                        <li><a href="#" class="hover:text-red-500 transition-colors">Adventure Tours</a></li>
+                                        <li><a href="#" class="hover:text-red-500 transition-colors">Luxury Cruises</a></li>
+                                    </ul>
+                                </div>
+                                <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+                                    <h4 class="font-bold text-primary mb-2 text-sm">Summer Sale 2026</h4>
+                                    <p class="text-xs text-slate-500 mb-4 leading-relaxed">Book your international holiday before February 28th and get a flat 15% discount.</p>
+                                    <button class="w-full bg-red-500 text-white text-xs font-bold py-2 rounded hover:bg-red-600 transition">View Offers</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                    <a href="cruise.html" class="nav-link text-white/90 hover:text-white transition-colors">Cruise</a>
+                <a href="forex.html" class="nav-link text-white/90 hover:text-white transition-colors">Forex</a>
+
+                <a href="contact.html" class="nav-link text-white/90 hover:text-white transition-colors">Contact</a>
+            </div>
+
+            <div class="flex items-center gap-4">
+                <button onclick="openModal('login-modal')" class="nav-link text-sm font-medium text-white hover:underline transition-colors">Sign In</button>
+                <button onclick="openModal('signup-modal')" class="inline-flex h-9 items-center justify-center rounded-md bg-white text-black px-4 py-2 text-sm font-medium shadow hover:bg-gray-100 transition-colors">
+                    Join Free
+                </button>
+            </div>
+        </div>
+    </nav>                                                                                                                                                                                                                                  
+
+
+<section class="relative min-h-[50vh] flex items-center pt-20">
+        <div class="absolute inset-0"><img src="https://images.unsplash.com/photo-1552832230-c0197dd311b5?q=80&w=2000" class="w-full h-full object-cover"><div class="hero-overlay absolute inset-0"></div></div>
+        <div class="container relative z-10 mx-auto px-4 text-center text-white">
+            <h1 class="text-6xl font-bold mb-4 drop-shadow-lg">FOREX Services</h1>
+            <p class="text-xl text-gray-100 max-w-2xl mx-auto drop-shadow-md"> </p>
+        </div>
+    </section> 
+
+    <div class="bg-gray-50 text-gray-800 font-sans">
+    <!-- Notification Container -->
+    <div id="notification-container"></div>
+    
+    <!-- Rate Alert Modal -->
+    <div id="rate-alert-modal" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center z-50">
+        <div class="bg-white rounded-xl shadow-card p-6 w-full max-w-md mx-4">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-bold text-gray-800">Set Rate Alert</h3>
+                <button id="close-rate-alert-modal" class="text-gray-400 hover:text-gray-600">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            <div class="mb-6">
+                <p class="text-gray-600 mb-4">Get notified when the exchange rate reaches your target.</p>
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-gray-700 font-medium mb-2">Currency Pair</label>
+                        <div class="flex items-center">
+                            <select id="alert-currency-pair" class="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-primary-600">
+                                <option value="USD/INR">USD/INR (US Dollar to Indian Rupee)</option>
+                                <option value="EUR/INR">EUR/INR (Euro to Indian Rupee)</option>
+                                <option value="GBP/INR">GBP/INR (British Pound to Indian Rupee)</option>
+                                <option value="AUD/INR">AUD/INR (Australian Dollar to Indian Rupee)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-gray-700 font-medium mb-2">Target Rate (₹)</label>
+                        <input id="alert-target-rate" type="number" step="0.01" class="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-primary-600" placeholder="Enter target rate">
+                    </div>
+                    <div>
+                        <label class="block text-gray-700 font-medium mb-2">Alert Type</label>
+                        <div class="flex space-x-4">
+                            <label class="flex items-center">
+                                <input type="radio" name="alert-type" value="above" class="mr-2" checked>
+                                <span>When rate goes above target</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="radio" name="alert-type" value="below" class="mr-2">
+                                <span>When rate goes below target</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="flex justify-end space-x-3">
+                <button id="cancel-rate-alert" class="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">Cancel</button>
+                <button id="save-rate-alert" class="px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700">Set Alert</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Callback Request Modal -->
+    <div id="callback-modal" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center z-50">
+        <div class="bg-white rounded-xl shadow-card p-6 w-full max-w-md mx-4">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-bold text-gray-800">Request Callback</h3>
+                <button id="close-callback-modal" class="text-gray-400 hover:text-gray-600">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            <div class="mb-6">
+                <p class="text-gray-600 mb-4">Our forex expert will call you within 30 minutes.</p>
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-gray-700 font-medium mb-2">Name</label>
+                        <input id="callback-name" type="text" class="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-primary-600" placeholder="Enter your name">
+                    </div>
+                    <div>
+                        <label class="block text-gray-700 font-medium mb-2">Phone Number</label>
+                        <input id="callback-phone" type="tel" class="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-primary-600" placeholder="Enter 10-digit mobile number">
+                    </div>
+                    <div>
+                        <label class="block text-gray-700 font-medium mb-2">Preferred Time</label>
+                        <select id="callback-time" class="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-primary-600">
+                            <option value="asap">As soon as possible</option>
+                            <option value="morning">Morning (9 AM - 12 PM)</option>
+                            <option value="afternoon">Afternoon (12 PM - 4 PM)</option>
+                            <option value="evening">Evening (4 PM - 7 PM)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-gray-700 font-medium mb-2">Query Type</label>
+                        <select id="callback-query" class="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-primary-600">
+                            <option value="forex_card">Forex Card</option>
+                            <option value="currency_notes">Currency Notes</option>
+                            <option value="money_transfer">Money Transfer</option>
+                            <option value="travel_insurance">Travel Insurance</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="flex justify-end space-x-3">
+                <button id="cancel-callback" class="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">Cancel</button>
+                <button id="submit-callback" class="px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700">Request Callback</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mx-auto px-4 py-6 max-w-7xl">
+        <!-- Header with Navigation -->
+        <header class="mb-8">
+            
+            
+            <!-- Service Tabs -->
+            <div class="border-b border-gray-200">
+                <nav class="flex flex-wrap -mb-px overflow-x-auto">
+                    <button id="tab-exchange" class="service-tab active mr-6 py-3 px-1 font-medium text-sm md:text-base whitespace-nowrap">
+                        <i class="fas fa-exchange-alt mr-2"></i> Exchange Currency
+                    </button>
+                    <button id="tab-forex-card" class="service-tab mr-6 py-3 px-1 font-medium text-sm md:text-base whitespace-nowrap">
+                        <i class="fas fa-credit-card mr-2"></i> Forex Card
+                    </button>
+                    <button id="tab-transfer" class="service-tab mr-6 py-3 px-1 font-medium text-sm md:text-base whitespace-nowrap">
+                        <i class="fas fa-money-bill-transfer mr-2"></i> Transfer Money
+                    </button>
+                    <button id="tab-sim" class="service-tab mr-6 py-3 px-1 font-medium text-sm md:text-base whitespace-nowrap">
+                        <i class="fas fa-sim-card mr-2"></i> International SIM
+                    </button>
+                    <button id="tab-insurance" class="service-tab py-3 px-1 font-medium text-sm md:text-base whitespace-nowrap">
+                        <i class="fas fa-shield-alt mr-2"></i> Travel Insurance
+                    </button>
+                </nav>
+            </div>
+        </header>
+
+        <div class="flex flex-col lg:flex-row gap-8">
+            <!-- Main Content -->
+            <main class="lg:w-2/3">
+                <!-- Exchange Currency Content (Active by default) -->
+                <div id="content-exchange" class="service-content">
+                    <div class="bg-white rounded-2xl shadow-card p-6 mb-8">
+                        <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
+                            <h2 class="text-xl font-bold text-gray-900 mb-2 md:mb-0">Buy Forex Cards & Currency</h2>
+                            <div class="flex items-center text-sm">
+                                <span class="text-gray-600 mr-2">Live rates update every</span>
+                                <span class="bg-primary-50 text-primary-700 font-medium px-2 py-1 rounded">60 seconds</span>
+                            </div>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                            <div>
+                                <label class="block text-gray-700 font-medium mb-2">
+                                    <i class="fas fa-city mr-1"></i> Select City
+                                </label>
+                                <div class="relative">
+                                    <select id="exchange-city" class="w-full border border-gray-300 rounded-xl p-3.5 focus:outline-none focus:ring-2 focus:ring-primary-600 appearance-none bg-white">
+                                        <option value="mumbai">Mumbai</option>
+                                        <option value="delhi">Delhi</option>
+                                        <option value="bangalore">Bangalore</option>
+                                        <option value="chennai">Chennai</option>
+                                        <option value="kolkata">Kolkata</option>
+                                        <option value="hyderabad">Hyderabad</option>
+                                    </select>
+                                    <i class="fas fa-chevron-down absolute right-3 top-4 text-gray-400"></i>
+                                </div>
+                                <div class="text-xs text-gray-500 mt-1">Delivery charges may vary by city</div>
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 font-medium mb-2">
+                                    <i class="fas fa-wallet mr-1"></i> Currency You Have
+                                </label>
+                                <div class="flex border border-gray-300 rounded-xl overflow-hidden">
+                                    <button id="currency-inr" class="currency-option active flex-1 py-3.5 font-medium bg-primary-50 text-primary-700 border-r border-gray-300">
+                                        <i class="fas fa-rupee-sign mr-2"></i> Indian Rupee
+                                    </button>
+                                    <button id="currency-usd" class="currency-option flex-1 py-3.5 font-medium text-gray-700 hover:bg-gray-50">
+                                        <i class="fas fa-dollar-sign mr-2"></i> US Dollar
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label class="block text-gray-700 font-medium mb-2">
+                                <i class="fas fa-credit-card mr-1"></i> Select Forex Card/Currency Notes
+                            </label>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                <div class="currency-option-card border-2 border-primary-200 bg-primary-50 rounded-xl p-4 cursor-pointer" data-type="forex-card" data-currency="USD">
+                                    <div class="flex items-center mb-3">
+                                        <div class="bg-white p-2 rounded-lg mr-3">
+                                            <i class="fas fa-credit-card text-primary-600 text-lg"></i>
+                                        </div>
+                                        <div>
+                                            <div class="font-bold text-gray-900">USD Forex Card</div>
+                                            <div class="text-sm text-gray-600">Prepaid travel card</div>
+                                        </div>
+                                    </div>
+                                    <div class="text-sm">
+                                        <div class="flex justify-between mb-1">
+                                            <span class="text-gray-600">Rate:</span>
+                                            <span class="font-bold text-primary-700">₹91.85</span>
+                                        </div>
+                                        <div class="flex justify-between">
+                                            <span class="text-gray-600">Effective:</span>
+                                            <span class="font-bold text-green-600">₹90.05</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="currency-option-card border border-gray-300 rounded-xl p-4 cursor-pointer hover:border-primary-300 hover:bg-gray-50" data-type="currency-notes" data-currency="USD">
+                                    <div class="flex items-center mb-3">
+                                        <div class="bg-gray-100 p-2 rounded-lg mr-3">
+                                            <i class="fas fa-money-bill text-gray-600 text-lg"></i>
+                                        </div>
+                                        <div>
+                                            <div class="font-bold text-gray-900">USD Cash</div>
+                                            <div class="text-sm text-gray-600">Physical currency notes</div>
+                                        </div>
+                                    </div>
+                                    <div class="text-sm">
+                                        <div class="flex justify-between mb-1">
+                                            <span class="text-gray-600">Rate:</span>
+                                            <span class="font-bold text-gray-700">₹92.10</span>
+                                        </div>
+                                        <div class="flex justify-between">
+                                            <span class="text-gray-600">Effective:</span>
+                                            <span class="font-bold text-green-600">₹90.25</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="currency-option-card border border-gray-300 rounded-xl p-4 cursor-pointer hover:border-primary-300 hover:bg-gray-50" data-type="forex-card" data-currency="EUR">
+                                    <div class="flex items-center mb-3">
+                                        <div class="bg-gray-100 p-2 rounded-lg mr-3">
+                                            <i class="fas fa-credit-card text-gray-600 text-lg"></i>
+                                        </div>
+                                        <div>
+                                            <div class="font-bold text-gray-900">EUR Forex Card</div>
+                                            <div class="text-sm text-gray-600">Prepaid travel card</div>
+                                        </div>
+                                    </div>
+                                    <div class="text-sm">
+                                        <div class="flex justify-between mb-1">
+                                            <span class="text-gray-600">Rate:</span>
+                                            <span class="font-bold text-gray-700">₹98.45</span>
+                                        </div>
+                                        <div class="flex justify-between">
+                                            <span class="text-gray-600">Effective:</span>
+                                            <span class="font-bold text-green-600">₹96.50</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                            <div>
+                                <label class="block text-gray-700 font-medium mb-2">
+                                    <span id="forex-currency-label">USD</span> Amount
+                                </label>
+                                <div class="relative">
+                                    <span id="forex-currency-symbol" class="absolute left-3 top-3.5 font-bold text-lg">$</span>
+                                    <input id="forex-amount" type="number" min="0" step="10" class="w-full border border-gray-300 rounded-xl p-3.5 pl-10 text-lg focus:outline-none focus:ring-2 focus:ring-primary-600" placeholder="0.00" value="100">
+                                </div>
+                                <div class="flex justify-between mt-2">
+                                    <button class="quick-amount text-xs border border-gray-300 rounded-lg px-3 py-1 hover:bg-gray-50" data-amount="100">$100</button>
+                                    <button class="quick-amount text-xs border border-gray-300 rounded-lg px-3 py-1 hover:bg-gray-50" data-amount="500">$500</button>
+                                    <button class="quick-amount text-xs border border-gray-300 rounded-lg px-3 py-1 hover:bg-gray-50" data-amount="1000">$1,000</button>
+                                    <button class="quick-amount text-xs border border-gray-300 rounded-lg px-3 py-1 hover:bg-gray-50" data-amount="5000">$5,000</button>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 font-medium mb-2">INR Amount</label>
+                                <div class="relative">
+                                    <span class="absolute left-3 top-3.5 font-bold text-lg">₹</span>
+                                    <input id="inr-amount" type="number" min="0" step="100" class="w-full border border-gray-300 rounded-xl p-3.5 pl-10 text-lg focus:outline-none focus:ring-2 focus:ring-primary-600" placeholder="0.00">
+                                </div>
+                                <div class="text-xs text-gray-500 mt-2">Amount inclusive of all charges</div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-blue-50 border border-blue-200 rounded-xl p-5 mb-6">
+                            <div class="flex flex-col md:flex-row md:items-center justify-between mb-3">
+                                <div>
+                                    <div class="font-medium text-gray-700">Exchange Rate</div>
+                                    <div class="text-2xl font-bold text-primary-800" id="display-rate">₹91.85</div>
+                                </div>
+                                <div class="mt-2 md:mt-0">
+                                    <div class="font-medium text-gray-700">Effective Rate</div>
+                                    <div class="text-xl font-bold text-green-600" id="effective-rate">₹90.05</div>
+                                </div>
+                                <div class="mt-2 md:mt-0">
+                                    <div class="font-medium text-gray-700">Savings</div>
+                                    <div class="text-lg font-bold text-accent" id="savings-amount">₹1,800</div>
+                                </div>
+                            </div>
+                            <div class="text-sm text-gray-600">
+                                <i class="fas fa-info-circle mr-1"></i> 
+                                <span id="rate-details">Rate includes all charges. Market rate: ₹92.05</span>
+                                <a href="#" class="text-primary-600 ml-2 hover:underline">Know How</a>
+                            </div>
+                        </div>
+                        
+                        <div class="border-t border-gray-200 pt-5 mb-6">
+                            <div class="flex justify-between items-center mb-4">
+                                <div>
+                                    <div class="text-lg font-bold text-gray-900">Total Amount</div>
+                                    <div class="text-sm text-gray-600">Inclusive of all taxes & charges</div>
+                                </div>
+                                <div class="text-right">
+                                    <div class="text-3xl font-bold text-primary-700" id="total-amount">₹9,005</div>
+                                    <div class="text-sm text-gray-600">Delivery: <span id="delivery-charge">₹0</span> (Free)</div>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label class="flex items-center">
+                                    <input type="checkbox" id="promo-code-toggle" class="mr-2">
+                                    <span class="text-gray-700">Apply Promo Code</span>
+                                </label>
+                                <div id="promo-code-section" class="hidden mt-3">
+                                    <div class="flex">
+                                        <input type="text" id="promo-code-input" class="flex-1 border border-gray-300 rounded-l-xl p-3 focus:outline-none focus:ring-2 focus:ring-primary-600" placeholder="Enter promo code">
+                                        <button id="apply-promo" class="bg-primary-600 text-white px-5 rounded-r-xl hover:bg-primary-700">Apply</button>
+                                    </div>
+                                    <div id="promo-message" class="text-sm mt-2"></div>
+                                </div>
+                            </div>
+                            
+                            <button id="book-order" class="w-full gradient-bg text-white font-bold py-4 rounded-xl text-lg hover:opacity-90 transition duration-300 shadow-md hover:shadow-lg">
+                                <i class="fas fa-shopping-cart mr-2"></i> Book Now for ₹<span id="book-amount">9,005</span>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Student Special Section -->
+                    <div class="bg-gradient-to-r from-purple-50 to-blue-50 rounded-2xl shadow-card p-6 mb-8 border border-purple-200 relative overflow-hidden">
+                        <div class="absolute -right-6 -top-6 w-24 h-24 bg-purple-200 rounded-full opacity-50"></div>
+                        <div class="absolute -right-12 top-12 w-32 h-32 bg-purple-100 rounded-full opacity-30"></div>
+                        
+                        <div class="flex flex-col md:flex-row items-center relative z-10">
+                            <div class="md:w-2/3 mb-6 md:mb-0">
+                                <div class="flex items-center mb-3">
+                                    <span class="bg-purple-600 text-white text-sm font-bold px-4 py-1.5 rounded-full mr-3">STUDENT SEASON SPECIAL</span>
+                                    <span class="text-gray-700 font-medium">Promo Code: <span class="font-bold text-primary-700">REMITSPL</span></span>
+                                </div>
+                                <h3 class="text-2xl font-bold text-gray-900 mb-4">Enjoy up to <span class="text-purple-700">₹15,000</span> cashback on Money Transfers</h3>
+                                <ul class="text-gray-700 space-y-3 mb-6">
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check-circle text-green-500 mr-3 mt-1"></i>
+                                        <span>Save big on university fees, GIC & living expenses</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check-circle text-green-500 mr-3 mt-1"></i>
+                                        <span>Celebrate the season with our Lowest Rate Guarantee</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check-circle text-green-500 mr-3 mt-1"></i>
+                                        <span>Found a better rate? Claim 2X the price difference back!</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check-circle text-green-500 mr-3 mt-1"></i>
+                                        <span>Secure transfers via trusted banks & RBI-authorized dealers</span>
+                                    </li>
+                                </ul>
+                                <div class="flex flex-col sm:flex-row gap-3">
+                                    <button class="bg-purple-600 text-white font-bold py-3 px-6 rounded-xl hover:bg-purple-700 transition duration-300 shadow-md">
+                                        <i class="fas fa-graduation-cap mr-2"></i> Student Offer Details
+                                    </button>
+                                    <button class="bg-white text-purple-600 font-bold py-3 px-6 rounded-xl border border-purple-300 hover:bg-purple-50 transition duration-300">
+                                        <i class="fas fa-book mr-2"></i> Check Eligibility
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="md:w-1/3 flex justify-center">
+                                <div class="bg-white p-6 rounded-xl shadow-card text-center w-full max-w-xs">
+                                    <div class="text-5xl font-bold text-purple-600 mb-2">₹15K</div>
+                                    <div class="text-gray-700 font-medium text-lg">Cashback</div>
+                                    <div class="text-sm text-gray-500 mt-2 mb-4">On Money Transfers</div>
+                                    <div class="bg-purple-50 p-3 rounded-lg">
+                                        <div class="text-xs text-gray-600 mb-1">Valid till: Dec 31, 2023</div>
+                                        <div class="text-xs text-gray-600">Minimum transfer: ₹50,000</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                  
+                </div>
+                
+                <!-- Other Service Contents (initially hidden) -->
+                <div id="content-forex-card" class="service-content hidden">
+                    <!-- Forex Card Content would be here -->
+                    <div class="bg-white rounded-2xl shadow-card p-8 text-center">
+                        <div class="text-5xl text-primary-600 mb-6">
+                            <i class="fas fa-credit-card"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-4">Forex Card Services</h3>
+                        <p class="text-gray-600 max-w-xl mx-auto mb-8">
+                            Load, reload, or unload your forex card with competitive rates and instant processing.
+                        </p>
+                        <button class="gradient-bg text-white font-bold py-3 px-8 rounded-xl hover:opacity-90 transition duration-300">
+                            Manage Forex Card
+                        </button>
+                    </div>
+                </div>
+                
+                <div id="content-transfer" class="service-content hidden">
+                    <!-- Money Transfer Content would be here -->
+                    <div class="bg-white rounded-2xl shadow-card p-8 text-center">
+                        <div class="text-5xl text-primary-600 mb-6">
+                            <i class="fas fa-money-bill-transfer"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-4">International Money Transfers</h3>
+                        <p class="text-gray-600 max-w-xl mx-auto mb-8">
+                            Send money abroad with the best exchange rates and lowest fees.
+                        </p>
+                        <button class="gradient-bg text-white font-bold py-3 px-8 rounded-xl hover:opacity-90 transition duration-300">
+                            Start Transfer
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Action Buttons -->
+                <div class="flex flex-wrap justify-center gap-4 mt-8">
+                    <button id="request-callback-btn" class="flex items-center bg-white border border-gray-300 rounded-xl px-6 py-3.5 hover:bg-gray-50 transition duration-300 shadow-sm hover:shadow-card">
+                        <i class="fas fa-phone-alt mr-3 text-primary-600"></i> 
+                        <div class="text-left">
+                            <div class="font-medium">Request Call Back</div>
+                            <div class="text-xs text-gray-500">Expert advice within 30 min</div>
+                        </div>
+                    </button>
+                    <button id="set-rate-alert-btn" class="flex items-center bg-white border border-gray-300 rounded-xl px-6 py-3.5 hover:bg-gray-50 transition duration-300 shadow-sm hover:shadow-card">
+                        <i class="fas fa-bell mr-3 text-primary-600"></i>
+                        <div class="text-left">
+                            <div class="font-medium">Set Rate Alert</div>
+                            <div class="text-xs text-gray-500">Get notified at your rate</div>
+                        </div>
+                    </button>
+                    <button id="request-better-rate-btn" class="flex items-center bg-white border border-gray-300 rounded-xl px-6 py-3.5 hover:bg-gray-50 transition duration-300 shadow-sm hover:shadow-card">
+                        <i class="fas fa-handshake mr-3 text-primary-600"></i>
+                        <div class="text-left">
+                            <div class="font-medium">Request Better Rate</div>
+                            <div class="text-xs text-gray-500">For large amounts</div>
+                        </div>
+                    </button>
+                </div>
+            </main>
+            
+            <!-- Sidebar -->
+            <aside class="lg:w-1/3">
+                <!-- Services Menu -->
+                <div class="bg-white rounded-2xl shadow-card p-6 mb-8">
+                    <h3 class="text-lg font-bold text-gray-900 mb-5 flex items-center">
+                        <i class="fas fa-th-large mr-2 text-primary-600"></i> Our Services
+                    </h3>
+                    <ul class="space-y-2">
+                        <li>
+                            <a href="#" class="service-menu-item flex items-center p-3 rounded-xl hover:bg-primary-50 transition duration-300 border-l-4 border-primary-600 bg-primary-50">
+                                <div class="bg-primary-100 p-2 rounded-lg mr-3">
+                                    <i class="fas fa-exchange-alt text-primary-600"></i>
+                                </div>
+                                <div>
+                                    <div class="font-medium text-gray-900">Exchange Currency</div>
+                                    <div class="text-xs text-gray-600">Buy/Sell forex cards & notes</div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="service-menu-item flex items-center p-3 rounded-xl hover:bg-gray-50 transition duration-300">
+                                <div class="bg-gray-100 p-2 rounded-lg mr-3">
+                                    <i class="fas fa-credit-card text-gray-600"></i>
+                                </div>
+                                <div>
+                                    <div class="font-medium text-gray-900">Reload/Unload Forex Card</div>
+                                    <div class="text-xs text-gray-600">Manage your travel card</div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="service-menu-item flex items-center p-3 rounded-xl hover:bg-gray-50 transition duration-300">
+                                <div class="bg-gray-100 p-2 rounded-lg mr-3">
+                                    <i class="fas fa-money-bill-transfer text-gray-600"></i>
+                                </div>
+                                <div>
+                                    <div class="font-medium text-gray-900">Transfer Money Abroad</div>
+                                    <div class="text-xs text-gray-600">Send money internationally</div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="service-menu-item flex items-center p-3 rounded-xl hover:bg-gray-50 transition duration-300">
+                                <div class="bg-gray-100 p-2 rounded-lg mr-3">
+                                    <i class="fas fa-sim-card text-gray-600"></i>
+                                </div>
+                                <div>
+                                    <div class="font-medium text-gray-900">International Sim Card</div>
+                                    <div class="text-xs text-gray-600">Stay connected globally</div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="service-menu-item flex items-center p-3 rounded-xl hover:bg-gray-50 transition duration-300">
+                                <div class="bg-gray-100 p-2 rounded-lg mr-3">
+                                    <i class="fas fa-briefcase text-gray-600"></i>
+                                </div>
+                                <div>
+                                    <div class="font-medium text-gray-900">Corporate Solutions</div>
+                                    <div class="text-xs text-gray-600">Bulk forex for businesses</div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="service-menu-item flex items-center p-3 rounded-xl hover:bg-gray-50 transition duration-300">
+                                <div class="bg-gray-100 p-2 rounded-lg mr-3">
+                                    <i class="fas fa-shield-alt text-gray-600"></i>
+                                </div>
+                                <div>
+                                    <div class="font-medium text-gray-900">Travel Insurance</div>
+                                    <div class="text-xs text-gray-600">Comprehensive coverage</div>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Travel Booking -->
+                <div class="bg-white rounded-2xl shadow-card p-6 mb-8">
+                    <h3 class="text-lg font-bold text-gray-900 mb-5 flex items-center">
+                        <i class="fas fa-plane-departure mr-2 text-primary-600"></i> Travel Booking
+                    </h3>
+                    
+                    <div class="mb-5">
+                        <label class="block text-gray-700 font-medium mb-2">DESTINATIONS</label>
+                        <div class="relative">
+                            <select id="travel-destination" class="w-full border border-gray-300 rounded-xl p-3.5 focus:outline-none focus:ring-2 focus:ring-primary-600 appearance-none bg-white">
+                                <option>Select Countries</option>
+                                <option>United States</option>
+                                <option>United Kingdom</option>
+                                <option>Australia</option>
+                                <option>Europe (Schengen)</option>
+                                <option>Southeast Asia</option>
+                                <option>Middle East</option>
+                            </select>
+                            <i class="fas fa-chevron-down absolute right-3 top-4 text-gray-400"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-5">
+                        <label class="block text-gray-700 font-medium mb-2">AGE OF TRAVELLER(S)</label>
+                        <div class="border border-gray-300 rounded-xl p-4">
+                            <div id="traveller-list">
+                                <div class="flex justify-between items-center mb-4">
+                                    <span class="font-medium">Member 1</span>
+                                    <div class="flex items-center">
+                                        <select class="traveller-age border border-gray-300 rounded-lg px-3 py-1.5 text-sm">
+                                            <option>Age</option>
+                                            <option>Under 18</option>
+                                            <option>18-25</option>
+                                            <option>26-35</option>
+                                            <option>36-50</option>
+                                            <option>51+</option>
+                                        </select>
+                                        <button class="remove-traveller ml-2 text-gray-400 hover:text-red-500">
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <button id="add-traveller" class="w-full border border-dashed border-gray-400 rounded-xl p-3 text-gray-600 hover:bg-gray-50 transition duration-300 flex items-center justify-center">
+                                <i class="fas fa-plus mr-2"></i> Add Member
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <label class="block text-gray-700 font-medium mb-2">TRIP START DATE</label>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <div class="text-sm text-gray-600 mb-1">Departure Date</div>
+                                <input id="departure-date" type="text" class="w-full border border-gray-300 rounded-xl p-3.5 focus:outline-none focus:ring-2 focus:ring-primary-600" placeholder="Select date">
+                            </div>
+                            <div>
+                                <div class="text-sm text-gray-600 mb-1">Return Date</div>
+                                <input id="return-date" type="text" class="w-full border border-gray-300 rounded-xl p-3.5 focus:outline-none focus:ring-2 focus:ring-primary-600" placeholder="Select date">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button id="travel-continue" class="w-full gradient-bg text-white font-bold py-3.5 rounded-xl hover:opacity-90 transition duration-300 shadow-md">
+                        Continue
+                    </button>
+                </div>
+                
+                <!-- Promotion Card -->
+                <div class="bg-gradient-to-br from-primary-800 to-primary-900 rounded-2xl shadow-card p-6 text-white overflow-hidden relative">
+                    <div class="absolute -right-8 -top-8 w-32 h-32 bg-white opacity-10 rounded-full"></div>
+                    <div class="absolute -right-4 top-16 w-24 h-24 bg-white opacity-5 rounded-full"></div>
+                    
+                    <div class="relative z-10">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-white bg-opacity-20 p-2 rounded-lg mr-3">
+                                <i class="fas fa-gift text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold">UPTO ₹500 OFF</h3>
+                        </div>
+                        <p class="mb-6 opacity-90">Special discount on your first forex order. Limited time offer!</p>
+                        
+                        <div class="bg-white bg-opacity-10 rounded-xl p-4 mb-6">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="opacity-90">Minimum order:</span>
+                                <span class="font-bold">₹5,000</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="opacity-90">Valid till:</span>
+                                <span class="font-bold">Dec 31, 2023</span>
+                            </div>
+                        </div>
+                        
+                        <button id="claim-offer" class="w-full bg-white text-primary-800 font-bold py-3.5 rounded-xl hover:bg-gray-100 transition duration-300 shadow-md">
+                            Claim Offer Now
+                        </button>
+                    </div>
+                </div>
+            </aside>
+        </div>
+        
+    </div>
+
+</div>
+
+
+    <main class="container mx-auto px-4  space-y-12 w-full max-w-[1200px]">
+
+ 
+     <div class="relative group">
+            <div>
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
+                    <h2 class="text-lg font-bold text-gray-800">Best Budget Travel Destinations</h2>
+                    <div class="flex flex-wrap bg-white rounded-lg p-1 border border-gray-200 shadow-sm">
+                        <button onclick="toggleFilter(this)"
+                            class="budget-filter filter-active px-3 py-1 text-xs font-bold rounded transition">Under
+                            50K</button>
+                        <button onclick="toggleFilter(this)"
+                            class="budget-filter filter-inactive px-3 py-1 text-xs font-bold rounded transition">50K - 1
+                            Lac</button>
+                        <button onclick="toggleFilter(this)"
+                            class="budget-filter filter-inactive px-3 py-1 text-xs font-bold rounded transition">1 Lac -
+                            2 Lac</button>
+                        <button onclick="toggleFilter(this)"
+                            class="budget-filter filter-inactive px-3 py-1 text-xs font-bold rounded transition">More
+                            than 2 Lac</button>
+                    </div>
+                </div>
+            </div>
+            </div>
+
+            <div class="flex gap-4 overflow-x-auto no-scrollbar pb-4">
+                <div
+                    class="min-w-[250px] bg-white border border-gray-200 rounded-lg overflow-hidden shadow-sm hover:shadow-xl transition transform hover:-translate-y-1 duration-300">
+                    <div class="h-36 relative">
+                        <img src="https://images.unsplash.com/photo-1573790387438-4da905039392?auto=format&fit=crop&w=300&q=80"
+                            class="w-full h-full object-cover">
+                        <div
+                            class="absolute bottom-2 right-2 bg-white/95 px-2 py-0.5 text-[10px] font-bold rounded shadow text-gray-700">
+                            4N 5D</div>
+                    </div>
+                    <div class="p-3">
+                        <h3 class="font-bold text-sm text-gray-800 mb-2 truncate">Bali Honeymoon Special</h3>
+                        <div class="text-[10px] text-gray-500 mb-2">Bali (4N) | Pool Villa (1N)</div>
+                        <div class="flex justify-between items-end mb-3">
+                            <i class="fas fa-umbrella-beach text-gray-300"></i>
+                            <div class="text-right">
+                                <span class="block text-lg font-bold text-gray-800">₹ 31,190</span>
+                                <span class="block text-[10px] text-gray-500">per person</span>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2">
+                            <button
+                                class="border border-blue-400 text-blue-500 text-[10px] font-bold py-1 rounded hover:bg-blue-50">View
+                                Details</button>
+                            <button
+                                class="bg-traveller-red text-white text-[10px] font-bold py-1 rounded hover:bg-red-600">Book
+                                Now</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div
+                    class="min-w-[250px] bg-white border border-gray-200 rounded-lg overflow-hidden shadow-sm hover:shadow-xl transition transform hover:-translate-y-1 duration-300">
+                    <div class="h-36 relative">
+                        <img src="https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?auto=format&fit=crop&w=300&q=80"
+                            class="w-full h-full object-cover">
+                        <div
+                            class="absolute bottom-2 right-2 bg-white/95 px-2 py-0.5 text-[10px] font-bold rounded shadow text-gray-700">
+                            5N 6D</div>
+                    </div>
+                    <div class="p-3">
+                        <h3 class="font-bold text-sm text-gray-800 mb-2 truncate">Simply Bali Seminyak</h3>
+                        <div class="text-[10px] text-gray-500 mb-2">Bali (5N)</div>
+                        <div class="flex justify-between items-end mb-3">
+                            <i class="fas fa-umbrella-beach text-gray-300"></i>
+                            <div class="text-right">
+                                <span class="block text-lg font-bold text-gray-800">₹ 18,370</span>
+                                <span class="block text-[10px] text-gray-500">per person</span>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2">
+                            <button onclick="toggleModal(true)"
+                                class="border border-blue-400 text-blue-500 text-[10px] font-bold py-1 rounded hover:bg-blue-50">View
+                                Details</button>
+                            <button onclick="toggleModal(true)"
+                                class="bg-traveller-red text-white text-[10px] font-bold py-1 rounded hover:bg-red-600">Book
+                                Now</button>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div
+                    class="min-w-[250px] bg-white border border-gray-200 rounded-lg overflow-hidden shadow-sm hover:shadow-xl transition transform hover:-translate-y-1 duration-300">
+                    <div class="h-36 relative">
+                        <img src="https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?auto=format&fit=crop&w=300&q=80"
+                            class="w-full h-full object-cover">
+                        <div
+                            class="absolute bottom-2 right-2 bg-white/95 px-2 py-0.5 text-[10px] font-bold rounded shadow text-gray-700">
+                            4N 5D</div>
+                    </div>
+                    <div class="p-3">
+                        <h3 class="font-bold text-sm text-gray-800 mb-2 truncate">Free And Easy Thailand</h3>
+                        <div class="text-[10px] text-gray-500 mb-2">Pattaya (2N) | Bangkok (2N)</div>
+                        <div class="flex justify-between items-end mb-3">
+                            <i class="fas fa-umbrella-beach text-gray-300"></i>
+                            <div class="text-right">
+                                <span class="block text-lg font-bold text-gray-800">₹ 18,910</span>
+                                <span class="block text-[10px] text-gray-500">per person</span>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2">
+                            <button onclick="toggleModal(true)"
+                                class="border border-blue-400 text-blue-500 text-[10px] font-bold py-1 rounded hover:bg-blue-50">View
+                                Details</button>
+                            <button onclick="toggleModal(true)"
+                                class="bg-traveller-red text-white text-[10px] font-bold py-1 rounded hover:bg-red-600">Book
+                                Now</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div
+                    class="min-w-[250px] bg-white border border-gray-200 rounded-lg overflow-hidden shadow-sm hover:shadow-xl transition transform hover:-translate-y-1 duration-300">
+                    <div class="h-36 relative">
+                        <img src="https://images.unsplash.com/photo-1565967511849-76a60a516170?auto=format&fit=crop&w=300&q=80"
+                            class="w-full h-full object-cover">
+                        <div
+                            class="absolute bottom-2 right-2 bg-white/95 px-2 py-0.5 text-[10px] font-bold rounded shadow text-gray-700">
+                            5N 6D</div>
+                    </div>
+                    <div class="p-3">
+                        <h3 class="font-bold text-sm text-gray-800 mb-2 truncate">Vietnam Classic</h3>
+                        <div class="text-[10px] text-gray-500 mb-2">Hanoi (1N) | Ha Long (1N)</div>
+                        <div class="flex justify-between items-end mb-3">
+                            <i class="fas fa-umbrella-beach text-gray-300"></i>
+                            <div class="text-right">
+                                <span class="block text-lg font-bold text-gray-800">₹ 37,280</span>
+                                <span class="block text-[10px] text-gray-500">per person</span>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2">
+                            <button onclick="toggleModal(true)"
+                                class="border border-blue-400 text-blue-500 text-[10px] font-bold py-1 rounded hover:bg-blue-50">View
+                                Details</button>
+                            <button onclick="toggleModal(true)"
+                                class="bg-traveller-red text-white text-[10px] font-bold py-1 rounded hover:bg-red-600">Book
+                                Now</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div
+                    class="min-w-[250px] bg-white border border-gray-200 rounded-lg overflow-hidden shadow-sm hover:shadow-xl transition transform hover:-translate-y-1 duration-300">
+                    <div class="h-36 relative">
+                        <img src="https://images.unsplash.com/photo-1565967511849-76a60a516170?auto=format&fit=crop&w=300&q=80"
+                            class="w-full h-full object-cover">
+                        <div
+                            class="absolute bottom-2 right-2 bg-white/95 px-2 py-0.5 text-[10px] font-bold rounded shadow text-gray-700">
+                            3N 4D</div>
+                    </div>
+                    <div class="p-3">
+                        <h3 class="font-bold text-sm text-gray-800 mb-2 truncate">Singapore Escape</h3>
+                        <div class="text-[10px] text-gray-500 mb-2">Singapore (3N)</div>
+                        <div class="flex justify-between items-end mb-3">
+                            <i class="fas fa-umbrella-beach text-gray-300"></i>
+                            <div class="text-right">
+                                <span class="block text-lg font-bold text-gray-800">₹ 35,820</span>
+                                <span class="block text-[10px] text-gray-500">per person</span>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2">
+                            <button onclick="toggleModal(true)"
+                                class="border border-blue-400 text-blue-500 text-[10px] font-bold py-1 rounded hover:bg-blue-50">View
+                                Details</button>
+                            <button onclick="toggleModal(true)"
+                                class="bg-traveller-red text-white text-[10px] font-bold py-1 rounded hover:bg-red-600">Book
+                                Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-white p-5 rounded-2xl shadow-sm border border-gray-200">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
+                <h2 class="text-lg font-bold text-gray-800"> Top Packages By Season</h2>
+                <div class="flex flex-wrap gap-1">
+                    <button onclick="toggleFilter(this)"
+                        class="budget-filter filter-black-active px-4 py-1.5 text-xs font-bold rounded transition">Summer
+                        Special</button>
+                    <button onclick="toggleFilter(this)"
+                        class="budget-filter filter-black-inactive px-4 py-1.5 text-xs font-bold rounded transition hover:bg-gray-100">Winter
+                        Special</button>
+
+                </div>
+            </div>
+
+            <div class="flex gap-4 overflow-x-auto no-scrollbar pb-4">
+                <div
+                    class="min-w-[250px] bg-white border border-gray-200 rounded-lg overflow-hidden hover-card transition duration-300">
+                    <div class="h-36 relative">
+                        <img src="https://images.unsplash.com/photo-1573790387438-4da905039392?auto=format&fit=crop&w=300&q=80"
+                            class="w-full h-full object-cover">
+                        <div
+                            class="absolute top-0 w-full bg-white/90 text-[10px] font-bold text-center py-1 flex justify-center gap-2">
+                            <span>Private Tour</span> <span>|</span> <span>Winter Special</span>
+                        </div>
+                        <div
+                            class="absolute bottom-2 right-2 bg-white px-2 py-0.5 text-[10px] font-bold rounded shadow">
+                            4 Nights / 5 Days</div>
+                    </div>
+                    <div class="p-3 text-center">
+                        <h3 class="font-bold text-gray-800 text-sm mb-1 truncate">Bali Honeymoon Special With Pool Villa
+                        </h3>
+                        <p class="text-[10px] text-gray-500 mb-2">Bali (4N) | Pool Villa (1N)</p>
+                        <div class="flex items-center justify-center gap-1 mb-2">
+                            <i class="fas fa-umbrella-beach text-traveller-blue text-xs"></i>
+                        </div>
+                        <div class="text-xl font-bold text-gray-800">₹ 31,190</div>
+                        <p class="text-[10px] text-gray-400 mb-3">per person</p>
+                        <div class="flex gap-2">
+                            <button onclick="toggleModal(true)"
+                                class="flex-1 border border-traveller-blue text-traveller-blue py-1 rounded text-[10px] font-bold">View
+                                Details</button>
+                            <button onclick="toggleModal(true)" class="flex-1 bg-traveller-red text-white py-1 rounded text-[10px] font-bold">View
+                                Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div
+                    class="min-w-[250px] bg-white border border-gray-200 rounded-lg overflow-hidden hover-card transition duration-300">
+                    <div class="h-36 relative">
+                        <img src="https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?auto=format&fit=crop&w=300&q=80"
+                            class="w-full h-full object-cover">
+                        <div
+                            class="absolute top-0 w-full bg-white/90 text-[10px] font-bold text-center py-1 flex justify-center gap-2">
+                            <span>Private Tour</span> <span>|</span> <span>Winter Special</span>
+                        </div>
+                        <div
+                            class="absolute bottom-2 right-2 bg-white px-2 py-0.5 text-[10px] font-bold rounded shadow">
+                            5 Nights / 6 Days</div>
+                    </div>
+                    <div class="p-3 text-center">
+                        <h3 class="font-bold text-gray-800 text-sm mb-1 truncate">Simply Bali With Seminyak</h3>
+                        <p class="text-[10px] text-gray-500 mb-2">Bali (5N)</p>
+                        <div class="flex items-center justify-center gap-1 mb-2">
+                            <i class="fas fa-umbrella-beach text-traveller-blue text-xs"></i>
+                        </div>
+                        <div class="text-xl font-bold text-gray-800">₹ 18,370</div>
+                        <p class="text-[10px] text-gray-400 mb-3">per person</p>
+                        <div class="flex gap-2">
+                            <button onclick="toggleModal(true)"
+                                class="flex-1 border border-traveller-blue text-traveller-blue py-1 rounded text-[10px] font-bold">View
+                                Details</button>
+                            <button onclick="toggleModal(true)" class="flex-1 bg-traveller-red text-white py-1 rounded text-[10px] font-bold">View
+                                Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div
+                    class="min-w-[250px] bg-white border border-gray-200 rounded-lg overflow-hidden hover-card transition duration-300">
+                    <div class="h-36 relative">
+                        <img src="https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?auto=format&fit=crop&w=300&q=80"
+                            class="w-full h-full object-cover">
+                        <div
+                            class="absolute top-0 w-full bg-white/90 text-[10px] font-bold text-center py-1 flex justify-center gap-2">
+                            <span>Private Tour</span> <span>|</span> <span>Winter Special</span>
+                        </div>
+                        <div
+                            class="absolute bottom-2 right-2 bg-white px-2 py-0.5 text-[10px] font-bold rounded shadow">
+                            4 Nights / 5 Days</div>
+                    </div>
+                    <div class="p-3 text-center">
+                        <h3 class="font-bold text-gray-800 text-sm mb-1 truncate">Free And Easy Thailand Tour</h3>
+                        <p class="text-[10px] text-gray-500 mb-2">Pattaya (2N) | Bangkok (2N)</p>
+                        <div class="flex items-center justify-center gap-1 mb-2">
+                            <i class="fas fa-umbrella-beach text-traveller-blue text-xs"></i>
+                        </div>
+                        <div class="text-xl font-bold text-gray-800">₹ 18,910</div>
+                        <p class="text-[10px] text-gray-400 mb-3">per person</p>
+                        <div class="flex gap-2">
+                            <button onclick="toggleModal(true)"
+                                class="flex-1 border border-traveller-blue text-traveller-blue py-1 rounded text-[10px] font-bold">View
+                                Details</button>
+                            <button onclick="toggleModal(true)" class="flex-1 bg-traveller-red text-white py-1 rounded text-[10px] font-bold">View
+                                Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div
+                    class="min-w-[250px] bg-white border border-gray-200 rounded-lg overflow-hidden hover-card transition duration-300">
+                    <div class="h-36 relative">
+                        <img src="https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&w=300&q=80"
+                            class="w-full h-full object-cover">
+                        <div
+                            class="absolute top-0 w-full bg-white/90 text-[10px] font-bold text-center py-1 flex justify-center gap-2">
+                            <span>Private Tour</span> <span>|</span> <span>Winter Special</span>
+                        </div>
+                        <div
+                            class="absolute bottom-2 right-2 bg-white px-2 py-0.5 text-[10px] font-bold rounded shadow">
+                            5 Nights / 6 Days</div>
+                    </div>
+                    <div class="p-3 text-center">
+                        <h3 class="font-bold text-gray-800 text-sm mb-1 truncate">Vietnam Classic</h3>
+                        <p class="text-[10px] text-gray-500 mb-2">Hanoi (1N) | Ha Long (1N) | +3</p>
+                        <div class="flex items-center justify-center gap-1 mb-2">
+                            <i class="fas fa-umbrella-beach text-traveller-blue text-xs"></i>
+                        </div>
+                        <div class="text-xl font-bold text-gray-800">₹ 37,280</div>
+                        <p class="text-[10px] text-gray-400 mb-3">per person</p>
+                        <div class="flex gap-2">
+                            <button onclick="toggleModal(true)"
+                                class="flex-1 border border-traveller-blue text-traveller-blue py-1 rounded text-[10px] font-bold">View
+                                Details</button>
+                            <button onclick="toggleModal(true)" class="flex-1 bg-traveller-red text-white py-1 rounded text-[10px] font-bold">View
+                                Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div
+                    class="min-w-[250px] bg-white border border-gray-200 rounded-lg overflow-hidden hover-card transition duration-300">
+                    <div class="h-36 relative">
+                        <img src="https://images.unsplash.com/photo-1565967511849-76a60a516170?auto=format&fit=crop&w=300&q=80"
+                            class="w-full h-full object-cover">
+                        <div
+                            class="absolute top-0 w-full bg-white/90 text-[10px] font-bold text-center py-1 flex justify-center gap-2">
+                            <span>Private Tour</span> <span>|</span> <span>Winter Special</span>
+                        </div>
+                        <div
+                            class="absolute bottom-2 right-2 bg-white px-2 py-0.5 text-[10px] font-bold rounded shadow">
+                            3 Nights / 4 Days</div>
+                    </div>
+                    <div class="p-3 text-center">
+                        <h3 class="font-bold text-gray-800 text-sm mb-1 truncate">Singapore Escape</h3>
+                        <p class="text-[10px] text-gray-500 mb-2">Singapore (3N)</p>
+                        <div class="flex items-center justify-center gap-1 mb-2">
+                            <i class="fas fa-umbrella-beach text-traveller-blue text-xs"></i>
+                        </div>
+                        <div class="text-xl font-bold text-gray-800">₹ 35,820</div>
+                        <p class="text-[10px] text-gray-400 mb-3">per person</p>
+                        <div class="flex gap-2">
+                            <button
+                                class="flex-1 border border-traveller-blue text-traveller-blue py-1 rounded text-[10px] font-bold">View
+                                Details</button>
+                            <button class="flex-1 bg-traveller-red text-white py-1 rounded text-[10px] font-bold">View
+                                Details</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div>
+
+            <div class="bg-white p-6 rounded-xl shadow-lg w-full max-w-[1400px]">
+
+                <div class="flex flex-col md:flex-row justify-between items-center mb-6 gap-4">
+                    <h2 class="text-xl font-bold text-gray-700">Best Budget Travel Destinations</h2>
+
+                    <div class="flex bg-gray-100 p-1 rounded-lg overflow-hidden text-sm font-medium">
+                        <button onclick="switchTab(this)"
+                            class="tab-btn px-4 py-2 rounded-md bg-[#002B45] text-white shadow transition-all">Under 50
+                            K</button>
+                        <button onclick="switchTab(this)"
+                            class="tab-btn px-4 py-2 rounded-md text-gray-600 hover:bg-gray-200 transition-all">50 K - 1
+                            Lac</button>
+                        <button onclick="switchTab(this)"
+                            class="tab-btn px-4 py-2 rounded-md text-gray-600 hover:bg-gray-200 transition-all">1 Lac -
+                            2 Lac</button>
+                        <button onclick="switchTab(this)"
+                            class="tab-btn px-4 py-2 rounded-md text-gray-600 hover:bg-gray-200 transition-all">More
+                            than 2 Lac</button>
+                    </div>
+                </div>
+
+                <div class="flex overflow-x-auto gap-5 pb-4 no-scrollbar scroll-smooth">
+
+                    <div
+                        class="min-w-[300px] max-w-[300px] border border-gray-200 rounded-xl bg-white shadow-sm flex flex-col flex-shrink-0">
+                        <div
+                            class="flex justify-between text-[10px] font-semibold text-gray-700 border-b border-gray-200">
+                            <span class="w-1/2 text-center py-1.5 border-r border-gray-200">Private Van Tour</span>
+                            <span class="w-1/2 text-center py-1.5">Under 50 K</span>
+                        </div>
+
+                        <div class="relative h-40 w-full">
+                            <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+                                alt="Bali" class="w-full h-full object-cover rounded-none">
+                            <div
+                                class="absolute bottom-2 right-2 bg-white px-2 py-1 text-xs font-bold rounded shadow text-gray-800">
+                                5 Nights / 6 Days
+                            </div>
+                        </div>
+
+                        <div class="p-4 flex flex-col flex-grow">
+                            <h3 class="font-bold text-gray-800 text-sm mb-1 leading-tight">Bali Honeymoon Special With
+                                Pool Villa</h3>
+                            <p class="text-xs text-gray-500 mb-4">Bali Island (3N), Bali Island (2N)</p>
+
+                            <div class="mt-auto">
+                                <div class="flex items-center justify-between mb-1">
+                                    <div class="flex items-center text-xs text-gray-500">
+                                        <i class="fas fa-plane-slash mr-1"></i> <span class="text-[10px] italic">Flight
+                                            Not Included</span>
+                                    </div>
+                                    <div class="text-right">
+                                        <span class="text-xl font-bold text-gray-800">₹31,190</span>
+                                    </div>
+                                </div>
+                                <div class="flex justify-end mb-3">
+                                    <span class="text-[10px] text-gray-500">per person</span>
+                                </div>
+                                <div class="flex justify-end mb-4">
+                                    <a href="#" class="text-[10px] text-blue-500 underline decoration-dotted">EMI from
+                                        ₹1,579/month</a>
+                                </div>
+                            </div>
+
+                            <div class="border-t border-dashed border-gray-300 pt-2 mb-3 text-center">
+                                <p class="text-[10px] text-gray-500">Valid upto 31 Mar 2026</p>
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-2">
+                                <button onclick="toggleModal(true)"
+                                    class="border border-blue-400 text-blue-400 text-xs font-semibold py-2 rounded hover:bg-blue-50 transition">Call
+                                    Now</button>
+                                <button onclick="toggleModal(true)"
+                                    class="bg-[#ff3b59] text-white text-xs font-semibold py-2 rounded hover:bg-[#e63550] transition">View
+                                    Details</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div
+                        class="min-w-[300px] max-w-[300px] border border-gray-200 rounded-xl bg-white shadow-sm flex flex-col flex-shrink-0">
+                        <div
+                            class="flex justify-between text-[10px] font-semibold text-gray-700 border-b border-gray-200">
+                            <span class="w-1/2 text-center py-1.5 border-r border-gray-200">Private Van Tour</span>
+                            <span class="w-1/2 text-center py-1.5">Under 50 K</span>
+                        </div>
+                        <div class="relative h-40 w-full">
+                            <img src="https://images.unsplash.com/photo-1555400038-63f5ba517a47?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+                                alt="Bali Seminyak" class="w-full h-full object-cover">
+                            <div
+                                class="absolute bottom-2 right-2 bg-white px-2 py-1 text-xs font-bold rounded shadow text-gray-800">
+                                4 Nights / 5 Days
+                            </div>
+                        </div>
+                        <div class="p-4 flex flex-col flex-grow">
+                            <h3 class="font-bold text-gray-800 text-sm mb-1 leading-tight">Simply Bali With Seminyak
+                            </h3>
+                            <p class="text-xs text-gray-500 mb-4">Bali Island (2N), Bali Island (2N)</p>
+                            <div class="mt-auto">
+                                <div class="flex items-center justify-between mb-1">
+                                    <div class="flex items-center text-xs text-gray-500">
+                                        <i class="fas fa-plane-slash mr-1"></i> <span class="text-[10px] italic">Flight
+                                            Not Included</span>
+                                    </div>
+                                    <div class="text-right">
+                                        <span class="text-xl font-bold text-gray-800">₹18,370</span>
+                                    </div>
+                                </div>
+                                <div class="flex justify-end mb-3">
+                                    <span class="text-[10px] text-gray-500">per person</span>
+                                </div>
+                                <div class="flex justify-end mb-4">
+                                    <a href="#" class="text-[10px] text-blue-500 underline decoration-dotted">EMI from
+                                        ₹930/month</a>
+                                </div>
+                            </div>
+                            <div class="border-t border-dashed border-gray-300 pt-2 mb-3 text-center">
+                                <p class="text-[10px] text-gray-500">Valid upto 31 Mar 2026</p>
+                            </div>
+                            <div class="grid grid-cols-2 gap-2">
+                                <button onclick="toggleModal(true)"
+                                    class="border border-blue-400 text-blue-400 text-xs font-semibold py-2 rounded hover:bg-blue-50 transition">Call
+                                    Now</button>
+                                <button onclick="toggleModal(true)"
+                                    class="bg-[#ff3b59] text-white text-xs font-semibold py-2 rounded hover:bg-[#e63550] transition">View
+                                    Details</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div
+                        class="min-w-[300px] max-w-[300px] border border-gray-200 rounded-xl bg-white shadow-sm flex flex-col flex-shrink-0">
+                        <div
+                            class="flex justify-between text-[10px] font-semibold text-gray-700 border-b border-gray-200">
+                            <span class="w-1/2 text-center py-1.5 border-r border-gray-200">Private Van Tour</span>
+                            <span class="w-1/2 text-center py-1.5">Under 50 K</span>
+                        </div>
+                        <div class="relative h-40 w-full">
+                            <img src="https://images.unsplash.com/photo-1506665531195-3566af2b4dfa?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+                                alt="Thailand" class="w-full h-full object-cover">
+                            <div
+                                class="absolute bottom-2 right-2 bg-white px-2 py-1 text-xs font-bold rounded shadow text-gray-800">
+                                4 Nights / 5 Days
+                            </div>
+                        </div>
+                        <div class="p-4 flex flex-col flex-grow">
+                            <h3 class="font-bold text-gray-800 text-sm mb-1 leading-tight">Free And Easy Thailand Tour
+                            </h3>
+                            <p class="text-xs text-gray-500 mb-4">Pattaya (2N), Bangkok (2N)</p>
+                            <div class="mt-auto">
+                                <div class="flex items-center justify-between mb-1">
+                                    <div class="flex items-center text-xs text-gray-500">
+                                        <i class="fas fa-plane-slash mr-1"></i> <span class="text-[10px] italic">Flight
+                                            Not Included</span>
+                                    </div>
+                                    <div class="text-right">
+                                        <span class="text-xl font-bold text-gray-800">₹18,910</span>
+                                    </div>
+                                </div>
+                                <div class="flex justify-end mb-3">
+                                    <span class="text-[10px] text-gray-500">per person</span>
+                                </div>
+                                <div class="flex justify-end mb-4">
+                                    <a href="#" class="text-[10px] text-blue-500 underline decoration-dotted">EMI from
+                                        ₹958/month</a>
+                                </div>
+                            </div>
+                            <div class="border-t border-dashed border-gray-300 pt-2 mb-3 text-center">
+                                <p class="text-[10px] text-gray-500">Valid upto 31 Mar 2026</p>
+                            </div>
+                            <div class="grid grid-cols-2 gap-2">
+                                <button onclick="toggleModal(true)"
+                                    class="border border-blue-400 text-blue-400 text-xs font-semibold py-2 rounded hover:bg-blue-50 transition">Call
+                                    Now</button>
+                                <button onclick="toggleModal(true)"
+                                    class="bg-[#ff3b59] text-white text-xs font-semibold py-2 rounded hover:bg-[#e63550] transition">View
+                                    Details</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div
+                        class="min-w-[300px] max-w-[300px] border border-gray-200 rounded-xl bg-white shadow-sm flex flex-col flex-shrink-0">
+                        <div
+                            class="flex justify-between text-[10px] font-semibold text-gray-700 border-b border-gray-200">
+                            <span class="w-1/2 text-center py-1.5 border-r border-gray-200">Private Van Tour</span>
+                            <span class="w-1/2 text-center py-1.5">Under 50 K</span>
+                        </div>
+                        <div class="relative h-40 w-full">
+                            <img src="https://images.unsplash.com/photo-1559592413-7cec430aa669?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+                                alt="Vietnam" class="w-full h-full object-cover">
+                            <div
+                                class="absolute bottom-2 right-2 bg-white px-2 py-1 text-xs font-bold rounded shadow text-gray-800">
+                                5 Nights / 6 Days
+                            </div>
+                        </div>
+                        <div class="p-4 flex flex-col flex-grow">
+                            <h3 class="font-bold text-gray-800 text-sm mb-1 leading-tight">Vietnam Classic</h3>
+                            <p class="text-xs text-gray-500 mb-4">Hanoi (2N), Halong (1N), <span class="font-bold">+1
+                                    more</span></p>
+                            <div class="mt-auto">
+                                <div class="flex items-center justify-between mb-1">
+                                    <div class="flex items-center text-xs text-gray-500">
+                                        <i class="fas fa-plane-slash mr-1"></i> <span class="text-[10px] italic">Flight
+                                            Not Included</span>
+                                    </div>
+                                    <div class="text-right">
+                                        <span class="text-xl font-bold text-gray-800">₹37,280</span>
+                                    </div>
+                                </div>
+                                <div class="flex justify-end mb-3">
+                                    <span class="text-[10px] text-gray-500">per person</span>
+                                </div>
+                                <div class="flex justify-end mb-4">
+                                    <a href="#" class="text-[10px] text-blue-500 underline decoration-dotted">EMI from
+                                        ₹1,888/month</a>
+                                </div>
+                            </div>
+                            <div class="border-t border-dashed border-gray-300 pt-2 mb-3 text-center">
+                                <p class="text-[10px] text-gray-500">Valid upto 31 Mar 2026</p>
+                            </div>
+                            <div class="grid grid-cols-2 gap-2">
+                                <button onclick="toggleModal(true)"
+                                    class="border border-blue-400 text-blue-400 text-xs font-semibold py-2 rounded hover:bg-blue-50 transition">Call
+                                    Now</button>
+                                <button onclick="toggleModal(true)"
+                                    class="bg-[#ff3b59] text-white text-xs font-semibold py-2 rounded hover:bg-[#e63550] transition">View
+                                    Details</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div
+                        class="min-w-[300px] max-w-[300px] border border-gray-200 rounded-xl bg-white shadow-sm flex flex-col flex-shrink-0">
+                        <div
+                            class="flex justify-between text-[10px] font-semibold text-gray-700 border-b border-gray-200">
+                            <span class="w-1/2 text-center py-1.5 border-r border-gray-200">Private Van Tour</span>
+                            <span class="w-1/2 text-center py-1.5">Under 50 K</span>
+                        </div>
+                        <div class="relative h-40 w-full">
+                            <img src="https://images.unsplash.com/photo-1525625293386-3f8f99389edd?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+                                alt="Singapore" class="w-full h-full object-cover">
+                            <div
+                                class="absolute bottom-2 right-2 bg-white px-2 py-1 text-xs font-bold rounded shadow text-gray-800">
+                                4 Nights / 5 Days
+                            </div>
+                        </div>
+                        <div class="p-4 flex flex-col flex-grow">
+                            <h3 class="font-bold text-gray-800 text-sm mb-1 leading-tight">Singapore Escape</h3>
+                            <p class="text-xs text-gray-500 mb-4">Singapore (4N)</p>
+                            <div class="mt-auto">
+                                <div class="flex items-center justify-between mb-1">
+                                    <div class="flex items-center text-xs text-gray-500">
+                                        <i class="fas fa-plane-slash mr-1"></i> <span class="text-[10px] italic">Flight
+                                            Not Included</span>
+                                    </div>
+                                    <div class="text-right">
+                                        <span class="text-xl font-bold text-gray-800">₹35,820</span>
+                                    </div>
+                                </div>
+                                <div class="flex justify-end mb-3">
+                                    <span class="text-[10px] text-gray-500">per person</span>
+                                </div>
+                                <div class="flex justify-end mb-4">
+                                    <a href="#" class="text-[10px] text-blue-500 underline decoration-dotted">EMI from
+                                        ₹1,814/month</a>
+                                </div>
+                            </div>
+                            <div class="border-t border-dashed border-gray-300 pt-2 mb-3 text-center">
+                                <p class="text-[10px] text-gray-500">Valid upto 31 Mar 2026</p>
+                            </div>
+                            <div class="grid grid-cols-2 gap-2">
+                                <button onclick="toggleModal(true)"
+                                    class="border border-blue-400 text-blue-400 text-xs font-semibold py-2 rounded hover:bg-blue-50 transition">Call
+                                    Now</button>
+                                <button onclick="toggleModal(true)"
+                                    class="bg-[#ff3b59] text-white text-xs font-semibold py-2 rounded hover:bg-[#e63550] transition">View
+                                    Details</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <div class="bg-white p-5 rounded-2xl shadow-sm border border-gray-200">
+            <h2 class="text-lg font-bold text-gray-800 mb-4">Trending travel articles</h2>
+
+            <div class="flex gap-4 overflow-x-auto no-scrollbar pb-4">
+                <div class="min-w-[260px] border border-gray-100 rounded-xl overflow-hidden hover-card transition">
+                    <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=300&q=80"
+                        class="w-full h-32 object-cover">
+                    <div class="p-3">
+                        <h3 class="font-bold text-xs text-gray-800 mb-1 leading-tight">7-Day Bali Itinerary 2025: A
+                            First-Timer's Blueprint!</h3>
+                        <p class="text-[10px] text-gray-500 mb-2 line-clamp-2">Summary: 7-Day Bali Itinerary - Planning
+                            your first trip to Bali? This guide covers everything...</p>
+                        <div class="text-[10px] text-traveller-red font-semibold">May 13, 2025 • Siddharth Shah</div>
+                    </div>
+                </div>
+                <div class="min-w-[260px] border border-gray-100 rounded-xl overflow-hidden hover-card transition">
+                    <img src="https://images.unsplash.com/photo-1506929562872-bb421503ef21?auto=format&fit=crop&w=300&q=80"
+                        class="w-full h-32 object-cover">
+                    <div class="p-3">
+                        <h3 class="font-bold text-xs text-gray-800 mb-1 leading-tight">A First-Timer's Guide to
+                            Dreamworld Queensland</h3>
+                        <p class="text-[10px] text-gray-500 mb-2 line-clamp-2">Summary: Dreamworld Queensland - Planning
+                            your trip to Dreamworld on your next vacation...</p>
+                        <div class="text-[10px] text-traveller-red font-semibold">May 11, 2025 • Meeta Shah</div>
+                    </div>
+                </div>
+                <div class="min-w-[260px] border border-gray-100 rounded-xl overflow-hidden hover-card transition">
+                    <img src="https://images.unsplash.com/photo-1512453979798-5ea932a23518?auto=format&fit=crop&w=300&q=80"
+                        class="w-full h-32 object-cover">
+                    <div class="p-3">
+                        <h3 class="font-bold text-xs text-gray-800 mb-1 leading-tight">Yas Island Abu Dhabi 2025:
+                            Ultimate Guide</h3>
+                        <p class="text-[10px] text-gray-500 mb-2 line-clamp-2">Ready for the vacation of a lifetime? Yas
+                            Island Abu Dhabi is calling your name...</p>
+                        <div class="text-[10px] text-traveller-red font-semibold">May 09, 2025 • Mukti Solanki</div>
+                    </div>
+                </div>
+                <div class="min-w-[260px] border border-gray-100 rounded-xl overflow-hidden hover-card transition">
+                    <img src="https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=300&q=80"
+                        class="w-full h-32 object-cover">
+                    <div class="p-3">
+                        <h3 class="font-bold text-xs text-gray-800 mb-1 leading-tight">Khajuraho Temples Travel Guide
+                            2025</h3>
+                        <p class="text-[10px] text-gray-500 mb-2 line-clamp-2">Holidays are just around the corner, and
+                            you are thinking about where to go...</p>
+                        <div class="text-[10px] text-traveller-red font-semibold">Apr 30, 2025 • Meeta Shah</div>
+                    </div>
+                </div>
+                <div class="min-w-[260px] border border-gray-100 rounded-xl overflow-hidden hover-card transition">
+                    <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=300&q=80"
+                        class="w-full h-32 object-cover">
+                    <div class="p-3">
+                        <h3 class="font-bold text-xs text-gray-800 mb-1 leading-tight">Why Gurudongmar Lake Should Be on
+                            Your 2025 List!</h3>
+                        <p class="text-[10px] text-gray-500 mb-2 line-clamp-2">Gurudongmar Lake - Northeast India is one
+                            of those places that feels far away...</p>
+                        <div class="text-[10px] text-traveller-red font-semibold">Apr 27, 2025 • Mukti Solanki</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+ 
+
+    <div class="fixed bottom-6 right-6 bg-[#25D366] p-4 rounded-full shadow-lg cursor-pointer hover:scale-110 transition-transform">
+        <i class="fa-brands fa-whatsapp text-white text-3xl"></i>
+    </div>
+    
+
+    <div class="bg-[#002B36] mt-10 py-4 px-6">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+            <p class="text-white text-sm font-medium">Sign up to our newsletter to get exclusive deals and dose of travel inspiration delivered to your inbox.</p>
+            <div class="flex w-full md:w-auto">
+                <input type="email" placeholder="Email Address" class="px-4 py-2 rounded-l-md w-full md:w-64 focus:outline-none">
+                <button class="bg-[#FF385C] text-white px-6 py-2 rounded-r-md font-bold hover:bg-red-600 transition">Subscribe</button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-[#F8FFF9] py-10 px-6 border-t border-gray-100">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
+            
+            <div class="space-y-4">
+                <h3 class="text-xl font-bold text-gray-800">Find a branch near you :</h3>
+                <button class="bg-[#28A745] text-white px-6 py-2 rounded-md font-semibold hover:bg-green-700 transition">view all branches</button>
+                <div class="text-sm text-gray-700 leading-relaxed">
+                    <p class="font-bold">Flamingo Transworld Pvt. Ltd. - Head Office</p>
+                    <p>201/202, Gala Business Centre, St. Xaviers College Corner, Off C. G. Road, Ahmedabad 380 009, Gujarat, India. | Monday to Saturday | Time : 10:30 AM to 07:00 PM</p>
+                    <a href="#" class="text-green-600 font-bold flex items-center mt-2 gap-1 hover:underline">
+                        <i class="fas fa-map-marker-alt"></i> Show on Map
+                    </a>
+                </div>
+            </div>
+
+            <div class="md:border-r border-green-700 h-full hidden md:block">
+                <div class="mt-12">
+                    <p class="font-bold text-gray-800">Customer Care</p>
+                    <p class="text-sm text-gray-600">Phone: <span class="font-semibold">+91 98250 81806 / +91 79 4000 1500</span></p>
+                    <p class="text-sm text-gray-600">Email: <span class="font-semibold">world@flamingotravels.co.in</span></p>
+                </div>
+            </div>
+
+            <div class="flex flex-col gap-3">
+                <a href="#" class="flex items-center gap-3 border border-gray-800 rounded-md p-3 hover:bg-gray-50 transition">
+                    <i class="fas fa-paper-plane w-5"></i>
+                    <span class="font-medium text-sm">Send an inquiry</span>
+                </a>
+                <a href="#" class="flex items-center gap-3 border border-gray-800 rounded-md p-3 hover:bg-gray-50 transition">
+                    <i class="fab fa-whatsapp w-5 text-xl"></i>
+                    <span class="font-medium text-sm">Whatsapp</span>
+                </a>
+                <a href="#" class="flex items-center gap-3 border border-gray-800 rounded-md p-3 hover:bg-gray-50 transition">
+                    <i class="far fa-calendar-alt w-5"></i>
+                    <span class="font-medium text-sm">Book appointment</span>
+                </a>
+                <a href="tel:+919825081806" class="flex items-center gap-3 border border-gray-800 rounded-md p-3 hover:bg-gray-50 transition">
+                    <i class="fas fa-phone-alt w-5"></i>
+                    <span class="font-medium text-sm">+91 98250 81806</span>
+                </a>
+            </div>
+        </div>
+    </footer>
+     
+</main>
+   
+
+     
+
+
+    <!-- Footer Component -->
+    <footer class="bg-slate-950 text-slate-300 pt-16 pb-8 border-t border-slate-900">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col lg:flex-row justify-between items-center pb-12 border-b border-slate-800 mb-12 gap-8">
+                <div class="max-w-xl">
+                    <h3 class="text-2xl font-bold text-white mb-2">Join our newsletter</h3>
+                    <p class="text-slate-400">We'll send you the best travel deals, visa updates, and destination guides once a week. No spam.</p>
+                </div>
+                <div class="flex w-full max-w-sm gap-2">
+                    <input type="email" placeholder="Enter your email" class="w-full px-4 py-2.5 rounded-lg bg-slate-900 border border-slate-800 text-white placeholder-slate-500 focus:outline-none focus:border-slate-600 focus:ring-1 focus:ring-slate-600">
+                    <button class="px-6 py-2.5 bg-white text-black font-semibold rounded-lg hover:bg-gray-200 transition-colors whitespace-nowrap">Subscribe</button>
+                </div>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 mb-16">
+                <div class="col-span-2 lg:col-span-2">
+                    <div class="flex items-center gap-2 mb-6">
+                        <div class="bg-white text-black p-1.5 rounded"><i data-lucide="plane" class="h-5 w-5"></i></div>
+                        <span class="text-xl font-bold text-white">TRAVELLER CHOICE</span>
+                    </div>
+                    <p class="text-slate-400 mb-6 max-w-sm leading-relaxed">
+                        Your trusted partner for AI-powered travel planning. We make exploring the world seamless, from visa applications to luxury stays.
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="#" class="h-10 w-10 rounded-full bg-slate-900 flex items-center justify-center hover:bg-slate-800 hover:text-white transition-colors"><i data-lucide="twitter" class="h-5 w-5"></i></a>
+                        <a href="#" class="h-10 w-10 rounded-full bg-slate-900 flex items-center justify-center hover:bg-slate-800 hover:text-white transition-colors"><i data-lucide="instagram" class="h-5 w-5"></i></a>
+                        <a href="#" class="h-10 w-10 rounded-full bg-slate-900 flex items-center justify-center hover:bg-slate-800 hover:text-white transition-colors"><i data-lucide="facebook" class="h-5 w-5"></i></a>
+                        <a href="#" class="h-10 w-10 rounded-full bg-slate-900 flex items-center justify-center hover:bg-slate-800 hover:text-white transition-colors"><i data-lucide="youtube" class="h-5 w-5"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-6">Company</h4>
+                    <ul class="space-y-4 text-sm">
+                        <li><a href="#" class="hover:text-white transition-colors">About Us</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Careers</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Press</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Blog</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Sustainability</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-6">Support</h4>
+                    <ul class="space-y-4 text-sm">
+                        <li><a href="#" class="hover:text-white transition-colors">Help Center</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Terms of Service</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Legal</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Status</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-6">Top Routes</h4>
+                    <ul class="space-y-4 text-sm">
+                        <li><a href="#" class="hover:text-white transition-colors">Flights to London</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Flights to Paris</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Flights to Tokyo</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Flights to New York</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Flights to Dubai</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-sm text-slate-500">&copy; 2025 TRAVELLER CHOICEInc. All rights reserved.</p>
+                <div class="flex items-center gap-6">
+                    <div class="flex items-center gap-2 text-slate-500 text-sm"><i data-lucide="globe" class="h-4 w-4"></i><span>English (US)</span></div>
+                    <div class="flex items-center gap-2 text-slate-500 text-sm"><i data-lucide="dollar-sign" class="h-4 w-4"></i><span>USD</span></div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Chat Widget -->
+    <div class="fixed bottom-6 right-6 z-50 flex flex-col items-end">
+        <div id="chat-window" class="hidden flex-col w-[350px] bg-white rounded-2xl shadow-2xl border border-gray-200 mb-4 overflow-hidden transition-all origin-bottom-right">
+            <div class="bg-primary p-4 flex items-center justify-between text-white">
+                <div class="flex items-center gap-2">
+                    <div class="h-8 w-8 rounded-full bg-white/20 flex items-center justify-center"><i data-lucide="bot" class="h-5 w-5"></i></div>
+                    <div>
+                        <p class="font-bold text-sm">Travel Assistant</p>
+                        <p class="text-xs text-white/70">Online now</p>
+                    </div>
+                </div>
+                <button onclick="toggleChat()" class="text-white/80 hover:text-white"><i data-lucide="x" class="h-5 w-5"></i></button>
+            </div>
+            <div class="p-4 h-80 overflow-y-auto bg-slate-50 space-y-4">
+                <div class="flex gap-2">
+                    <div class="h-8 w-8 rounded-full bg-gray-200 flex-shrink-0 flex items-center justify-center"><i data-lucide="bot" class="h-4 w-4 text-gray-600"></i></div>
+                    <div class="bg-white p-3 rounded-r-xl rounded-bl-xl shadow-sm border text-sm text-gray-700">Hello! I'm your AI travel guide. How can I help you plan your next adventure today?</div>
+                </div>
+                <div class="flex gap-2 justify-end">
+                    <div class="bg-primary text-white p-3 rounded-l-xl rounded-br-xl shadow-sm text-sm">Looking for a beach trip under $1000.</div>
+                </div>
+                <div class="flex gap-2">
+                    <div class="h-8 w-8 rounded-full bg-gray-200 flex-shrink-0 flex items-center justify-center"><i data-lucide="bot" class="h-4 w-4 text-gray-600"></i></div>
+                    <div class="bg-white p-3 rounded-r-xl rounded-bl-xl shadow-sm border text-sm text-gray-700">I found great deals for Bali and Thailand within that budget! Would you like to see the flight details?</div>
+                </div>
+            </div>
+            <div class="p-3 border-t bg-white flex gap-2">
+                <input type="text" placeholder="Type a message..." class="flex-1 text-sm border-none focus:ring-0 outline-none px-2">
+                <button class="p-2 bg-primary text-white rounded-lg hover:bg-primary/90"><i data-lucide="send" class="h-4 w-4"></i></button>
+            </div>
+        </div>
+        <button onclick="toggleChat()" class="h-14 w-14 rounded-full bg-primary text-white shadow-lg flex items-center justify-center hover:scale-110 transition-transform focus:outline-none">
+            <i data-lucide="message-circle" class="h-7 w-7"></i>
+        </button>
+    </div>
+
+    <!-- Login Modal -->
+    <div id="login-modal" class="relative z-[100] hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        <div class="fixed inset-0 bg-black/80 backdrop-blur-sm transition-opacity" onclick="closeModal('login-modal')"></div>
+        <div class="fixed left-[50%] top-[50%] z-[101] grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border bg-background p-6 shadow-lg duration-200 sm:rounded-lg md:w-full">
+            <div class="flex flex-col space-y-2 text-center sm:text-left">
+                <h2 class="text-lg font-semibold leading-none tracking-tight">Sign In</h2>
+                <p class="text-sm text-muted-foreground">Enter your email below to sign in to your account</p>
+            </div>
+            <div class="grid gap-4">
+                <div class="grid gap-2">
+                    <button class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium border border-input bg-background hover:bg-slate-100 hover:text-accent-foreground h-10 px-4 py-2 w-full transition-colors">
+                        <svg class="mr-2 h-4 w-4" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="github" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path></svg>
+                        GitHub
+                    </button>
+                    <button class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium border border-input bg-background hover:bg-slate-100 hover:text-accent-foreground h-10 px-4 py-2 w-full transition-colors">
+                        <svg class="mr-2 h-4 w-4" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="google" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 488 512"><path fill="currentColor" d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z"></path></svg>
+                        Google
+                    </button>
+                </div>
+                <div class="relative">
+                    <div class="absolute inset-0 flex items-center"><span class="w-full border-t"></span></div>
+                    <div class="relative flex justify-center text-xs uppercase"><span class="bg-background px-2 text-muted-foreground">Or continue with</span></div>
+                </div>
+                <div class="grid gap-2">
+                    <div class="grid gap-1">
+                        <label class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70" for="email">Email</label>
+                        <input class="flex h-10 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50" id="email" placeholder="m@example.com" type="email" autocapitalize="none" autocomplete="email" autocorrect="off">
+                    </div>
+                    <div class="grid gap-1">
+                        <label class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70" for="password">Password</label>
+                        <input class="flex h-10 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50" id="password" type="password">
+                    </div>
+                    <button class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground shadow hover:bg-primary/90 h-10 px-4 py-2 w-full mt-2">
+                        Sign In with Email
+                    </button>
+                </div>
+                <div class="text-center text-sm text-muted-foreground">
+                    Don't have an account? <button onclick="switchToSignup()" class="underline underline-offset-4 hover:text-primary font-medium">Join Free</button>
+                </div>
+            </div>
+            <button onclick="closeModal('login-modal')" class="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground">
+                <i data-lucide="x" class="h-4 w-4"></i><span class="sr-only">Close</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Signup Modal -->
+    <div id="signup-modal" class="relative z-[100] hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        <div class="fixed inset-0 bg-black/80 backdrop-blur-sm transition-opacity" onclick="closeModal('signup-modal')"></div>
+        <div class="fixed left-[50%] top-[50%] z-[101] grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border bg-background p-6 shadow-lg duration-200 sm:rounded-lg md:w-full">
+            <div class="flex flex-col space-y-2 text-center sm:text-left">
+                <h2 class="text-lg font-semibold leading-none tracking-tight">Create an account</h2>
+                <p class="text-sm text-muted-foreground">Enter your email below to create your account</p>
+            </div>
+            <div class="grid gap-4">
+                <div class="grid gap-2">
+                    <button class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium border border-input bg-background hover:bg-slate-100 hover:text-accent-foreground h-10 px-4 py-2 w-full transition-colors">
+                        <svg class="mr-2 h-4 w-4" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="github" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path></svg>
+                        GitHub
+                    </button>
+                    <button class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium border border-input bg-background hover:bg-slate-100 hover:text-accent-foreground h-10 px-4 py-2 w-full transition-colors">
+                        <svg class="mr-2 h-4 w-4" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="google" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 488 512"><path fill="currentColor" d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z"></path></svg>
+                        Google
+                    </button>
+                </div>
+                <div class="relative">
+                    <div class="absolute inset-0 flex items-center"><span class="w-full border-t"></span></div>
+                    <div class="relative flex justify-center text-xs uppercase"><span class="bg-background px-2 text-muted-foreground">Or continue with</span></div>
+                </div>
+                <div class="grid gap-2">
+                    <div class="grid gap-1">
+                        <label class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70" for="signup-name">Full Name</label>
+                        <input class="flex h-10 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50" id="signup-name" type="text" placeholder="John Doe">
+                    </div>
+                    <div class="grid gap-1">
+                        <label class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70" for="signup-email">Email</label>
+                        <input class="flex h-10 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50" id="signup-email" placeholder="m@example.com" type="email" autocapitalize="none" autocomplete="email" autocorrect="off">
+                    </div>
+                    <div class="grid gap-1">
+                        <label class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70" for="signup-password">Password</label>
+                        <input class="flex h-10 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50" id="signup-password" type="password">
+                    </div>
+                    <button class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground shadow hover:bg-primary/90 h-10 px-4 py-2 w-full mt-2">
+                        Create Account
+                    </button>
+                </div>
+                <div class="text-center text-sm text-muted-foreground">
+                    Already have an account? <button onclick="switchToLogin()" class="underline underline-offset-4 hover:text-primary font-medium">Sign In</button>
+                </div>
+            </div>
+            <button onclick="closeModal('signup-modal')" class="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground">
+                <i data-lucide="x" class="h-4 w-4"></i><span class="sr-only">Close</span>
+            </button>
+        </div>
+    </div>
+
+      <script>
+        // Initialize Icons
+        lucide.createIcons();
+
+        // Navbar Scroll Effect
+        const navbar = document.getElementById('navbar');
+        const brandText = document.getElementById('brand-text');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('bg-white', 'shadow-md');
+                navbar.classList.remove('border-transparent', 'py-2');
+                brandText.classList.remove('text-white');
+                brandText.classList.add('text-black');
+
+                navLinks.forEach(link => {
+                    link.classList.remove('text-white', 'text-white/90');
+                    link.classList.add('text-black', 'hover:text-primary');
+                });
+            } else {
+                navbar.classList.remove('bg-white', 'shadow-md');
+                navbar.classList.add('border-transparent', 'py-2');
+                brandText.classList.add('text-white');
+                brandText.classList.remove('text-black');
+
+                navLinks.forEach(link => {
+                    link.classList.add('text-white', 'text-white/90');
+                    link.classList.remove('text-black', 'hover:text-primary');
+                });
+            }
+        });
+
+        // Chatbot Toggle
+        function toggleChat() {
+            const chatWindow = document.getElementById('chat-window');
+            if (chatWindow.classList.contains('hidden')) {
+                chatWindow.classList.remove('hidden');
+                chatWindow.classList.add('flex', 'chat-enter');
+            } else {
+                chatWindow.classList.add('hidden');
+                chatWindow.classList.remove('flex', 'chat-enter');
+            }
+        }
+
+        /* --- MODAL LOGIC --- */
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            const overlay = modal.querySelector('.fixed.inset-0');
+            const content = modal.querySelector('.fixed.left-\\[50\\%\\]');
+
+            modal.classList.remove('hidden');
+
+            overlay.classList.remove('backdrop-exit');
+            overlay.classList.add('backdrop-enter');
+
+            content.classList.remove('modal-exit');
+            content.classList.add('modal-enter');
+        }
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            const overlay = modal.querySelector('.fixed.inset-0');
+            const content = modal.querySelector('.fixed.left-\\[50\\%\\]');
+
+            overlay.classList.remove('backdrop-enter');
+            overlay.classList.add('backdrop-exit');
+
+            content.classList.remove('modal-enter');
+            content.classList.add('modal-exit');
+
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 150);
+        }
+
+        function switchToSignup() {
+            closeModal('login-modal');
+            setTimeout(() => {
+                openModal('signup-modal');
+            }, 160);
+        }
+
+        function switchToLogin() {
+            closeModal('signup-modal');
+            setTimeout(() => {
+                openModal('login-modal');
+            }, 160);
+        }
+    </script>
+
+    
+    <!-- JavaScript -->
+    <script>
+        // ========== STATE MANAGEMENT ==========
+        const AppState = {
+            // Currency exchange state
+            exchangeRates: {
+                'USD': { rate: 91.85, effective: 90.05, type: 'forex-card' },
+                'USD_CASH': { rate: 92.10, effective: 90.25, type: 'currency-notes' },
+                'EUR': { rate: 98.45, effective: 96.50, type: 'forex-card' },
+                'GBP': { rate: 112.30, effective: 110.00, type: 'forex-card' }
+            },
+            selectedCurrency: 'USD',
+            selectedType: 'forex-card',
+            forexAmount: 100,
+            inrAmount: 9005,
+            city: 'mumbai',
+            deliveryCharges: {
+                'mumbai': 0,
+                'delhi': 0,
+                'bangalore': 49,
+                'chennai': 79,
+                'kolkata': 99,
+                'hyderabad': 49
+            },
+            promoCode: null,
+            activePromoCodes: {
+                'REMITSPL': { discount: 500, minAmount: 5000, type: 'fixed' },
+                'WELCOME100': { discount: 100, minAmount: 1000, type: 'fixed' },
+                'SAVE10': { discount: 10, minAmount: 10000, type: 'percentage' }
+            },
+            
+            // Travel booking state
+            travellers: [
+                { id: 1, name: 'Member 1', age: '' }
+            ],
+            nextTravellerId: 2,
+            
+            // User state
+            rateAlerts: [],
+            
+            // UI state
+            currentTab: 'exchange'
+        };
+
+        // ========== DOM ELEMENTS ==========
+        const elements = {
+            // Currency exchange
+            forexAmountInput: document.getElementById('forex-amount'),
+            inrAmountInput: document.getElementById('inr-amount'),
+            displayRate: document.getElementById('display-rate'),
+            effectiveRate: document.getElementById('effective-rate'),
+            totalAmount: document.getElementById('total-amount'),
+            bookAmount: document.getElementById('book-amount'),
+            savingsAmount: document.getElementById('savings-amount'),
+            deliveryCharge: document.getElementById('delivery-charge'),
+            rateDetails: document.getElementById('rate-details'),
+            forexCurrencyLabel: document.getElementById('forex-currency-label'),
+            forexCurrencySymbol: document.getElementById('forex-currency-symbol'),
+            
+            // Quick amount buttons
+            quickAmountButtons: document.querySelectorAll('.quick-amount'),
+            
+            // Currency selection
+            currencyOptions: document.querySelectorAll('.currency-option'),
+            currencyOptionCards: document.querySelectorAll('.currency-option-card'),
+            
+            // Tabs
+            tabs: document.querySelectorAll('.service-tab'),
+            tabContents: document.querySelectorAll('.service-content'),
+            
+            // Promo code
+            promoCodeToggle: document.getElementById('promo-code-toggle'),
+            promoCodeSection: document.getElementById('promo-code-section'),
+            promoCodeInput: document.getElementById('promo-code-input'),
+            applyPromoButton: document.getElementById('apply-promo'),
+            promoMessage: document.getElementById('promo-message'),
+            
+            // Referral
+            getReferralLinkButton: document.getElementById('get-referral-link'),
+            referralLinkContainer: document.getElementById('referral-link-container'),
+            referralLinkInput: document.getElementById('referral-link-input'),
+            copyReferralLinkButton: document.getElementById('copy-referral-link'),
+            shareButtons: document.querySelectorAll('.share-button'),
+            
+            // Travel booking
+            addTravellerButton: document.getElementById('add-traveller'),
+            travellerList: document.getElementById('traveller-list'),
+            travelContinueButton: document.getElementById('travel-continue'),
+            
+            // Modals
+            rateAlertModal: document.getElementById('rate-alert-modal'),
+            callbackModal: document.getElementById('callback-modal'),
+            setRateAlertButton: document.getElementById('set-rate-alert-btn'),
+            requestCallbackButton: document.getElementById('request-callback-btn'),
+            
+            // Live rate
+            liveUsdRate: document.getElementById('live-usd-rate'),
+            rateChange: document.getElementById('rate-change'),
+            
+            // User menu
+            userMenuButton: document.getElementById('user-menu-button'),
+            userMenu: document.getElementById('user-menu')
+        };
+
+        // ========== UTILITY FUNCTIONS ==========
+        const utils = {
+            formatCurrency: (amount, currency = 'INR') => {
+                return new Intl.NumberFormat('en-IN', {
+                    style: 'currency',
+                    currency: currency,
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                }).format(amount);
+            },
+            
+            showNotification: (message, type = 'info') => {
+                const notification = document.createElement('div');
+                notification.className = `notification bg-white rounded-xl shadow-card p-4 border-l-4 ${
+                    type === 'success' ? 'border-green-500' : 
+                    type === 'error' ? 'border-red-500' : 
+                    type === 'warning' ? 'border-yellow-500' : 'border-blue-500'
+                }`;
+                
+                notification.innerHTML = `
+                    <div class="flex items-start">
+                        <i class="fas ${
+                            type === 'success' ? 'fa-check-circle text-green-500' : 
+                            type === 'error' ? 'fa-times-circle text-red-500' : 
+                            type === 'warning' ? 'fa-exclamation-triangle text-yellow-500' : 'fa-info-circle text-blue-500'
+                        } mr-3 mt-0.5"></i>
+                        <div class="flex-1">
+                            <p class="text-gray-800">${message}</p>
+                        </div>
+                        <button class="ml-4 text-gray-400 hover:text-gray-600 close-notification">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                `;
+                
+                document.getElementById('notification-container').appendChild(notification);
+                
+                // Auto remove after 5 seconds
+                setTimeout(() => {
+                    if (notification.parentNode) {
+                        notification.classList.add('opacity-0', 'transition-opacity', 'duration-300');
+                        setTimeout(() => {
+                            if (notification.parentNode) {
+                                notification.parentNode.removeChild(notification);
+                            }
+                        }, 300);
+                    }
+                }, 5000);
+                
+                // Close button
+                notification.querySelector('.close-notification').addEventListener('click', () => {
+                    notification.classList.add('opacity-0', 'transition-opacity', 'duration-300');
+                    setTimeout(() => {
+                        if (notification.parentNode) {
+                            notification.parentNode.removeChild(notification);
+                        }
+                    }, 300);
+                });
+            },
+            
+            simulateAPI: (action, data) => {
+                return new Promise((resolve) => {
+                    setTimeout(() => {
+                        let response;
+                        switch(action) {
+                            case 'calculateExchange':
+                                const rate = AppState.exchangeRates[AppState.selectedCurrency]?.rate || 91.85;
+                                const effective = AppState.exchangeRates[AppState.selectedCurrency]?.effective || 90.05;
+                                const amount = data.forexAmount || 0;
+                                response = {
+                                    inrAmount: amount * effective,
+                                    rate: rate,
+                                    effectiveRate: effective,
+                                    savings: amount * (rate - effective)
+                                };
+                                break;
+                            case 'applyPromo':
+                                const promo = AppState.activePromoCodes[data.code];
+                                if (promo) {
+                                    response = { success: true, promo: promo };
+                                } else {
+                                    response = { success: false, message: 'Invalid promo code' };
+                                }
+                                break;
+                            case 'bookOrder':
+                                response = { success: true, orderId: 'ORD' + Date.now().toString().slice(-8) };
+                                break;
+                            case 'setRateAlert':
+                                response = { success: true, alertId: 'ALERT' + Date.now().toString().slice(-6) };
+                                break;
+                            case 'requestCallback':
+                                response = { success: true, reference: 'CB' + Date.now().toString().slice(-6) };
+                                break;
+                            default:
+                                response = { success: true, data: {} };
+                        }
+                        resolve(response);
+                    }, 300); // Simulate network delay
+                });
+            },
+            
+            updateLiveRate: () => {
+                // Simulate live rate changes
+                const currentRate = parseFloat(elements.liveUsdRate.textContent.replace('₹', ''));
+                const change = (Math.random() - 0.5) * 0.2; // Random change between -0.1% to +0.1%
+                const newRate = currentRate + (currentRate * change / 100);
+                
+                elements.liveUsdRate.textContent = `₹${newRate.toFixed(2)}`;
+                
+                // Update rate change indicator
+                const changeElement = elements.rateChange;
+                if (change > 0) {
+                    changeElement.innerHTML = `<i class="fas fa-arrow-up mr-1"></i>${change.toFixed(2)}%`;
+                    changeElement.className = 'ml-2 text-sm rate-change-positive';
+                } else {
+                    changeElement.innerHTML = `<i class="fas fa-arrow-down mr-1"></i>${Math.abs(change).toFixed(2)}%`;
+                    changeElement.className = 'ml-2 text-sm rate-change-negative';
+                }
+                
+                // Update main rate if USD is selected
+                if (AppState.selectedCurrency === 'USD' && AppState.selectedType === 'forex-card') {
+                    AppState.exchangeRates.USD.rate = newRate;
+                    AppState.exchangeRates.USD.effective = newRate - 1.80; // Keep consistent spread
+                    calculateExchange();
+                }
+            }
+        };
+
+        // ========== CURRENCY EXCHANGE LOGIC ==========
+        const calculateExchange = async () => {
+            const forexAmount = parseFloat(elements.forexAmountInput.value) || 0;
+            AppState.forexAmount = forexAmount;
+            
+            // Get rates for selected currency and type
+            let rateKey = AppState.selectedCurrency;
+            if (AppState.selectedType === 'currency-notes' && AppState.selectedCurrency === 'USD') {
+                rateKey = 'USD_CASH';
+            }
+            
+            const rates = AppState.exchangeRates[rateKey] || { rate: 91.85, effective: 90.05 };
+            
+            // Calculate INR amount
+            AppState.inrAmount = forexAmount * rates.effective;
+            
+            // Update UI
+            elements.inrAmountInput.value = AppState.inrAmount.toFixed(2);
+            elements.displayRate.textContent = `₹${rates.rate.toFixed(2)}`;
+            elements.effectiveRate.textContent = `₹${rates.effective.toFixed(2)}`;
+            elements.savingsAmount.textContent = `₹${(forexAmount * (rates.rate - rates.effective)).toFixed(2)}`;
+            
+            // Get delivery charge
+            const deliveryCharge = AppState.deliveryCharges[AppState.city] || 0;
+            elements.deliveryCharge.textContent = deliveryCharge === 0 ? '₹0 (Free)' : `₹${deliveryCharge}`;
+            
+            // Calculate total with promo
+            let total = AppState.inrAmount + deliveryCharge;
+            if (AppState.promoCode) {
+                const promo = AppState.activePromoCodes[AppState.promoCode];
+                if (promo) {
+                    if (promo.type === 'fixed') {
+                        total -= promo.discount;
+                    } else if (promo.type === 'percentage') {
+                        total -= total * (promo.discount / 100);
+                    }
+                    total = Math.max(total, 0);
+                }
+            }
+            
+            elements.totalAmount.textContent = `₹${total.toFixed(2)}`;
+            elements.bookAmount.textContent = total.toFixed(2);
+            
+            // Update rate details
+            elements.rateDetails.textContent = `Rate includes all charges. Market rate: ₹${(rates.rate + 0.20).toFixed(2)}`;
+        };
+
+        // ========== EVENT HANDLERS ==========
+        const setupEventListeners = () => {
+            // Currency amount inputs
+            elements.forexAmountInput.addEventListener('input', calculateExchange);
+            elements.inrAmountInput.addEventListener('input', () => {
+                const rates = AppState.exchangeRates[AppState.selectedCurrency] || { effective: 90.05 };
+                const inrAmount = parseFloat(elements.inrAmountInput.value) || 0;
+                elements.forexAmountInput.value = (inrAmount / rates.effective).toFixed(2);
+                calculateExchange();
+            });
+            
+            // Quick amount buttons
+            elements.quickAmountButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const amount = parseFloat(button.dataset.amount);
+                    elements.forexAmountInput.value = amount;
+                    calculateExchange();
+                });
+            });
+            
+            // Currency selection (INR/USD)
+            elements.currencyOptions.forEach(option => {
+                option.addEventListener('click', () => {
+                    elements.currencyOptions.forEach(opt => {
+                        opt.classList.remove('active', 'bg-primary-50', 'text-primary-700');
+                        opt.classList.add('text-gray-700', 'hover:bg-gray-50');
+                    });
+                    
+                    option.classList.add('active', 'bg-primary-50', 'text-primary-700');
+                    option.classList.remove('text-gray-700', 'hover:bg-gray-50');
+                    
+                    if (option.id === 'currency-usd') {
+                        // For selling USD
+                        elements.forexCurrencyLabel.textContent = 'USD';
+                        elements.forexCurrencySymbol.textContent = '$';
+                        // Update rates for selling
+                        // This would involve different logic for sell vs buy
+                    }
+                });
+            });
+            
+            // Currency option cards (USD Forex Card, USD Cash, etc.)
+            elements.currencyOptionCards.forEach(card => {
+                card.addEventListener('click', () => {
+                    // Remove active state from all cards
+                    elements.currencyOptionCards.forEach(c => {
+                        c.classList.remove('border-2', 'border-primary-200', 'bg-primary-50');
+                        c.classList.add('border', 'border-gray-300', 'hover:border-primary-300', 'hover:bg-gray-50');
+                    });
+                    
+                    // Add active state to clicked card
+                    card.classList.add('border-2', 'border-primary-200', 'bg-primary-50');
+                    card.classList.remove('border', 'border-gray-300', 'hover:border-primary-300', 'hover:bg-gray-50');
+                    
+                    // Update state
+                    AppState.selectedCurrency = card.dataset.currency;
+                    AppState.selectedType = card.dataset.type;
+                    
+                    // Update currency label
+                    elements.forexCurrencyLabel.textContent = card.dataset.currency;
+                    elements.forexCurrencySymbol.textContent = card.dataset.currency === 'USD' ? '$' : 
+                                                              card.dataset.currency === 'EUR' ? '€' : 
+                                                              card.dataset.currency === 'GBP' ? '£' : '$';
+                    
+                    calculateExchange();
+                });
+            });
+            
+            // City selection
+            document.getElementById('exchange-city').addEventListener('change', (e) => {
+                AppState.city = e.target.value;
+                calculateExchange();
+            });
+            
+            // Tab switching
+            elements.tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    // Update active tab
+                    elements.tabs.forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+                    
+                    // Show corresponding content
+                    elements.tabContents.forEach(content => content.classList.add('hidden'));
+                    
+                    const tabId = tab.id.replace('tab-', '');
+                    document.getElementById(`content-${tabId}`).classList.remove('hidden');
+                    
+                    AppState.currentTab = tabId;
+                });
+            });
+            
+            // Promo code
+            elements.promoCodeToggle.addEventListener('change', () => {
+                if (elements.promoCodeToggle.checked) {
+                    elements.promoCodeSection.classList.remove('hidden');
+                } else {
+                    elements.promoCodeSection.classList.add('hidden');
+                    AppState.promoCode = null;
+                    calculateExchange();
+                    elements.promoMessage.textContent = '';
+                }
+            });
+            
+            elements.applyPromoButton.addEventListener('click', async () => {
+                const code = elements.promoCodeInput.value.toUpperCase();
+                elements.promoMessage.innerHTML = '<span class="loader"></span> Checking promo code...';
+                
+                const result = await utils.simulateAPI('applyPromo', { code: code });
+                
+                if (result.success) {
+                    if (AppState.inrAmount >= result.promo.minAmount) {
+                        AppState.promoCode = code;
+                        elements.promoMessage.innerHTML = `<span class="text-green-600"><i class="fas fa-check-circle mr-1"></i> Promo code applied! ₹${result.promo.discount} ${result.promo.type === 'percentage' ? '%' : ''} discount.</span>`;
+                        calculateExchange();
+                        utils.showNotification(`Promo code ${code} applied successfully!`, 'success');
+                    } else {
+                        elements.promoMessage.innerHTML = `<span class="text-red-600"><i class="fas fa-exclamation-circle mr-1"></i> Minimum order amount ₹${result.promo.minAmount} required.</span>`;
+                    }
+                } else {
+                    elements.promoMessage.innerHTML = `<span class="text-red-600"><i class="fas fa-times-circle mr-1"></i> ${result.message || 'Invalid promo code'}</span>`;
+                }
+            });
+            
+            // Book order
+            document.getElementById('book-order').addEventListener('click', async () => {
+                const button = document.getElementById('book-order');
+                const originalText = button.innerHTML;
+                button.innerHTML = '<span class="loader mr-2"></span> Processing...';
+                button.disabled = true;
+                
+                const result = await utils.simulateAPI('bookOrder', {
+                    amount: AppState.forexAmount,
+                    currency: AppState.selectedCurrency,
+                    type: AppState.selectedType,
+                    total: parseFloat(elements.totalAmount.textContent.replace('₹', '')),
+                    promoCode: AppState.promoCode
+                });
+                
+                setTimeout(() => {
+                    button.innerHTML = originalText;
+                    button.disabled = false;
+                    
+                    if (result.success) {
+                        utils.showNotification(`Order #${result.orderId} booked successfully!`, 'success');
+                        
+                        // Reset form
+                        elements.forexAmountInput.value = '100';
+                        AppState.promoCode = null;
+                        elements.promoCodeToggle.checked = false;
+                        elements.promoCodeSection.classList.add('hidden');
+                        elements.promoCodeInput.value = '';
+                        elements.promoMessage.textContent = '';
+                        
+                        calculateExchange();
+                    } else {
+                        utils.showNotification('Failed to book order. Please try again.', 'error');
+                    }
+                }, 1000);
+            });
+            
+            // Referral system
+            elements.getReferralLinkButton.addEventListener('click', () => {
+                elements.referralLinkContainer.classList.toggle('hidden');
+                if (!elements.referralLinkContainer.classList.contains('hidden')) {
+                    utils.showNotification('Referral link generated! Share with friends to earn ₹500 each.', 'success');
+                }
+            });
+            
+            elements.copyReferralLinkButton.addEventListener('click', () => {
+                elements.referralLinkInput.select();
+                document.execCommand('copy');
+                utils.showNotification('Referral link copied to clipboard!', 'success');
+            });
+            
+            elements.shareButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const platform = button.dataset.platform;
+                    const link = elements.referralLinkInput.value;
+                    let shareUrl = '';
+                    
+                    switch(platform) {
+                        case 'whatsapp':
+                            shareUrl = `https://wa.me/?text=Get%20discount%20on%20forex%20orders%20at%20ForexHub!%20Use%20my%20referral%20link:%20${encodeURIComponent(link)}`;
+                            break;
+                        case 'facebook':
+                            shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(link)}`;
+                            break;
+                        case 'twitter':
+                            shareUrl = `https://twitter.com/intent/tweet?text=Get%20discount%20on%20forex%20orders%20at%20ForexHub!&url=${encodeURIComponent(link)}`;
+                            break;
+                        case 'email':
+                            shareUrl = `mailto:?subject=ForexHub%20Referral&body=Get%20discount%20on%20forex%20orders%20at%20ForexHub!%20Use%20my%20referral%20link:%20${encodeURIComponent(link)}`;
+                            break;
+                    }
+                    
+                    window.open(shareUrl, '_blank');
+                    utils.showNotification(`Sharing via ${platform}...`, 'info');
+                });
+            });
+            
+            // Travel booking
+            elements.addTravellerButton.addEventListener('click', () => {
+                if (AppState.travellers.length >= 10) {
+                    utils.showNotification('Maximum 10 travellers allowed', 'warning');
+                    return;
+                }
+                
+                const travellerId = AppState.nextTravellerId;
+                AppState.nextTravellerId++;
+                
+                const travellerDiv = document.createElement('div');
+                travellerDiv.className = 'flex justify-between items-center mb-4';
+                travellerDiv.innerHTML = `
+                    <span class="font-medium">Member ${travellerId}</span>
+                    <div class="flex items-center">
+                        <select class="traveller-age border border-gray-300 rounded-lg px-3 py-1.5 text-sm">
+                            <option>Age</option>
+                            <option>Under 18</option>
+                            <option>18-25</option>
+                            <option>26-35</option>
+                            <option>36-50</option>
+                            <option>51+</option>
+                        </select>
+                        <button class="remove-traveller ml-2 text-gray-400 hover:text-red-500">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                `;
+                
+                elements.travellerList.appendChild(travellerDiv);
+                
+                // Add event listener to remove button
+                travellerDiv.querySelector('.remove-traveller').addEventListener('click', () => {
+                    travellerDiv.remove();
+                    AppState.travellers = AppState.travellers.filter(t => t.id !== travellerId);
+                });
+                
+                // Add to state
+                AppState.travellers.push({ id: travellerId, name: `Member ${travellerId}`, age: '' });
+            });
+            
+            // Add event listeners to existing remove buttons
+            document.querySelectorAll('.remove-traveller').forEach(button => {
+                button.addEventListener('click', function() {
+                    const travellerDiv = this.closest('.flex.justify-between');
+                    travellerDiv.remove();
+                });
+            });
+            
+            elements.travelContinueButton.addEventListener('click', () => {
+                // Validate travel form
+                const destination = document.getElementById('travel-destination').value;
+                const departure = document.getElementById('departure-date').value;
+                const returnDate = document.getElementById('return-date').value;
+                
+                if (destination === 'Select Countries') {
+                    utils.showNotification('Please select a destination', 'warning');
+                    return;
+                }
+                
+                if (!departure || !returnDate) {
+                    utils.showNotification('Please select travel dates', 'warning');
+                    return;
+                }
+                
+                const ages = Array.from(document.querySelectorAll('.traveller-age')).map(select => select.value);
+                if (ages.some(age => age === 'Age')) {
+                    utils.showNotification('Please select age for all travellers', 'warning');
+                    return;
+                }
+                
+                utils.showNotification('Travel details saved! Redirecting to forex selection...', 'success');
+                
+                // Switch to exchange tab
+                document.getElementById('tab-exchange').click();
+            });
+            
+            // Modal controls
+            elements.setRateAlertButton.addEventListener('click', () => {
+                elements.rateAlertModal.classList.remove('hidden');
+            });
+            
+            elements.requestCallbackButton.addEventListener('click', () => {
+                elements.callbackModal.classList.remove('hidden');
+            });
+            
+            document.getElementById('close-rate-alert-modal').addEventListener('click', () => {
+                elements.rateAlertModal.classList.add('hidden');
+            });
+            
+            document.getElementById('close-callback-modal').addEventListener('click', () => {
+                elements.callbackModal.classList.add('hidden');
+            });
+            
+            document.getElementById('cancel-rate-alert').addEventListener('click', () => {
+                elements.rateAlertModal.classList.add('hidden');
+            });
+            
+            document.getElementById('cancel-callback').addEventListener('click', () => {
+                elements.callbackModal.classList.add('hidden');
+            });
+            
+            // Set rate alert
+            document.getElementById('save-rate-alert').addEventListener('click', async () => {
+                const currencyPair = document.getElementById('alert-currency-pair').value;
+                const targetRate = parseFloat(document.getElementById('alert-target-rate').value);
+                const alertType = document.querySelector('input[name="alert-type"]:checked').value;
+                
+                if (!targetRate || targetRate <= 0) {
+                    utils.showNotification('Please enter a valid target rate', 'warning');
+                    return;
+                }
+                
+                const button = document.getElementById('save-rate-alert');
+                const originalText = button.textContent;
+                button.innerHTML = '<span class="loader mr-2"></span> Setting alert...';
+                button.disabled = true;
+                
+                const result = await utils.simulateAPI('setRateAlert', {
+                    currencyPair,
+                    targetRate,
+                    alertType
+                });
+                
+                setTimeout(() => {
+                    button.innerHTML = originalText;
+                    button.disabled = false;
+                    
+                    if (result.success) {
+                        elements.rateAlertModal.classList.add('hidden');
+                        utils.showNotification(`Rate alert set for ${currencyPair} at ₹${targetRate}`, 'success');
+                        
+                        // Add visual feedback to rate alert button
+                        elements.setRateAlertButton.classList.add('rate-alert-active');
+                        setTimeout(() => {
+                            elements.setRateAlertButton.classList.remove('rate-alert-active');
+                        }, 3000);
+                    }
+                }, 800);
+            });
+            
+            // Request callback
+            document.getElementById('submit-callback').addEventListener('click', async () => {
+                const name = document.getElementById('callback-name').value;
+                const phone = document.getElementById('callback-phone').value;
+                const time = document.getElementById('callback-time').value;
+                const query = document.getElementById('callback-query').value;
+                
+                if (!name || !phone) {
+                    utils.showNotification('Please enter name and phone number', 'warning');
+                    return;
+                }
+                
+                if (!/^\d{10}$/.test(phone.replace(/\D/g, ''))) {
+                    utils.showNotification('Please enter a valid 10-digit phone number', 'warning');
+                    return;
+                }
+                
+                const button = document.getElementById('submit-callback');
+                const originalText = button.textContent;
+                button.innerHTML = '<span class="loader mr-2"></span> Submitting...';
+                button.disabled = true;
+                
+                const result = await utils.simulateAPI('requestCallback', {
+                    name, phone, time, query
+                });
+                
+                setTimeout(() => {
+                    button.innerHTML = originalText;
+                    button.disabled = false;
+                    
+                    if (result.success) {
+                        elements.callbackModal.classList.add('hidden');
+                        utils.showNotification(`Callback requested! Reference #${result.reference}. Our expert will call you shortly.`, 'success');
+                        
+                        // Reset form
+                        document.getElementById('callback-name').value = '';
+                        document.getElementById('callback-phone').value = '';
+                        document.getElementById('callback-time').value = 'asap';
+                        document.getElementById('callback-query').value = 'forex_card';
+                    }
+                }, 800);
+            });
+            
+            // User menu
+            elements.userMenuButton.addEventListener('click', () => {
+                elements.userMenu.classList.toggle('hidden');
+            });
+            
+            // Close user menu when clicking outside
+            document.addEventListener('click', (event) => {
+                if (!elements.userMenuButton.contains(event.target) && !elements.userMenu.contains(event.target)) {
+                    elements.userMenu.classList.add('hidden');
+                }
+            });
+            
+            // Claim offer button
+            document.getElementById('claim-offer').addEventListener('click', () => {
+                utils.showNotification('₹500 offer applied to your account! Use code WELCOME500 on your first order.', 'success');
+            });
+            
+            // Request better rate
+            document.getElementById('request-better-rate-btn').addEventListener('click', () => {
+                if (AppState.forexAmount < 5000) {
+                    utils.showNotification('Better rates available for orders above $5000 (₹500,000)', 'info');
+                } else {
+                    utils.showNotification('Our relationship manager will contact you with a custom quote', 'success');
+                }
+            });
+            
+            // View referrals
+            document.getElementById('view-referrals').addEventListener('click', () => {
+                utils.showNotification('Redirecting to referral dashboard...', 'info');
+            });
+        };
+
+        // ========== INITIALIZATION ==========
+        const init = () => {
+            console.log('ForexHub Platform Initializing...');
+            
+            // Initialize date pickers
+            flatpickr("#departure-date", {
+                minDate: "today",
+                dateFormat: "d-m-Y",
+                defaultDate: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000) // 7 days from now
+            });
+            
+            flatpickr("#return-date", {
+                minDate: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
+                dateFormat: "d-m-Y",
+                defaultDate: new Date(Date.now() + 14 * 24 * 60 * 60 * 1000) // 14 days from now
+            });
+            
+            // Setup event listeners
+            setupEventListeners();
+            
+            // Initial calculation
+            calculateExchange();
+            
+            // Simulate live rate updates
+            setInterval(utils.updateLiveRate, 60000); // Update every minute
+            
+            // Initial live rate update
+            setTimeout(utils.updateLiveRate, 2000);
+            
+            // Show welcome notification
+            setTimeout(() => {
+                utils.showNotification('Welcome to ForexHub! Get live rates and exclusive offers.', 'info');
+            }, 1000);
+            
+            console.log('ForexHub Platform Ready');
+        };
+
+        // Initialize when DOM is loaded
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', init);
+        } else {
+            init();
+        }
+    </script>
+</body>
+</html>
