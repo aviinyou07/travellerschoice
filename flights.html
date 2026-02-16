@@ -208,8 +208,8 @@
 </head>
 <body>
     <!-- Navbar Component -->
-   <nav id="navbar" class="fixed top-0 z-50 w-full transition-all duration-300 border-b border-transparent">
-        <div class="container mx-auto flex h-16 items-center justify-between ">
+  <nav id="navbar" class="fixed top-0 z-50 w-full transition-all duration-300 border-b border-transparent py-2">
+        <div class="container mx-auto flex h-16 items-center justify-between px-4 md:px-6 ">
             <div class="flex items-center gap-2">
                 <div class="bg-primary text-white p-1.5 rounded-lg">
                     <i data-lucide="plane" class="h-5 w-5"></i>
@@ -218,14 +218,13 @@
             </div>
 
             <div class="hidden md:flex gap-8 text-sm font-medium h-full items-center">
-                <a href="index.html" class="nav-link text-black/90  transition-colors">Home</a>
-                <a href="flights.html" class="nav-link text-black/90  transition-colors">Flights</a>
-                 <a href="hotels.html" class="nav-link text-white/90 hover:text-white transition-colors">Flights</a>
-                
-                <a href="visa.html" class="nav-link text-black/90  transition-colors">Visa Services</a>
+                <a href="index.html" class="nav-link text-black/90 hover:text-black transition-colors">Home</a>
+                  <a href="flights.html" class="nav-link text-black/90 hover:text-black transition-colors">Flights</a>
+                 <a href="hotels.html" class="nav-link text-black/90 hover:text-black transition-colors">Hotels</a>
+                <a href="visa.html" class="nav-link text-black/90 hover:text-black transition-colors">Visa Services</a>
                 
                 <div class="group h-full flex items-center">
-                    <a  class="nav-link text-black/90 transition-colors flex items-center gap-1">
+                    <a  class="nav-link text-black/90 hover:text-black transition-colors flex items-center gap-1">
                         Travel Packages <i data-lucide="chevron-down" class="h-3 w-3"></i>
                     </a>
                     
@@ -235,7 +234,7 @@
                                 <div>
                                     <h4 class="font-bold text-primary mb-4 uppercase text-xs tracking-widest border-b pb-2">India Tours</h4>
                                     <ul class="space-y-2 text-sm">
-                                        <li><a href="/holiday_packages_goa.html" class="hover:text-red-500 transition-colors">Goa Packages</a></li>
+                                        <li><a href="holiday_packages_goa.html" class="hover:text-red-500 transition-colors">Goa Packages</a></li>
                                         <li><a href="#" class="hover:text-red-500 transition-colors">Kerala Backwaters</a></li>
                                         <li><a href="#" class="hover:text-red-500 transition-colors">Himachal Special</a></li>
                                         <li><a href="#" class="hover:text-red-500 transition-colors">Rajasthan Royal</a></li>
@@ -269,12 +268,14 @@
                     </div>
                 </div>
 
-                <a href="cruise.html" class="nav-link text-black/90  transition-colors">Cruise</a>
-                <a href="contact.html" class="nav-link text-black/90  transition-colors">Contact</a>
+                <a href="cruise.html" class="nav-link text-black/90 hover:text-black transition-colors">Cruise</a>
+                <a href="forex.html" class="nav-link text-black/90 hover:text-black transition-colors">Forex</a>
+
+                <a href="contact.html" class="nav-link text-black/90 hover:text-black transition-colors">Contact</a>
             </div>
 
             <div class="flex items-center gap-4">
-                <button onclick="openModal('login-modal')" class="nav-link text-sm font-medium text-black hover:underline transition-colors">Sign In</button>
+                <button onclick="openModal('login-modal')" class="nav-link text-sm font-medium text-white hover:underline transition-colors">Sign In</button>
                 <button onclick="openModal('signup-modal')" class="inline-flex h-9 items-center justify-center rounded-md bg-white text-black px-4 py-2 text-sm font-medium shadow hover:bg-gray-100 transition-colors">
                     Join Free
                 </button>

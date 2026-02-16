@@ -76,6 +76,20 @@
 
         .scrollbar-hide::-webkit-scrollbar { display: none; }
         .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+
+           /* MEGA MENU DROPDOWN STYLES */
+        .mega-menu {
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .group:hover .mega-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
     </style>
 </head>
 <body>
@@ -86,17 +100,63 @@
                 <div class="bg-primary text-white p-1.5 rounded-lg">
                     <i data-lucide="plane" class="h-5 w-5"></i>
                 </div>
-                <a href="index.html" id="brand-text" class="text-xl font-bold tracking-tight text-white transition-colors cursor-pointer">Traveller Choice</a>
+                <a href="index.html" id="brand-text" class="text-xl font-bold tracking-tight text-white transition-colors cursor-pointer">TRAVELLER CHOICE</a>
             </div>
 
-            <div class="hidden md:flex gap-8 text-sm font-medium">
+            <div class="hidden md:flex gap-8 text-sm font-medium h-full items-center">
                 <a href="index.html" class="nav-link text-white/90 hover:text-white transition-colors">Home</a>
                   <a href="flights.html" class="nav-link text-white/90 hover:text-white transition-colors">Flights</a>
                  <a href="hotels.html" class="nav-link text-white/90 hover:text-white transition-colors">Hotels</a>
-                
                 <a href="visa.html" class="nav-link text-white/90 hover:text-white transition-colors">Visa Services</a>
-                <a href="packages.html" class="nav-link text-white/90 hover:text-white transition-colors">Travel Packages</a>
-                <a href="about.html" class="nav-link text-white/90 hover:text-white transition-colors">About Us</a>
+                
+                <div class="group h-full flex items-center">
+                    <a  class="nav-link text-white/90 hover:text-white transition-colors flex items-center gap-1">
+                        Travel Packages <i data-lucide="chevron-down" class="h-3 w-3"></i>
+                    </a>
+                    
+                    <div class="mega-menu absolute top-full left-0 w-100 ">
+                        <div class="bg-white shadow-2xl border-t border-gray-100 p-8 text-gray-800">
+                            <div class="container mx-auto grid grid-cols-4 gap-8">
+                                <div>
+                                    <h4 class="font-bold text-primary mb-4 uppercase text-xs tracking-widest border-b pb-2">India Tours</h4>
+                                    <ul class="space-y-2 text-sm">
+                                        <li><a href="holiday_packages_goa.html" class="hover:text-red-500 transition-colors">Goa Packages</a></li>
+                                        <li><a href="#" class="hover:text-red-500 transition-colors">Kerala Backwaters</a></li>
+                                        <li><a href="#" class="hover:text-red-500 transition-colors">Himachal Special</a></li>
+                                        <li><a href="#" class="hover:text-red-500 transition-colors">Rajasthan Royal</a></li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-primary mb-4 uppercase text-xs tracking-widest border-b pb-2">International</h4>
+                                    <ul class="space-y-2 text-sm">
+                                        <li><a href="#" class="hover:text-red-500 transition-colors">Bali Adventure</a></li>
+                                        <li><a href="#" class="hover:text-red-500 transition-colors">Thailand Getaway</a></li>
+                                        <li><a href="#" class="hover:text-red-500 transition-colors">Dubai Luxury</a></li>
+                                        <li><a href="#" class="hover:text-red-500 transition-colors">Europe Wonders</a></li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-primary mb-4 uppercase text-xs tracking-widest border-b pb-2">By Theme</h4>
+                                    <ul class="space-y-2 text-sm">
+                                        <li><a href="#" class="hover:text-red-500 transition-colors">Honeymoon Specials</a></li>
+                                        <li><a href="#" class="hover:text-red-500 transition-colors">Family Holidays</a></li>
+                                        <li><a href="#" class="hover:text-red-500 transition-colors">Adventure Tours</a></li>
+                                        <li><a href="#" class="hover:text-red-500 transition-colors">Luxury Cruises</a></li>
+                                    </ul>
+                                </div>
+                                <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+                                    <h4 class="font-bold text-primary mb-2 text-sm">Summer Sale 2026</h4>
+                                    <p class="text-xs text-slate-500 mb-4 leading-relaxed">Book your international holiday before February 28th and get a flat 15% discount.</p>
+                                    <button class="w-full bg-red-500 text-white text-xs font-bold py-2 rounded hover:bg-red-600 transition">View Offers</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="cruise.html" class="nav-link text-white/90 hover:text-white transition-colors">Cruise</a>
+                <a href="forex.html" class="nav-link text-white/90 hover:text-white transition-colors">Forex</a>
+
                 <a href="contact.html" class="nav-link text-white/90 hover:text-white transition-colors">Contact</a>
             </div>
 
