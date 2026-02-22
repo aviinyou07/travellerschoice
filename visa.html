@@ -93,7 +93,8 @@
                         },
                         gray: {
                             bg: '#f4f6f9'
-                        }
+                        },
+                        background: '#ffffff'
                     },
                     fontFamily: {
                         sans: ['Segoe UI', 'Roboto', 'Helvetica', 'Arial', 'sans-serif'],
@@ -235,24 +236,24 @@
 </head>
 <body>
    
-    <nav id="navbar" class="fixed top-0 z-50 w-full transition-all duration-300 border-b border-transparent py-2">
+    <nav id="navbar" class="fixed top-0 z-50 w-full transition-all duration-300 border-b border-transparent py-2  ">
         <div class="container mx-auto flex h-16 items-center justify-between px-4 md:px-6 ">
             <div class="flex items-center gap-2">
                 <div class="bg-primary text-white p-1.5 rounded-lg">
                     <i data-lucide="plane" class="h-5 w-5"></i>
                 </div>
-                <a href="index.html" id="brand-text" class="text-xl font-bold tracking-tight text-white transition-colors cursor-pointer">TRAVELLER CHOICE</a>
+                <a href="index.html" id="brand-text" class="text-xl font-bold tracking-tight text-white transition-colors cursor-pointer  ">TRAVELLER CHOICE</a>
             </div>
 
             <div class="hidden md:flex gap-8 text-sm font-medium h-full items-center">
-                <a href="index.html" class="nav-link text-white/90 hover:text-white transition-colors">Home</a>
-                  <a href="flights.html" class="nav-link text-white/90 hover:text-white transition-colors">Flights</a>
-                 <a href="hotels.html" class="nav-link text-white/90 hover:text-white transition-colors">Hotels</a>
+                <a href="index.html" class="nav-link text-white/90  transition-colors">Home</a>
+                  <a href="flights.html" class="nav-link text-white/90   transition-colors">Flights</a>
+                 <a href="hotels.html" class="nav-link text-white/90   transition-colors">Hotels</a>
                 
-                <a href="visa.html" class="nav-link text-white/90 hover:text-white transition-colors">Visa Services</a>
+                <a href="visa.html" class="nav-link text-white/90   transition-colors">Visa Services</a>
                 
                 <div class="group h-full flex items-center">
-                    <a  class="nav-link text-white/90 hover:text-white transition-colors flex items-center gap-1">
+                    <a  class="nav-link text-white/90   transition-colors flex items-center gap-1">
                         Travel Packages <i data-lucide="chevron-down" class="h-3 w-3"></i>
                     </a>
                     
@@ -262,7 +263,7 @@
                                 <div>
                                     <h4 class="font-bold text-primary mb-4 uppercase text-xs tracking-widest border-b pb-2">India Tours</h4>
                                     <ul class="space-y-2 text-sm">
-                                        <li><a href="/holiday_packages_goa.html" class="hover:text-red-500 transition-colors">Goa Packages</a></li>
+                                        <li><a href="holiday_packages_goa.html" class="hover:text-red-500 transition-colors">Goa Packages</a></li>
                                         <li><a href="#" class="hover:text-red-500 transition-colors">Kerala Backwaters</a></li>
                                         <li><a href="#" class="hover:text-red-500 transition-colors">Himachal Special</a></li>
                                         <li><a href="#" class="hover:text-red-500 transition-colors">Rajasthan Royal</a></li>
@@ -296,21 +297,67 @@
                     </div>
                 </div>
 
-                    <a href="cruise.html" class="nav-link text-white/90 hover:text-white transition-colors">Cruise</a>
-                <a href="forex.html" class="nav-link text-white/90 hover:text-white transition-colors">Forex</a>
+                    <a href="cruise.html" class="nav-link text-white/90   transition-colors">Cruise</a>
+                <a href="forex.html" class="nav-link text-white/90   transition-colors">Forex</a>
 
-                <a href="contact.html" class="nav-link text-white/90 hover:text-white transition-colors">Contact</a>
+                <a href="contact.html" class="nav-link text-white/90   transition-colors">Contact</a>
             </div>
 
             <div class="flex items-center gap-4">
-                <button onclick="openModal('login-modal')" class="nav-link text-sm font-medium text-white hover:underline transition-colors">Sign In</button>
-                <button onclick="openModal('signup-modal')" class="inline-flex h-9 items-center justify-center rounded-md bg-white text-black px-4 py-2 text-sm font-medium shadow hover:bg-gray-100 transition-colors">
+                <button onclick="openModal('login-modal')" class="hidden md:block nav-link text-sm font-medium text-white hover:underline transition-colors">Sign In</button>
+                <button onclick="openModal('signup-modal')" class="hidden md:block inline-flex h-9 items-center justify-center rounded-md bg-white text-black px-4 py-2 text-sm font-medium shadow hover:bg-gray-100 transition-colors">
                     Join Free
+                </button>
+                <button id="mobile-menu-button" class="md:hidden p-2 text-white" onclick="toggleMobileMenu()">
+                    <i data-lucide="menu" class="h-6 w-6"></i>
                 </button>
             </div>
         </div>
-    </nav>                                                                                                                                                                                                                                  
+    </nav>
 
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-overlay" class="fixed inset-0 bg-black/50 hidden z-40" onclick="closeMobileMenu()"></div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="fixed top-0 right-0 h-full w-80 bg-white shadow-lg transform translate-x-full transition-transform duration-300 z-50">
+        <div class="p-4">
+            <button onclick="closeMobileMenu()" class="float-right p-2">
+                <i data-lucide="x" class="h-6 w-6 text-gray-600"></i>
+            </button>
+            <div class="mt-8 space-y-4">
+                <a href="index.html" class="block py-2 text-gray-800 hover:text-blue-600" onclick="closeMobileMenu()">Home</a>
+                <a href="flights.html" class="block py-2 text-gray-800 hover:text-blue-600" onclick="closeMobileMenu()">Flights</a>
+                <a href="hotels.html" class="block py-2 text-gray-800 hover:text-blue-600" onclick="closeMobileMenu()">Hotels</a>
+                <a href="visa.html" class="block py-2 text-gray-800 hover:text-blue-600" onclick="closeMobileMenu()">Visa Services</a>
+                <div class="py-2">
+                    <button onclick="toggleSubmenu()" class="text-gray-800 hover:text-blue-600 flex items-center justify-between w-full text-left">
+                        Travel Packages <i id="submenu-icon" data-lucide="chevron-down" class="h-4 w-4 transition-transform"></i>
+                    </button>
+                    <div id="mobile-submenu" class="hidden ml-4 mt-2 space-y-1">
+                        <a href="holiday_packages_goa.html" class="block py-1 text-sm text-gray-600 hover:text-blue-600" onclick="closeMobileMenu()">Goa Packages</a>
+                        <a href="#" class="block py-1 text-sm text-gray-600 hover:text-blue-600" onclick="closeMobileMenu()">Kerala Backwaters</a>
+                        <a href="#" class="block py-1 text-sm text-gray-600 hover:text-blue-600" onclick="closeMobileMenu()">Himachal Special</a>
+                        <a href="#" class="block py-1 text-sm text-gray-600 hover:text-blue-600" onclick="closeMobileMenu()">Rajasthan Royal</a>
+                        <a href="#" class="block py-1 text-sm text-gray-600 hover:text-blue-600" onclick="closeMobileMenu()">Bali Adventure</a>
+                        <a href="#" class="block py-1 text-sm text-gray-600 hover:text-blue-600" onclick="closeMobileMenu()">Thailand Getaway</a>
+                        <a href="#" class="block py-1 text-sm text-gray-600 hover:text-blue-600" onclick="closeMobileMenu()">Dubai Luxury</a>
+                        <a href="#" class="block py-1 text-sm text-gray-600 hover:text-blue-600" onclick="closeMobileMenu()">Europe Wonders</a>
+                        <a href="#" class="block py-1 text-sm text-gray-600 hover:text-blue-600" onclick="closeMobileMenu()">Honeymoon Specials</a>
+                        <a href="#" class="block py-1 text-sm text-gray-600 hover:text-blue-600" onclick="closeMobileMenu()">Family Holidays</a>
+                        <a href="#" class="block py-1 text-sm text-gray-600 hover:text-blue-600" onclick="closeMobileMenu()">Adventure Tours</a>
+                        <a href="#" class="block py-1 text-sm text-gray-600 hover:text-blue-600" onclick="closeMobileMenu()">Luxury Cruises</a>
+                    </div>
+                </div>
+                <a href="cruise.html" class="block py-2 text-gray-800 hover:text-blue-600" onclick="closeMobileMenu()">Cruise</a>
+                <a href="forex.html" class="block py-2 text-gray-800 hover:text-blue-600" onclick="closeMobileMenu()">Forex</a>
+                <a href="contact.html" class="block py-2 text-gray-800 hover:text-blue-600" onclick="closeMobileMenu()">Contact</a>
+                <div class="pt-4 border-t">
+                    <button onclick="openModal('login-modal')" class="block w-full py-2 bg-blue-500 text-white rounded mb-2 hover:bg-blue-600">Sign In</button>
+                    <button onclick="openModal('signup-modal')" class="block w-full py-2 bg-white text-black border rounded hover:bg-gray-100">Join Free</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 <main>
 <section class="relative min-h-[50vh] flex items-center pt-20">
@@ -1312,16 +1359,7 @@
     <!-- Footer Component -->
     <footer class="bg-slate-950 text-slate-300 pt-16 pb-8 border-t border-slate-900">
         <div class="container mx-auto px-4">
-            <div class="flex flex-col lg:flex-row justify-between items-center pb-12 border-b border-slate-800 mb-12 gap-8">
-                <div class="max-w-xl">
-                    <h3 class="text-2xl font-bold text-white mb-2">Join our newsletter</h3>
-                    <p class="text-slate-400">We'll send you the best travel deals, visa updates, and destination guides once a week. No spam.</p>
-                </div>
-                <div class="flex w-full max-w-sm gap-2">
-                    <input type="email" placeholder="Enter your email" class="w-full px-4 py-2.5 rounded-lg bg-slate-900 border border-slate-800 text-white placeholder-slate-500 focus:outline-none focus:border-slate-600 focus:ring-1 focus:ring-slate-600">
-                    <button class="px-6 py-2.5 bg-white text-black font-semibold rounded-lg hover:bg-gray-200 transition-colors whitespace-nowrap">Subscribe</button>
-                </div>
-            </div>
+           
             <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 mb-16">
                 <div class="col-span-2 lg:col-span-2">
                     <div class="flex items-center gap-2 mb-6">
@@ -1332,40 +1370,40 @@
                         Your trusted partner for AI-powered travel planning. We make exploring the world seamless, from visa applications to luxury stays.
                     </p>
                     <div class="flex gap-4">
-                        <a href="#" class="h-10 w-10 rounded-full bg-slate-900 flex items-center justify-center hover:bg-slate-800 hover:text-white transition-colors"><i data-lucide="twitter" class="h-5 w-5"></i></a>
-                        <a href="#" class="h-10 w-10 rounded-full bg-slate-900 flex items-center justify-center hover:bg-slate-800 hover:text-white transition-colors"><i data-lucide="instagram" class="h-5 w-5"></i></a>
-                        <a href="#" class="h-10 w-10 rounded-full bg-slate-900 flex items-center justify-center hover:bg-slate-800 hover:text-white transition-colors"><i data-lucide="facebook" class="h-5 w-5"></i></a>
-                        <a href="#" class="h-10 w-10 rounded-full bg-slate-900 flex items-center justify-center hover:bg-slate-800 hover:text-white transition-colors"><i data-lucide="youtube" class="h-5 w-5"></i></a>
+                        <a href="#" class="h-10 w-10 rounded-full bg-slate-900 flex items-center justify-center hover:bg-slate-800  transition-colors"><i data-lucide="twitter" class="h-5 w-5"></i></a>
+                        <a href="#" class="h-10 w-10 rounded-full bg-slate-900 flex items-center justify-center hover:bg-slate-800  transition-colors"><i data-lucide="instagram" class="h-5 w-5"></i></a>
+                        <a href="#" class="h-10 w-10 rounded-full bg-slate-900 flex items-center justify-center hover:bg-slate-800  transition-colors"><i data-lucide="facebook" class="h-5 w-5"></i></a>
+                        <a href="#" class="h-10 w-10 rounded-full bg-slate-900 flex items-center justify-center hover:bg-slate-800  transition-colors"><i data-lucide="youtube" class="h-5 w-5"></i></a>
                     </div>
                 </div>
                 <div>
                     <h4 class="font-bold text-white mb-6">Company</h4>
                     <ul class="space-y-4 text-sm">
-                        <li><a href="#" class="hover:text-white transition-colors">About Us</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Careers</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Press</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Blog</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Sustainability</a></li>
+                        <li><a href="#" class=" transition-colors">About Us</a></li>
+                        <li><a href="#" class=" transition-colors">Careers</a></li>
+                        <li><a href="#" class=" transition-colors">Press</a></li>
+                        <li><a href="#" class=" transition-colors">Blog</a></li>
+                        <li><a href="#" class=" transition-colors">Sustainability</a></li>
                     </ul>
                 </div>
                 <div>
                     <h4 class="font-bold text-white mb-6">Support</h4>
                     <ul class="space-y-4 text-sm">
-                        <li><a href="#" class="hover:text-white transition-colors">Help Center</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Terms of Service</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Legal</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Privacy Policy</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Status</a></li>
+                        <li><a href="#" class=" transition-colors">Help Center</a></li>
+                        <li><a href="#" class=" transition-colors">Terms of Service</a></li>
+                        <li><a href="#" class=" transition-colors">Legal</a></li>
+                        <li><a href="#" class=" transition-colors">Privacy Policy</a></li>
+                        <li><a href="#" class=" transition-colors">Status</a></li>
                     </ul>
                 </div>
                 <div>
                     <h4 class="font-bold text-white mb-6">Top Routes</h4>
                     <ul class="space-y-4 text-sm">
-                        <li><a href="#" class="hover:text-white transition-colors">Flights to London</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Flights to Paris</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Flights to Tokyo</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Flights to New York</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Flights to Dubai</a></li>
+                        <li><a href="#" class=" transition-colors">Flights to London</a></li>
+                        <li><a href="#" class=" transition-colors">Flights to Paris</a></li>
+                        <li><a href="#" class=" transition-colors">Flights to Tokyo</a></li>
+                        <li><a href="#" class=" transition-colors">Flights to New York</a></li>
+                        <li><a href="#" class=" transition-colors">Flights to Dubai</a></li>
                     </ul>
                 </div>
             </div>
@@ -1390,7 +1428,7 @@
                         <p class="text-xs text-white/70">Online now</p>
                     </div>
                 </div>
-                <button onclick="toggleChat()" class="text-white/80 hover:text-white"><i data-lucide="x" class="h-5 w-5"></i></button>
+                <button onclick="toggleChat()" class="text-white/80 "><i data-lucide="x" class="h-5 w-5"></i></button>
             </div>
             <div class="p-4 h-80 overflow-y-auto bg-slate-50 space-y-4">
                 <div class="flex gap-2">
@@ -1415,97 +1453,156 @@
         </button>
     </div>
 
-    <!-- Login Modal -->
+     <!-- Login Modal -->
     <div id="login-modal" class="relative z-[100] hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
-        <div class="fixed inset-0 bg-black/80 backdrop-blur-sm transition-opacity" onclick="closeModal('login-modal')"></div>
-        <div class="fixed left-[50%] top-[50%] z-[101] grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border bg-background p-6 shadow-lg duration-200 sm:rounded-lg md:w-full">
+        <div class="fixed inset-0 bg-black/80 backdrop-blur-sm transition-opacity" onclick="closeModal('login-modal')">
+        </div>
+        <div
+            class="fixed left-[50%] top-[50%] z-[101] grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border bg-background p-6 shadow-lg duration-200 sm:rounded-lg md:w-full">
             <div class="flex flex-col space-y-2 text-center sm:text-left">
                 <h2 class="text-lg font-semibold leading-none tracking-tight">Sign In</h2>
                 <p class="text-sm text-muted-foreground">Enter your email below to sign in to your account</p>
             </div>
             <div class="grid gap-4">
                 <div class="grid gap-2">
-                    <button class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium border border-input bg-background hover:bg-slate-100 hover:text-accent-foreground h-10 px-4 py-2 w-full transition-colors">
-                        <svg class="mr-2 h-4 w-4" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="github" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path></svg>
+                    <button
+                        class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium border border-input bg-background hover:bg-slate-100 hover:text-accent-foreground h-10 px-4 py-2 w-full transition-colors">
+                        <svg class="mr-2 h-4 w-4" aria-hidden="true" focusable="false" data-prefix="fab"
+                            data-icon="github" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512">
+                            <path fill="currentColor"
+                                d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z">
+                            </path>
+                        </svg>
                         GitHub
                     </button>
-                    <button class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium border border-input bg-background hover:bg-slate-100 hover:text-accent-foreground h-10 px-4 py-2 w-full transition-colors">
-                        <svg class="mr-2 h-4 w-4" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="google" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 488 512"><path fill="currentColor" d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z"></path></svg>
+                    <button
+                        class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium border border-input bg-background hover:bg-slate-100 hover:text-accent-foreground h-10 px-4 py-2 w-full transition-colors">
+                        <svg class="mr-2 h-4 w-4" aria-hidden="true" focusable="false" data-prefix="fab"
+                            data-icon="google" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 488 512">
+                            <path fill="currentColor"
+                                d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z">
+                            </path>
+                        </svg>
                         Google
                     </button>
                 </div>
                 <div class="relative">
                     <div class="absolute inset-0 flex items-center"><span class="w-full border-t"></span></div>
-                    <div class="relative flex justify-center text-xs uppercase"><span class="bg-background px-2 text-muted-foreground">Or continue with</span></div>
+                    <div class="relative flex justify-center text-xs uppercase"><span
+                            class="bg-background px-2 text-muted-foreground">Or continue with</span></div>
                 </div>
                 <div class="grid gap-2">
                     <div class="grid gap-1">
-                        <label class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70" for="email">Email</label>
-                        <input class="flex h-10 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50" id="email" placeholder="m@example.com" type="email" autocapitalize="none" autocomplete="email" autocorrect="off">
+                        <label
+                            class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                            for="email">Email</label>
+                        <input
+                            class="flex h-10 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
+                            id="email" placeholder="m@example.com" type="email" autocapitalize="none"
+                            autocomplete="email" autocorrect="off">
                     </div>
                     <div class="grid gap-1">
-                        <label class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70" for="password">Password</label>
-                        <input class="flex h-10 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50" id="password" type="password">
+                        <label
+                            class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                            for="password">Password</label>
+                        <input
+                            class="flex h-10 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
+                            id="password" type="password">
                     </div>
-                    <button class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground shadow hover:bg-primary/90 h-10 px-4 py-2 w-full mt-2">
+                    <button
+                        class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground shadow hover:bg-primary/90 h-10 px-4 py-2 w-full mt-2">
                         Sign In with Email
                     </button>
                 </div>
                 <div class="text-center text-sm text-muted-foreground">
-                    Don't have an account? <button onclick="switchToSignup()" class="underline underline-offset-4 hover:text-primary font-medium">Join Free</button>
+                    Don't have an account? <button onclick="switchToSignup()"
+                        class="underline underline-offset-4 hover:text-primary font-medium">Join Free</button>
                 </div>
             </div>
-            <button onclick="closeModal('login-modal')" class="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground">
+            <button onclick="closeModal('login-modal')"
+                class="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground">
                 <i data-lucide="x" class="h-4 w-4"></i><span class="sr-only">Close</span>
             </button>
         </div>
     </div>
 
     <!-- Signup Modal -->
-    <div id="signup-modal" class="relative z-[100] hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
-        <div class="fixed inset-0 bg-black/80 backdrop-blur-sm transition-opacity" onclick="closeModal('signup-modal')"></div>
-        <div class="fixed left-[50%] top-[50%] z-[101] grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border bg-background p-6 shadow-lg duration-200 sm:rounded-lg md:w-full">
+    <div id="signup-modal" class="relative z-[100] hidden" aria-labelledby="modal-title" role="dialog"
+        aria-modal="true">
+        <div class="fixed inset-0 bg-black/80 backdrop-blur-sm transition-opacity" onclick="closeModal('signup-modal')">
+        </div>
+        <div
+            class="fixed left-[50%] top-[50%] z-[101] grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border bg-background p-6 shadow-lg duration-200 sm:rounded-lg md:w-full">
             <div class="flex flex-col space-y-2 text-center sm:text-left">
                 <h2 class="text-lg font-semibold leading-none tracking-tight">Create an account</h2>
                 <p class="text-sm text-muted-foreground">Enter your email below to create your account</p>
             </div>
             <div class="grid gap-4">
                 <div class="grid gap-2">
-                    <button class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium border border-input bg-background hover:bg-slate-100 hover:text-accent-foreground h-10 px-4 py-2 w-full transition-colors">
-                        <svg class="mr-2 h-4 w-4" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="github" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path></svg>
+                    <button
+                        class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium border border-input bg-background hover:bg-slate-100 hover:text-accent-foreground h-10 px-4 py-2 w-full transition-colors">
+                        <svg class="mr-2 h-4 w-4" aria-hidden="true" focusable="false" data-prefix="fab"
+                            data-icon="github" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512">
+                            <path fill="currentColor"
+                                d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z">
+                            </path>
+                        </svg>
                         GitHub
                     </button>
-                    <button class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium border border-input bg-background hover:bg-slate-100 hover:text-accent-foreground h-10 px-4 py-2 w-full transition-colors">
-                        <svg class="mr-2 h-4 w-4" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="google" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 488 512"><path fill="currentColor" d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z"></path></svg>
+                    <button
+                        class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium border border-input bg-background hover:bg-slate-100 hover:text-accent-foreground h-10 px-4 py-2 w-full transition-colors">
+                        <svg class="mr-2 h-4 w-4" aria-hidden="true" focusable="false" data-prefix="fab"
+                            data-icon="google" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 488 512">
+                            <path fill="currentColor"
+                                d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z">
+                            </path>
+                        </svg>
                         Google
                     </button>
                 </div>
                 <div class="relative">
                     <div class="absolute inset-0 flex items-center"><span class="w-full border-t"></span></div>
-                    <div class="relative flex justify-center text-xs uppercase"><span class="bg-background px-2 text-muted-foreground">Or continue with</span></div>
+                    <div class="relative flex justify-center text-xs uppercase"><span
+                            class="bg-background px-2 text-muted-foreground">Or continue with</span></div>
                 </div>
                 <div class="grid gap-2">
                     <div class="grid gap-1">
-                        <label class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70" for="signup-name">Full Name</label>
-                        <input class="flex h-10 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50" id="signup-name" type="text" placeholder="John Doe">
+                        <label
+                            class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                            for="signup-name">Full Name</label>
+                        <input
+                            class="flex h-10 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
+                            id="signup-name" type="text" placeholder="John Doe">
                     </div>
                     <div class="grid gap-1">
-                        <label class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70" for="signup-email">Email</label>
-                        <input class="flex h-10 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50" id="signup-email" placeholder="m@example.com" type="email" autocapitalize="none" autocomplete="email" autocorrect="off">
+                        <label
+                            class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                            for="signup-email">Email</label>
+                        <input
+                            class="flex h-10 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
+                            id="signup-email" placeholder="m@example.com" type="email" autocapitalize="none"
+                            autocomplete="email" autocorrect="off">
                     </div>
                     <div class="grid gap-1">
-                        <label class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70" for="signup-password">Password</label>
-                        <input class="flex h-10 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50" id="signup-password" type="password">
+                        <label
+                            class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                            for="signup-password">Password</label>
+                        <input
+                            class="flex h-10 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
+                            id="signup-password" type="password">
                     </div>
-                    <button class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground shadow hover:bg-primary/90 h-10 px-4 py-2 w-full mt-2">
+                    <button
+                        class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground shadow hover:bg-primary/90 h-10 px-4 py-2 w-full mt-2">
                         Create Account
                     </button>
                 </div>
                 <div class="text-center text-sm text-muted-foreground">
-                    Already have an account? <button onclick="switchToLogin()" class="underline underline-offset-4 hover:text-primary font-medium">Sign In</button>
+                    Already have an account? <button onclick="switchToLogin()"
+                        class="underline underline-offset-4 hover:text-primary font-medium">Sign In</button>
                 </div>
             </div>
-            <button onclick="closeModal('signup-modal')" class="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground">
+            <button onclick="closeModal('signup-modal')"
+                class="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground">
                 <i data-lucide="x" class="h-4 w-4"></i><span class="sr-only">Close</span>
             </button>
         </div>
@@ -1528,9 +1625,20 @@
                 brandText.classList.add('text-black');
 
                 navLinks.forEach(link => {
-                    link.classList.remove('text-white', 'text-white/90');
+                    link.classList.remove('text-white', 'text-white/90', 'hover:text-black');
                     link.classList.add('text-black', 'hover:text-primary');
                 });
+
+                const mobileMenuButton = document.getElementById('mobile-menu-button');
+                if (mobileMenuButton) {
+                    mobileMenuButton.classList.remove('text-white');
+                    mobileMenuButton.classList.add('text-black', 'bg-white/10', 'backdrop-blur-sm', 'rounded-md');
+                    const icon = mobileMenuButton.querySelector('i');
+                    if (icon) {
+                        icon.classList.remove('text-white');
+                        icon.classList.add('text-black');
+                    }
+                }
             } else {
                 navbar.classList.remove('bg-white', 'shadow-md');
                 navbar.classList.add('border-transparent', 'py-2');
@@ -1538,9 +1646,20 @@
                 brandText.classList.remove('text-black');
 
                 navLinks.forEach(link => {
-                    link.classList.add('text-white', 'text-white/90');
-                    link.classList.remove('text-black', 'hover:text-primary');
+                    link.classList.add('text-white', 'text-white/90', 'hover:text-black');
+                    link.classList.remove('text-black', 'hover:text-primary', 'hover:text-white');
                 });
+
+                const mobileMenuButton = document.getElementById('mobile-menu-button');
+                if (mobileMenuButton) {
+                    mobileMenuButton.classList.remove('text-black', 'bg-white/10', 'backdrop-blur-sm', 'rounded-md');
+                    mobileMenuButton.classList.add('text-white');
+                    const icon = mobileMenuButton.querySelector('i');
+                    if (icon) {
+                        icon.classList.remove('text-black');
+                        icon.classList.add('text-white');
+                    }
+                }
             }
         });
 
@@ -1599,6 +1718,39 @@
             setTimeout(() => {
                 openModal('login-modal');
             }, 160);
+        }
+
+        /* --- MOBILE MENU LOGIC --- */
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const overlay = document.getElementById('mobile-overlay');
+            if (menu.classList.contains('translate-x-full')) {
+                menu.classList.remove('translate-x-full');
+                menu.classList.add('translate-x-0');
+                overlay.classList.remove('hidden');
+            } else {
+                closeMobileMenu();
+            }
+        }
+
+        function closeMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const overlay = document.getElementById('mobile-overlay');
+            menu.classList.remove('translate-x-0');
+            menu.classList.add('translate-x-full');
+            overlay.classList.add('hidden');
+        }
+
+        function toggleSubmenu() {
+            const submenu = document.getElementById('mobile-submenu');
+            const icon = document.getElementById('submenu-icon');
+            if (submenu.classList.contains('hidden')) {
+                submenu.classList.remove('hidden');
+                icon.style.transform = 'rotate(180deg)';
+            } else {
+                submenu.classList.add('hidden');
+                icon.style.transform = 'rotate(0deg)';
+            }
         }
     </script>
 </body>

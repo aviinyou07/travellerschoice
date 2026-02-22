@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script>
         tailwind.config = {
             theme: {
@@ -44,7 +44,6 @@
     </script>
 
     <style>
-        
         /* Hide scrollbars but keep functionality */
         .no-scrollbar::-webkit-scrollbar {
             display: none;
@@ -91,8 +90,7 @@
         .filter-inactive:hover {
             background-color: #f3f4f6;
         }
-    </style>
-<style>
+
         .glass-panel {
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(8px);
@@ -117,107 +115,193 @@
             transform: translateY(0);
         }
 
-        .chat-enter { animation: slideUp 0.3s ease-out forwards; }
+        .chat-enter {
+            animation: slideUp 0.3s ease-out forwards;
+        }
+
         @keyframes slideUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        .modal-enter { animation: modalIn 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
-        .modal-exit { animation: modalOut 0.15s ease-in forwards; }
+        .modal-enter {
+            animation: modalIn 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .modal-exit {
+            animation: modalOut 0.15s ease-in forwards;
+        }
+
         @keyframes modalIn {
-            from { opacity: 0; transform: translate(-50%, -48%) scale(0.96); }
-            to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+            from {
+                opacity: 0;
+                transform: translate(-50%, -48%) scale(0.96);
+            }
+
+            to {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
         }
+
         @keyframes modalOut {
-            from { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-            to { opacity: 0; transform: translate(-50%, -48%) scale(0.96); }
+            from {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+
+            to {
+                opacity: 0;
+                transform: translate(-50%, -48%) scale(0.96);
+            }
         }
 
-        .backdrop-enter { animation: fadeIn 0.2s ease-out forwards; }
-        .backdrop-exit { animation: fadeOut 0.2s ease-in forwards; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        @keyframes fadeOut { from { opacity: 1; } to { opacity: 0; } }
+        .backdrop-enter {
+            animation: fadeIn 0.2s ease-out forwards;
+        }
 
-        .scrollbar-hide::-webkit-scrollbar { display: none; }
-        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+        .backdrop-exit {
+            animation: fadeOut 0.2s ease-in forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeOut {
+            from {
+                opacity: 1;
+            }
+
+            to {
+                opacity: 0;
+            }
+        }
+
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
     </style>
 </head>
 
 <body>
     <!-- Navbar Component -->
-    
+
     <nav id="navbar" class="fixed top-0 z-50 w-full transition-all duration-300 border-b border-transparent py-2">
         <div class="container mx-auto flex h-16 items-center justify-between px-4 md:px-6 ">
             <div class="flex items-center gap-2">
                 <div class="bg-primary text-white p-1.5 rounded-lg">
                     <i data-lucide="plane" class="h-5 w-5"></i>
                 </div>
-                <a href="index.html" id="brand-text" class="text-xl font-bold tracking-tight text-white transition-colors cursor-pointer">TRAVELLER CHOICE</a>
+                <a href="index.html" id="brand-text"
+                    class="text-xl font-bold tracking-tight text-white transition-colors cursor-pointer">TRAVELLER
+                    CHOICE</a>
             </div>
 
             <div class="hidden md:flex gap-8 text-sm font-medium h-full items-center">
-                <a href="index.html" class="nav-link text-white/90 hover:text-white transition-colors">Home</a>
-                  <a href="flights.html" class="nav-link text-white/90 hover:text-white transition-colors">Flights</a>
-                 <a href="hotels.html" class="nav-link text-white/90 hover:text-white transition-colors">Hotels</a>
-                 <a href="hotels.html" class="nav-link text-white/90 hover:text-white transition-colors">Hotels</a>
-                <a href="visa.html" class="nav-link text-white/90 hover:text-white transition-colors">Visa Services</a>
-                
+                <a href="index.html" class="nav-link text-white/90  transition-colors">Home</a>
+                <a href="flights.html" class="nav-link text-white/90  transition-colors">Flights</a>
+                <a href="hotels.html" class="nav-link text-white/90  transition-colors">Hotels</a>
+
+                <a href="visa.html" class="nav-link text-white/90  transition-colors">Visa Services</a>
+
                 <div class="group h-full flex items-center">
-                    <a  class="nav-link text-white/90 hover:text-white transition-colors flex items-center gap-1">
+                    <a class="nav-link text-white/90  transition-colors flex items-center gap-1">
                         Travel Packages <i data-lucide="chevron-down" class="h-3 w-3"></i>
                     </a>
-                    
+
                     <div class="mega-menu absolute top-full left-0 w-100 ">
                         <div class="bg-white shadow-2xl border-t border-gray-100 p-8 text-gray-800">
                             <div class="container mx-auto grid grid-cols-4 gap-8">
                                 <div>
-                                    <h4 class="font-bold text-primary mb-4 uppercase text-xs tracking-widest border-b pb-2">India Tours</h4>
+                                    <h4
+                                        class="font-bold text-primary mb-4 uppercase text-xs tracking-widest border-b pb-2">
+                                        India Tours</h4>
                                     <ul class="space-y-2 text-sm">
-                                        <li><a href="holiday_packages_goa.html" class="hover:text-red-500 transition-colors">Goa Packages</a></li>
-                                        <li><a href="#" class="hover:text-red-500 transition-colors">Kerala Backwaters</a></li>
-                                        <li><a href="#" class="hover:text-red-500 transition-colors">Himachal Special</a></li>
-                                        <li><a href="#" class="hover:text-red-500 transition-colors">Rajasthan Royal</a></li>
+                                        <li><a href="holiday_packages_goa.html"
+                                                class="hover:text-red-500 transition-colors">Goa Packages</a></li>
+                                        <li><a href="#" class="hover:text-red-500 transition-colors">Kerala
+                                                Backwaters</a></li>
+                                        <li><a href="#" class="hover:text-red-500 transition-colors">Himachal
+                                                Special</a></li>
+                                        <li><a href="#" class="hover:text-red-500 transition-colors">Rajasthan Royal</a>
+                                        </li>
                                     </ul>
                                 </div>
                                 <div>
-                                    <h4 class="font-bold text-primary mb-4 uppercase text-xs tracking-widest border-b pb-2">International</h4>
+                                    <h4
+                                        class="font-bold text-primary mb-4 uppercase text-xs tracking-widest border-b pb-2">
+                                        International</h4>
                                     <ul class="space-y-2 text-sm">
-                                        <li><a href="#" class="hover:text-red-500 transition-colors">Bali Adventure</a></li>
-                                        <li><a href="#" class="hover:text-red-500 transition-colors">Thailand Getaway</a></li>
-                                        <li><a href="#" class="hover:text-red-500 transition-colors">Dubai Luxury</a></li>
-                                        <li><a href="#" class="hover:text-red-500 transition-colors">Europe Wonders</a></li>
+                                        <li><a href="#" class="hover:text-red-500 transition-colors">Bali Adventure</a>
+                                        </li>
+                                        <li><a href="#" class="hover:text-red-500 transition-colors">Thailand
+                                                Getaway</a></li>
+                                        <li><a href="#" class="hover:text-red-500 transition-colors">Dubai Luxury</a>
+                                        </li>
+                                        <li><a href="#" class="hover:text-red-500 transition-colors">Europe Wonders</a>
+                                        </li>
                                     </ul>
                                 </div>
                                 <div>
-                                    <h4 class="font-bold text-primary mb-4 uppercase text-xs tracking-widest border-b pb-2">By Theme</h4>
+                                    <h4
+                                        class="font-bold text-primary mb-4 uppercase text-xs tracking-widest border-b pb-2">
+                                        By Theme</h4>
                                     <ul class="space-y-2 text-sm">
-                                        <li><a href="#" class="hover:text-red-500 transition-colors">Honeymoon Specials</a></li>
-                                        <li><a href="#" class="hover:text-red-500 transition-colors">Family Holidays</a></li>
-                                        <li><a href="#" class="hover:text-red-500 transition-colors">Adventure Tours</a></li>
-                                        <li><a href="#" class="hover:text-red-500 transition-colors">Luxury Cruises</a></li>
+                                        <li><a href="#" class="hover:text-red-500 transition-colors">Honeymoon
+                                                Specials</a></li>
+                                        <li><a href="#" class="hover:text-red-500 transition-colors">Family Holidays</a>
+                                        </li>
+                                        <li><a href="#" class="hover:text-red-500 transition-colors">Adventure Tours</a>
+                                        </li>
+                                        <li><a href="#" class="hover:text-red-500 transition-colors">Luxury Cruises</a>
+                                        </li>
                                     </ul>
                                 </div>
                                 <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
                                     <h4 class="font-bold text-primary mb-2 text-sm">Summer Sale 2026</h4>
-                                    <p class="text-xs text-slate-500 mb-4 leading-relaxed">Book your international holiday before February 28th and get a flat 15% discount.</p>
-                                    <button class="w-full bg-red-500 text-white text-xs font-bold py-2 rounded hover:bg-red-600 transition">View Offers</button>
+                                    <p class="text-xs text-slate-500 mb-4 leading-relaxed">Book your international
+                                        holiday before February 28th and get a flat 15% discount.</p>
+                                    <button
+                                        class="w-full bg-red-500 text-white text-xs font-bold py-2 rounded hover:bg-red-600 transition">View
+                                        Offers</button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <a href="cruise.html" class="nav-link text-white/90 hover:text-white transition-colors">Cruise</a>
-                <a href="forex.html" class="nav-link text-white/90 hover:text-white transition-colors">Forex</a>
+                <a href="cruise.html" class="nav-link text-white/90  transition-colors">Cruise</a>
+                <a href="forex.html" class="nav-link text-white/90  transition-colors">Forex</a>
 
-                <a href="contact.html" class="nav-link text-white/90 hover:text-white transition-colors">Contact</a>
+                <a href="contact.html" class="nav-link text-white/90  transition-colors">Contact</a>
             </div>
 
             <div class="flex items-center gap-4">
-                <button onclick="openModal('login-modal')" class="nav-link text-sm font-medium text-white hover:underline transition-colors">Sign In</button>
-                <button onclick="openModal('signup-modal')" class="inline-flex h-9 items-center justify-center rounded-md bg-white text-black px-4 py-2 text-sm font-medium shadow hover:bg-gray-100 transition-colors">
+                <button onclick="openModal('login-modal')" class="hidden md:block nav-link text-sm font-medium text-white hover:underline transition-colors">Sign In</button>
+                <button onclick="openModal('signup-modal')" class="hidden md:block inline-flex h-9 items-center justify-center rounded-md bg-white text-black px-4 py-2 text-sm font-medium shadow hover:bg-gray-100 transition-colors">
                     Join Free
+                </button>
+                <button id="mobile-menu-button" class="md:hidden p-2 text-white" onclick="toggleMobileMenu()">
+                    <i data-lucide="menu" class="h-6 w-6"></i>
                 </button>
             </div>
         </div>
@@ -226,6 +310,50 @@
 
 
 
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-overlay" class="fixed inset-0 bg-black/50 hidden z-40" onclick="closeMobileMenu()"></div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="fixed top-0 right-0 h-full w-80 bg-white shadow-lg transform translate-x-full transition-transform duration-300 z-50">
+        <div class="p-4">
+            <button onclick="closeMobileMenu()" class="float-right p-2">
+                <i data-lucide="x" class="h-6 w-6 text-gray-600"></i>
+            </button>
+            <div class="mt-8 space-y-4">
+                <a href="index.html" class="block py-2 text-gray-800 hover:text-blue-600" onclick="closeMobileMenu()">Home</a>
+                <a href="flights.html" class="block py-2 text-gray-800 hover:text-blue-600" onclick="closeMobileMenu()">Flights</a>
+                <a href="hotels.html" class="block py-2 text-gray-800 hover:text-blue-600" onclick="closeMobileMenu()">Hotels</a>
+                <a href="visa.html" class="block py-2 text-gray-800 hover:text-blue-600" onclick="closeMobileMenu()">Visa Services</a>
+                <div class="py-2">
+                    <button onclick="toggleSubmenu()" class="text-gray-800 hover:text-blue-600 flex items-center justify-between w-full text-left">
+                        Travel Packages <i id="submenu-icon" data-lucide="chevron-down" class="h-4 w-4 transition-transform"></i>
+                    </button>
+                    <div id="mobile-submenu" class="hidden ml-4 mt-2 space-y-1">
+                        <a href="holiday_packages_goa.html" class="block py-1 text-sm text-gray-600 hover:text-blue-600" onclick="closeMobileMenu()">Goa Packages</a>
+                        <a href="#" class="block py-1 text-sm text-gray-600 hover:text-blue-600" onclick="closeMobileMenu()">Kerala Backwaters</a>
+                        <a href="#" class="block py-1 text-sm text-gray-600 hover:text-blue-600" onclick="closeMobileMenu()">Himachal Special</a>
+                        <a href="#" class="block py-1 text-sm text-gray-600 hover:text-blue-600" onclick="closeMobileMenu()">Rajasthan Royal</a>
+                        <a href="#" class="block py-1 text-sm text-gray-600 hover:text-blue-600" onclick="closeMobileMenu()">Bali Adventure</a>
+                        <a href="#" class="block py-1 text-sm text-gray-600 hover:text-blue-600" onclick="closeMobileMenu()">Thailand Getaway</a>
+                        <a href="#" class="block py-1 text-sm text-gray-600 hover:text-blue-600" onclick="closeMobileMenu()">Dubai Luxury</a>
+                        <a href="#" class="block py-1 text-sm text-gray-600 hover:text-blue-600" onclick="closeMobileMenu()">Europe Wonders</a>
+                        <a href="#" class="block py-1 text-sm text-gray-600 hover:text-blue-600" onclick="closeMobileMenu()">Honeymoon Specials</a>
+                        <a href="#" class="block py-1 text-sm text-gray-600 hover:text-blue-600" onclick="closeMobileMenu()">Family Holidays</a>
+                        <a href="#" class="block py-1 text-sm text-gray-600 hover:text-blue-600" onclick="closeMobileMenu()">Adventure Tours</a>
+                        <a href="#" class="block py-1 text-sm text-gray-600 hover:text-blue-600" onclick="closeMobileMenu()">Luxury Cruises</a>
+                    </div>
+                </div>
+                <a href="cruise.html" class="block py-2 text-gray-800 hover:text-blue-600" onclick="closeMobileMenu()">Cruise</a>
+                <a href="forex.html" class="block py-2 text-gray-800 hover:text-blue-600" onclick="closeMobileMenu()">Forex</a>
+                <a href="contact.html" class="block py-2 text-gray-800 hover:text-blue-600" onclick="closeMobileMenu()">Contact</a>
+                <div class="pt-4 border-t">
+                    <button onclick="openModal('login-modal')" class="block w-full py-2 bg-blue-500 text-white rounded mb-2 hover:bg-blue-600">Sign In</button>
+                    <button onclick="openModal('signup-modal')" class="block w-full py-2 bg-white text-black border rounded hover:bg-gray-100">Join Free</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <main>
 
@@ -241,7 +369,7 @@
                     <div
                         class="inline-flex items-center rounded-full border border-white/30 bg-white/10 px-3 py-1 text-xs font-medium backdrop-blur-md">
                         <span class="mr-1 h-2 w-2 rounded-full bg-green-400"></span>
-                        AI Trip Planner Live
+                        Your Best Trip Planner
                     </div>
                     <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight leading-[1.1] drop-shadow-sm">
                         Discover the <br>
@@ -257,7 +385,7 @@
                         <div
                             class="absolute -inset-1 bg-gradient-to-r from-blue-400 to-purple-400 rounded-lg blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200">
                         </div>
-                        
+
                     </div>
                 </div>
 
@@ -445,906 +573,971 @@
             </div>
         </section>
 
-        
-
-        <section class="py-8 bg-slate-50"> 
-        <div class="container mx-auto px-4 py-6 space-y-12">
-
-            <div>
-
-                <div class="lg:col-span-8 space-y-8">
-
-                     
-
-                    <div class="relative group">
-                        <h2 class="text-lg font-bold text-gray-800 mb-4">Explore Tour Packages by Theme</h2>
-                        <button onclick="scrollContainer('themes-scroll', -200)"
-                            class="absolute left-[-15px] top-[60%] z-10 w-8 h-8 bg-white rounded-full shadow-md flex items-center justify-center hover:bg-gray-100 border border-gray-100 transition hover:scale-110"><i
-                                class="fas fa-chevron-left text-gray-600"></i></button>
-                        <button onclick="scrollContainer('themes-scroll', 200)"
-                            class="absolute right-[-15px] top-[60%] z-10 w-8 h-8 bg-white rounded-full shadow-md flex items-center justify-center hover:bg-gray-100 border border-gray-100 transition hover:scale-110"><i
-                                class="fas fa-chevron-right text-gray-600"></i></button>
-
-                        <div id="themes-scroll" class="flex gap-4 overflow-x-auto no-scrollbar scroll-smooth pb-2">
 
 
-                            <div
-                                class="min-w-[140px] h-[160px] relative rounded-xl overflow-hidden cursor-pointer hover:-translate-y-1 transition transform duration-300 shadow-sm">
-                                <img src="https://images.unsplash.com/photo-1507608616759-54f48f0af0ee?auto=format&fit=crop&w=300&q=80"
-                                    class="w-full h-full object-cover">
-                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
-                                <span class="absolute bottom-3 left-3 text-white font-bold text-sm leading-tight">Super
-                                    Saver</span>
-                            </div>
-                            <div
-                                class="min-w-[140px] h-[160px] relative rounded-xl overflow-hidden cursor-pointer hover:-translate-y-1 transition transform duration-300 shadow-sm">
-                                <img src="https://images.unsplash.com/photo-1483921020237-2ff51e8e4b22?auto=format&fit=crop&w=300&q=80"
-                                    class="w-full h-full object-cover">
-                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
-                                <span class="absolute bottom-3 left-3 text-white font-bold text-sm">Winter Tours</span>
-                            </div>
-                            <div
-                                class="min-w-[140px] h-[160px] relative rounded-xl overflow-hidden cursor-pointer hover:-translate-y-1 transition transform duration-300 shadow-sm">
-                                <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=300&q=80"
-                                    class="w-full h-full object-cover">
-                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
-                                <span class="absolute bottom-3 left-3 text-white font-bold text-sm">Honeymoon</span>
-                            </div>
-                            <div
-                                class="min-w-[140px] h-[160px] relative rounded-xl overflow-hidden cursor-pointer hover:-translate-y-1 transition transform duration-300 shadow-sm">
-                                <img src="https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&w=300&q=80"
-                                    class="w-full h-full object-cover">
-                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
-                                <span class="absolute bottom-3 left-3 text-white font-bold text-sm">Group Tours</span>
-                            </div>
-                            <div
-                                class="min-w-[140px] h-[160px] relative rounded-xl overflow-hidden cursor-pointer hover:-translate-y-1 transition transform duration-300 shadow-sm">
-                                <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=300&q=80"
-                                    class="w-full h-full object-cover">
-                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
-                                <span class="absolute bottom-3 left-3 text-white font-bold text-sm">Short Breaks</span>
-                            </div>
+        <section class="py-8 bg-slate-50">
+            <div class="container mx-auto px-4 py-6 space-y-12">
 
-                            <div
-                                class="min-w-[140px] h-[160px] relative rounded-xl overflow-hidden cursor-pointer hover:-translate-y-1 transition transform duration-300 shadow-sm">
-                                <img src="https://images.unsplash.com/photo-1507608616759-54f48f0af0ee?auto=format&fit=crop&w=300&q=80"
-                                    class="w-full h-full object-cover">
-                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
-                                <span class="absolute bottom-3 left-3 text-white font-bold text-sm leading-tight">Super
-                                    Saver</span>
-                            </div>
-                            <div
-                                class="min-w-[140px] h-[160px] relative rounded-xl overflow-hidden cursor-pointer hover:-translate-y-1 transition transform duration-300 shadow-sm">
-                                <img src="https://images.unsplash.com/photo-1507608616759-54f48f0af0ee?auto=format&fit=crop&w=300&q=80"
-                                    class="w-full h-full object-cover">
-                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
-                                <span class="absolute bottom-3 left-3 text-white font-bold text-sm leading-tight">Super
-                                    Saver</span>
-                            </div>
-                            <div
-                                class="min-w-[140px] h-[160px] relative rounded-xl overflow-hidden cursor-pointer hover:-translate-y-1 transition transform duration-300 shadow-sm">
-                                <img src="https://images.unsplash.com/photo-1507608616759-54f48f0af0ee?auto=format&fit=crop&w=300&q=80"
-                                    class="w-full h-full object-cover">
-                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
-                                <span class="absolute bottom-3 left-3 text-white font-bold text-sm leading-tight">Super
-                                    Saver</span>
-                            </div>
-                            <div
-                                class="min-w-[140px] h-[160px] relative rounded-xl overflow-hidden cursor-pointer hover:-translate-y-1 transition transform duration-300 shadow-sm">
-                                <img src="https://images.unsplash.com/photo-1507608616759-54f48f0af0ee?auto=format&fit=crop&w=300&q=80"
-                                    class="w-full h-full object-cover">
-                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
-                                <span class="absolute bottom-3 left-3 text-white font-bold text-sm leading-tight">Super
-                                    Saver</span>
-                            </div>
-                            <div
-                                class="min-w-[140px] h-[160px] relative rounded-xl overflow-hidden cursor-pointer hover:-translate-y-1 transition transform duration-300 shadow-sm">
-                                <img src="https://images.unsplash.com/photo-1507608616759-54f48f0af0ee?auto=format&fit=crop&w=300&q=80"
-                                    class="w-full h-full object-cover">
-                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
-                                <span class="absolute bottom-3 left-3 text-white font-bold text-sm leading-tight">Super
-                                    Saver</span>
-                            </div>
-                            <div
-                                class="min-w-[140px] h-[160px] relative rounded-xl overflow-hidden cursor-pointer hover:-translate-y-1 transition transform duration-300 shadow-sm">
-                                <img src="https://images.unsplash.com/photo-1507608616759-54f48f0af0ee?auto=format&fit=crop&w=300&q=80"
-                                    class="w-full h-full object-cover">
-                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
-                                <span class="absolute bottom-3 left-3 text-white font-bold text-sm leading-tight">Super
-                                    Saver</span>
-                            </div>
-                            <div
-                                class="min-w-[140px] h-[160px] relative rounded-xl overflow-hidden cursor-pointer hover:-translate-y-1 transition transform duration-300 shadow-sm">
-                                <img src="https://images.unsplash.com/photo-1507608616759-54f48f0af0ee?auto=format&fit=crop&w=300&q=80"
-                                    class="w-full h-full object-cover">
-                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
-                                <span class="absolute bottom-3 left-3 text-white font-bold text-sm leading-tight">Super
-                                    Saver</span>
-                            </div>
-                            <div
-                                class="min-w-[140px] h-[160px] relative rounded-xl overflow-hidden cursor-pointer hover:-translate-y-1 transition transform duration-300 shadow-sm">
-                                <img src="https://images.unsplash.com/photo-1507608616759-54f48f0af0ee?auto=format&fit=crop&w=300&q=80"
-                                    class="w-full h-full object-cover">
-                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
-                                <span class="absolute bottom-3 left-3 text-white font-bold text-sm leading-tight">Super
-                                    Saver</span>
-                            </div>
-                            <div
-                                class="min-w-[140px] h-[160px] relative rounded-xl overflow-hidden cursor-pointer hover:-translate-y-1 transition transform duration-300 shadow-sm">
-                                <img src="https://images.unsplash.com/photo-1507608616759-54f48f0af0ee?auto=format&fit=crop&w=300&q=80"
-                                    class="w-full h-full object-cover">
-                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
-                                <span class="absolute bottom-3 left-3 text-white font-bold text-sm leading-tight">Super
-                                    Saver</span>
-                            </div>
-                            <div
-                                class="min-w-[140px] h-[160px] relative rounded-xl overflow-hidden cursor-pointer hover:-translate-y-1 transition transform duration-300 shadow-sm">
-                                <img src="https://images.unsplash.com/photo-1507608616759-54f48f0af0ee?auto=format&fit=crop&w=300&q=80"
-                                    class="w-full h-full object-cover">
-                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
-                                <span class="absolute bottom-3 left-3 text-white font-bold text-sm leading-tight">Super
-                                    Saver</span>
-                            </div>
-                            <div
-                                class="min-w-[140px] h-[160px] relative rounded-xl overflow-hidden cursor-pointer hover:-translate-y-1 transition transform duration-300 shadow-sm">
-                                <img src="https://images.unsplash.com/photo-1507608616759-54f48f0af0ee?auto=format&fit=crop&w=300&q=80"
-                                    class="w-full h-full object-cover">
-                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
-                                <span class="absolute bottom-3 left-3 text-white font-bold text-sm leading-tight">Super
-                                    Saver</span>
-                            </div>
-                            <div
-                                class="min-w-[140px] h-[160px] relative rounded-xl overflow-hidden cursor-pointer hover:-translate-y-1 transition transform duration-300 shadow-sm">
-                                <img src="https://images.unsplash.com/photo-1507608616759-54f48f0af0ee?auto=format&fit=crop&w=300&q=80"
-                                    class="w-full h-full object-cover">
-                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
-                                <span class="absolute bottom-3 left-3 text-white font-bold text-sm leading-tight">Super
-                                    Saver</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="relative group">
-                        <div class="flex justify-between items-center mb-4">
-                            <h2 class="text-lg font-bold text-gray-800">Travel Offers by traveller</h2>
-                            <div class="flex gap-2">
-                                <button onclick="toggleTab(this, 'offer-tab')"
-                                    class="offer-tab tab-active px-4 py-1 text-xs font-bold rounded-full border transition">Tour
-                                    Packages</button>
-                                <button onclick="toggleTab(this, 'offer-tab')"
-                                    class="offer-tab tab-inactive px-4 py-1 text-xs font-bold rounded-full border transition">Hotels</button>
-                            </div>
-                        </div>
-
-                        <button onclick="scrollContainer('offers-scroll', -360)"
-                            class="absolute left-[-15px] top-[55%] z-10 w-8 h-8 bg-white rounded-full shadow-md flex items-center justify-center hover:bg-gray-100 border border-gray-100 transition hover:scale-110"><i
-                                class="fas fa-chevron-left text-gray-600"></i></button>
-                        <button onclick="scrollContainer('offers-scroll', 360)"
-                            class="absolute right-[-15px] top-[55%] z-10 w-8 h-8 bg-white rounded-full shadow-md flex items-center justify-center hover:bg-gray-100 border border-gray-100 transition hover:scale-110"><i
-                                class="fas fa-chevron-right text-gray-600"></i></button>
-
-                        <div id="offers-scroll" class="flex gap-5 overflow-x-auto no-scrollbar scroll-smooth pb-4">
-                            <div
-                                class="min-w-[360px] bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex hover:shadow-md transition">
-                                <div class="w-2/5 relative">
-                                    <img src="https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&w=300&q=80"
-                                        class="w-full h-full object-cover">
-                                </div>
-                                <div class="w-3/5 p-4 flex flex-col justify-between">
-                                    <div>
-                                        <h3 class="font-bold text-sm text-gray-800 mb-1">Vietnam Saver Tour</h3>
-                                        <div class="text-yellow-400 text-xs mb-1"><i class="fas fa-star"></i><i
-                                                class="fas fa-star"></i><i class="fas fa-star"></i><i
-                                                class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
-                                    </div>
-                                    <div>
-                                        <p class="text-xs text-gray-500">Starting From</p>
-                                        <p class="text-lg font-bold text-gray-800">₹ 1,03,117</p>
-                                        <button onclick="toggleModal(true)"
-                                            class="mt-2 bg-traveller-blue text-white text-xs px-4 py-1.5 rounded hover:bg-blue-800 transition">view
-                                            details</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div
-                                class="min-w-[360px] bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex hover:shadow-md transition">
-                                <div class="w-2/5 relative">
-                                    <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=300&q=80"
-                                        class="w-full h-full object-cover">
-                                </div>
-                                <div class="w-3/5 p-4 flex flex-col justify-between">
-                                    <div>
-                                        <h3 class="font-bold text-sm text-gray-800 mb-1">Bali Discovery</h3>
-                                        <div class="text-yellow-400 text-xs mb-1"><i class="fas fa-star"></i><i
-                                                class="fas fa-star"></i><i class="fas fa-star"></i><i
-                                                class="fas fa-star"></i></div>
-                                    </div>
-                                    <div>
-                                        <p class="text-xs text-gray-500">Starting From</p>
-                                        <p class="text-lg font-bold text-gray-800">₹ 1,00,010</p>
-                                        <button onclick="toggleModal(true)"
-                                            class="mt-2 bg-traveller-blue text-white text-xs px-4 py-1.5 rounded hover:bg-blue-800 transition">view
-                                            details</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div
-                                class="min-w-[360px] bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex hover:shadow-md transition">
-                                <div class="w-2/5 relative">
-                                    <img src="https://images.unsplash.com/photo-1506929562872-bb421503ef21?auto=format&fit=crop&w=300&q=80"
-                                        class="w-full h-full object-cover">
-                                </div>
-                                <div class="w-3/5 p-4 flex flex-col justify-between">
-                                    <div>
-                                        <h3 class="font-bold text-sm text-gray-800 mb-1">Thailand Getaway</h3>
-                                        <div class="text-yellow-400 text-xs mb-1"><i class="fas fa-star"></i><i
-                                                class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                                    </div>
-                                    <div>
-                                        <p class="text-xs text-gray-500">Starting From</p>
-                                        <p class="text-lg font-bold text-gray-800">₹ 45,500</p>
-                                        <button onclick="toggleModal(true)"
-                                            class="mt-2 bg-traveller-blue text-white text-xs px-4 py-1.5 rounded hover:bg-blue-800 transition">view
-                                            details</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-               
-            </div>
-
-            <div class="relative group">
-                <h2 class="text-lg font-bold text-gray-800 mb-4">Top Trending Travel Destinations</h2>
-                <button onclick="scrollContainer('trending-scroll', -200)"
-                    class="absolute left-[-20px] top-[60%] z-10 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-gray-100 border border-gray-100 text-gray-600 transition hover:scale-110"><i
-                        class="fas fa-chevron-left"></i></button>
-                <button onclick="scrollContainer('trending-scroll', 200)"
-                    class="absolute right-[-20px] top-[60%] z-10 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-gray-100 border border-gray-100 text-gray-600 transition hover:scale-110"><i
-                        class="fas fa-chevron-right"></i></button>
-
-                <div id="trending-scroll" class="flex gap-4 overflow-x-auto no-scrollbar scroll-smooth pb-4 p-2">
-                    <div class="min-w-[180px] group/card cursor-pointer">
-                        <div class="h-[220px] rounded-2xl overflow-hidden relative mb-2 shadow-md">
-                            <img src="https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=300&q=80"
-                                class="w-full h-full object-cover group-hover/card:scale-110 transition duration-700">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent">
-                            </div>
-                            <div class="absolute bottom-3 left-3 text-white">
-                                <h3 class="font-bold text-lg leading-none mb-1">South Africa</h3>
-                            </div>
-                        </div>
-                        <div class="flex justify-between items-center text-xs">
-                            <span class="text-gray-500">10+ Packages</span>
-                            <span class="text-green-600 font-bold">From ₹ 1,50,000</span>
-                        </div>
-                    </div>
-                    <div class="min-w-[180px] group/card cursor-pointer">
-                        <div class="h-[220px] rounded-2xl overflow-hidden relative mb-2 shadow-md">
-                            <img src="https://images.unsplash.com/photo-1528164344705-47542687000d?auto=format&fit=crop&w=300&q=80"
-                                class="w-full h-full object-cover group-hover/card:scale-110 transition duration-700">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent">
-                            </div>
-                            <div class="absolute bottom-3 left-3 text-white">
-                                <h3 class="font-bold text-lg leading-none mb-1">Japan</h3>
-                            </div>
-                        </div>
-                        <div class="flex justify-between items-center text-xs">
-                            <span class="text-gray-500">20+ Packages</span>
-                            <span class="text-green-600 font-bold">From ₹ 1,85,000</span>
-                        </div>
-                    </div>
-                    <div class="min-w-[180px] group/card cursor-pointer">
-                        <div class="h-[220px] rounded-2xl overflow-hidden relative mb-2 shadow-md">
-                            <img src="https://images.unsplash.com/photo-1476900543704-4312b78632f8?auto=format&fit=crop&w=300&q=80"
-                                class="w-full h-full object-cover group-hover/card:scale-110 transition duration-700">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent">
-                            </div>
-                            <div class="absolute bottom-3 left-3 text-white">
-                                <h3 class="font-bold text-lg leading-none mb-1">All Of Europe</h3>
-                            </div>
-                        </div>
-                        <div class="flex justify-between items-center text-xs">
-                            <span class="text-gray-500">50+ Packages</span>
-                            <span class="text-green-600 font-bold">From ₹ 2,00,000</span>
-                        </div>
-                    </div>
-                    <div class="min-w-[180px] group/card cursor-pointer">
-                        <div class="h-[220px] rounded-2xl overflow-hidden relative mb-2 shadow-md">
-                            <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=300&q=80"
-                                class="w-full h-full object-cover group-hover/card:scale-110 transition duration-700">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent">
-                            </div>
-                            <div class="absolute bottom-3 left-3 text-white">
-                                <h3 class="font-bold text-lg leading-none mb-1">New Zealand</h3>
-                            </div>
-                        </div>
-                        <div class="flex justify-between items-center text-xs">
-                            <span class="text-gray-500">15+ Packages</span>
-                            <span class="text-green-600 font-bold">From ₹ 3,15,500</span>
-                        </div>
-                    </div>
-                    <div class="min-w-[180px] group/card cursor-pointer">
-                        <div class="h-[220px] rounded-2xl overflow-hidden relative mb-2 shadow-md">
-                            <img src="https://images.unsplash.com/photo-1559592413-7cec4d0ea49b?auto=format&fit=crop&w=300&q=80"
-                                class="w-full h-full object-cover group-hover/card:scale-110 transition duration-700">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent">
-                            </div>
-                            <div class="absolute bottom-3 left-3 text-white">
-                                <h3 class="font-bold text-lg leading-none mb-1">Vietnam</h3>
-                            </div>
-                        </div>
-                        <div class="flex justify-between items-center text-xs">
-                            <span class="text-gray-500">18+ Packages</span>
-                            <span class="text-green-600 font-bold">From ₹ 55,000</span>
-                        </div>
-                    </div>
-                    <div class="min-w-[180px] group/card cursor-pointer">
-                        <div class="h-[220px] rounded-2xl overflow-hidden relative mb-2 shadow-md">
-                            <img src="https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=300&q=80"
-                                class="w-full h-full object-cover group-hover/card:scale-110 transition duration-700">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent">
-                            </div>
-                            <div class="absolute bottom-3 left-3 text-white">
-                                <h3 class="font-bold text-lg leading-none mb-1">UAE - Dubai</h3>
-                            </div>
-                        </div>
-                        <div class="flex justify-between items-center text-xs">
-                            <span class="text-gray-500">100+ Packages</span>
-                            <span class="text-green-600 font-bold">From ₹ 40,000</span>
-                        </div>
-                    </div>
-                    <div class="min-w-[180px] group/card cursor-pointer">
-                        <div class="h-[220px] rounded-2xl overflow-hidden relative mb-2 shadow-md">
-                            <img src="https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=300&q=80"
-                                class="w-full h-full object-cover group-hover/card:scale-110 transition duration-700">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent">
-                            </div>
-                            <div class="absolute bottom-3 left-3 text-white">
-                                <h3 class="font-bold text-lg leading-none mb-1">UAE - Dubai</h3>
-                            </div>
-                        </div>
-                        <div class="flex justify-between items-center text-xs">
-                            <span class="text-gray-500">100+ Packages</span>
-                            <span class="text-green-600 font-bold">From ₹ 40,000</span>
-                        </div>
-                    </div>
-                    <div class="min-w-[180px] group/card cursor-pointer">
-                        <div class="h-[220px] rounded-2xl overflow-hidden relative mb-2 shadow-md">
-                            <img src="https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=300&q=80"
-                                class="w-full h-full object-cover group-hover/card:scale-110 transition duration-700">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent">
-                            </div>
-                            <div class="absolute bottom-3 left-3 text-white">
-                                <h3 class="font-bold text-lg leading-none mb-1">UAE - Dubai</h3>
-                            </div>
-                        </div>
-                        <div class="flex justify-between items-center text-xs">
-                            <span class="text-gray-500">100+ Packages</span>
-                            <span class="text-green-600 font-bold">From ₹ 40,000</span>
-                        </div>
-                    </div>
-                    <div class="min-w-[180px] group/card cursor-pointer">
-                        <div class="h-[220px] rounded-2xl overflow-hidden relative mb-2 shadow-md">
-                            <img src="https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=300&q=80"
-                                class="w-full h-full object-cover group-hover/card:scale-110 transition duration-700">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent">
-                            </div>
-                            <div class="absolute bottom-3 left-3 text-white">
-                                <h3 class="font-bold text-lg leading-none mb-1">UAE - Dubai</h3>
-                            </div>
-                        </div>
-                        <div class="flex justify-between items-center text-xs">
-                            <span class="text-gray-500">100+ Packages</span>
-                            <span class="text-green-600 font-bold">From ₹ 40,000</span>
-                        </div>
-                    </div>
-                    <div class="min-w-[180px] group/card cursor-pointer">
-                        <div class="h-[220px] rounded-2xl overflow-hidden relative mb-2 shadow-md">
-                            <img src="https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=300&q=80"
-                                class="w-full h-full object-cover group-hover/card:scale-110 transition duration-700">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent">
-                            </div>
-                            <div class="absolute bottom-3 left-3 text-white">
-                                <h3 class="font-bold text-lg leading-none mb-1">UAE - Dubai</h3>
-                            </div>
-                        </div>
-                        <div class="flex justify-between items-center text-xs">
-                            <span class="text-gray-500">100+ Packages</span>
-                            <span class="text-green-600 font-bold">From ₹ 40,000</span>
-                        </div>
-                    </div>
-                    <div class="min-w-[180px] group/card cursor-pointer">
-                        <div class="h-[220px] rounded-2xl overflow-hidden relative mb-2 shadow-md">
-                            <img src="https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=300&q=80"
-                                class="w-full h-full object-cover group-hover/card:scale-110 transition duration-700">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent">
-                            </div>
-                            <div class="absolute bottom-3 left-3 text-white">
-                                <h3 class="font-bold text-lg leading-none mb-1">UAE - Dubai</h3>
-                            </div>
-                        </div>
-                        <div class="flex justify-between items-center text-xs">
-                            <span class="text-gray-500">100+ Packages</span>
-                            <span class="text-green-600 font-bold">From ₹ 40,000</span>
-                        </div>
-                    </div>
-                    <div class="min-w-[180px] group/card cursor-pointer">
-                        <div class="h-[220px] rounded-2xl overflow-hidden relative mb-2 shadow-md">
-                            <img src="https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=300&q=80"
-                                class="w-full h-full object-cover group-hover/card:scale-110 transition duration-700">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent">
-                            </div>
-                            <div class="absolute bottom-3 left-3 text-white">
-                                <h3 class="font-bold text-lg leading-none mb-1">UAE - Dubai</h3>
-                            </div>
-                        </div>
-                        <div class="flex justify-between items-center text-xs">
-                            <span class="text-gray-500">100+ Packages</span>
-                            <span class="text-green-600 font-bold">From ₹ 40,000</span>
-                        </div>
-                    </div>
-                    <div class="min-w-[180px] group/card cursor-pointer">
-                        <div class="h-[220px] rounded-2xl overflow-hidden relative mb-2 shadow-md">
-                            <img src="https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=300&q=80"
-                                class="w-full h-full object-cover group-hover/card:scale-110 transition duration-700">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent">
-                            </div>
-                            <div class="absolute bottom-3 left-3 text-white">
-                                <h3 class="font-bold text-lg leading-none mb-1">UAE - Dubai</h3>
-                            </div>
-                        </div>
-                        <div class="flex justify-between items-center text-xs">
-                            <span class="text-gray-500">100+ Packages</span>
-                            <span class="text-green-600 font-bold">From ₹ 40,000</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="relative group">
-                <h2 class="text-lg font-bold text-gray-800 mb-4">Happy Travellers</h2>
-                <button onclick="scrollContainer('testimonial-scroll', -350)"
-                    class="absolute left-[-20px] top-[50%] z-10 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-gray-100 border border-gray-100 text-gray-600 transition hover:scale-110"><i
-                        class="fas fa-chevron-left"></i></button>
-                <button onclick="scrollContainer('testimonial-scroll', 350)"
-                    class="absolute right-[-20px] top-[50%] z-10 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-gray-100 border border-gray-100 text-gray-600 transition hover:scale-110"><i
-                        class="fas fa-chevron-right"></i></button>
-
-                <div id="testimonial-scroll" class="flex gap-6 overflow-x-auto no-scrollbar scroll-smooth pb-2 p-1">
-                    <div
-                        class="min-w-[400px] bg-white p-5 rounded-2xl shadow-sm hover:shadow-md transition border border-gray-100 flex gap-4">
-                        <div class="flex-1">
-                            <h3 class="font-bold text-sm text-gray-800 mb-1 leading-tight">Beautiful Memories with
-                                traveller
-                                Transworld</h3>
-                            <p class="text-xs text-gray-500 font-semibold mb-2">Ms. Stuti Patel</p>
-                            <p class="text-xs text-gray-600 line-clamp-3 mb-2">We had an unforgettable experience in
-                                Paris
-                                and Switzerland with traveller. The hotels were top notch...</p>
-                            <a href="#" class="text-xs text-blue-500 font-bold hover:underline">read more</a>
-                            <div class="mt-3 flex gap-2 text-xs text-gray-400">
-                                <span><i class="fas fa-thumbs-up"></i> Santa Europe</span>
-                            </div>
-                        </div>
-                        <div class="w-24 flex flex-col items-center justify-center gap-2">
-                            <img src="https://randomuser.me/api/portraits/women/44.jpg"
-                                class="w-16 h-16 rounded-full object-cover border-2 border-white shadow-sm">
-                            <button
-                                class="text-[10px] border border-blue-400 text-blue-500 px-2 py-1 rounded bg-blue-50 hover:bg-blue-100">View
-                                Tour</button>
-                        </div>
-                    </div>
-                    <div
-                        class="min-w-[400px] bg-white p-5 rounded-2xl shadow-sm hover:shadow-md transition border border-gray-100 flex gap-4">
-                        <div class="flex-1">
-                            <h3 class="font-bold text-sm text-gray-800 mb-1 leading-tight">Dream Trip to France and
-                                Swiss
-                            </h3>
-                            <p class="text-xs text-gray-500 font-semibold mb-2">Mr. Dharmesh Shah</p>
-                            <p class="text-xs text-gray-600 line-clamp-3 mb-2">Me and my family had an amazing
-                                experience on
-                                our first trip. The management was excellent.</p>
-                            <a href="#" class="text-xs text-blue-500 font-bold hover:underline">read more</a>
-                            <div class="mt-3 flex gap-2 text-xs text-gray-400">
-                                <span><i class="fas fa-thumbs-up"></i> Europe</span>
-                            </div>
-                        </div>
-                        <div class="w-24 flex flex-col items-center justify-center gap-2">
-                            <img src="https://randomuser.me/api/portraits/men/32.jpg"
-                                class="w-16 h-16 rounded-full object-cover border-2 border-white shadow-sm">
-                            <button
-                                class="text-[10px] border border-blue-400 text-blue-500 px-2 py-1 rounded bg-blue-50 hover:bg-blue-100">View
-                                Tour</button>
-                        </div>
-                    </div>
-                    <div
-                        class="min-w-[400px] bg-white p-5 rounded-2xl shadow-sm hover:shadow-md transition border border-gray-100 flex gap-4">
-                        <div class="flex-1">
-                            <h3 class="font-bold text-sm text-gray-800 mb-1 leading-tight">Dream Trip to France and
-                                Swiss
-                            </h3>
-                            <p class="text-xs text-gray-500 font-semibold mb-2">Mr. Dharmesh Shah</p>
-                            <p class="text-xs text-gray-600 line-clamp-3 mb-2">Me and my family had an amazing
-                                experience on
-                                our first trip. The management was excellent.</p>
-                            <a href="#" class="text-xs text-blue-500 font-bold hover:underline">read more</a>
-                            <div class="mt-3 flex gap-2 text-xs text-gray-400">
-                                <span><i class="fas fa-thumbs-up"></i> Europe</span>
-                            </div>
-                        </div>
-                        <div class="w-24 flex flex-col items-center justify-center gap-2">
-                            <img src="https://randomuser.me/api/portraits/men/32.jpg"
-                                class="w-16 h-16 rounded-full object-cover border-2 border-white shadow-sm">
-                            <button
-                                class="text-[10px] border border-blue-400 text-blue-500 px-2 py-1 rounded bg-blue-50 hover:bg-blue-100">View
-                                Tour</button>
-                        </div>
-                    </div>
-                    <div
-                        class="min-w-[400px] bg-white p-5 rounded-2xl shadow-sm hover:shadow-md transition border border-gray-100 flex gap-4">
-                        <div class="flex-1">
-                            <h3 class="font-bold text-sm text-gray-800 mb-1 leading-tight">Dream Trip to France and
-                                Swiss
-                            </h3>
-                            <p class="text-xs text-gray-500 font-semibold mb-2">Mr. Dharmesh Shah</p>
-                            <p class="text-xs text-gray-600 line-clamp-3 mb-2">Me and my family had an amazing
-                                experience on
-                                our first trip. The management was excellent.</p>
-                            <a href="#" class="text-xs text-blue-500 font-bold hover:underline">read more</a>
-                            <div class="mt-3 flex gap-2 text-xs text-gray-400">
-                                <span><i class="fas fa-thumbs-up"></i> Europe</span>
-                            </div>
-                        </div>
-                        <div class="w-24 flex flex-col items-center justify-center gap-2">
-                            <img src="https://randomuser.me/api/portraits/men/32.jpg"
-                                class="w-16 h-16 rounded-full object-cover border-2 border-white shadow-sm">
-                            <button
-                                class="text-[10px] border border-blue-400 text-blue-500 px-2 py-1 rounded bg-blue-50 hover:bg-blue-100">View
-                                Tour</button>
-                        </div>
-                    </div>
-                    <div
-                        class="min-w-[400px] bg-white p-5 rounded-2xl shadow-sm hover:shadow-md transition border border-gray-100 flex gap-4">
-                        <div class="flex-1">
-                            <h3 class="font-bold text-sm text-gray-800 mb-1 leading-tight">Dream Trip to France and
-                                Swiss
-                            </h3>
-                            <p class="text-xs text-gray-500 font-semibold mb-2">Mr. Dharmesh Shah</p>
-                            <p class="text-xs text-gray-600 line-clamp-3 mb-2">Me and my family had an amazing
-                                experience on
-                                our first trip. The management was excellent.</p>
-                            <a href="#" class="text-xs text-blue-500 font-bold hover:underline">read more</a>
-                            <div class="mt-3 flex gap-2 text-xs text-gray-400">
-                                <span><i class="fas fa-thumbs-up"></i> Europe</span>
-                            </div>
-                        </div>
-                        <div class="w-24 flex flex-col items-center justify-center gap-2">
-                            <img src="https://randomuser.me/api/portraits/men/32.jpg"
-                                class="w-16 h-16 rounded-full object-cover border-2 border-white shadow-sm">
-                            <button
-                                class="text-[10px] border border-blue-400 text-blue-500 px-2 py-1 rounded bg-blue-50 hover:bg-blue-100">View
-                                Tour</button>
-                        </div>
-                    </div>
-                    <div
-                        class="min-w-[400px] bg-white p-5 rounded-2xl shadow-sm hover:shadow-md transition border border-gray-100 flex gap-4">
-                        <div class="flex-1">
-                            <h3 class="font-bold text-sm text-gray-800 mb-1 leading-tight">Dream Trip to France and
-                                Swiss
-                            </h3>
-                            <p class="text-xs text-gray-500 font-semibold mb-2">Mr. Dharmesh Shah</p>
-                            <p class="text-xs text-gray-600 line-clamp-3 mb-2">Me and my family had an amazing
-                                experience on
-                                our first trip. The management was excellent.</p>
-                            <a href="#" class="text-xs text-blue-500 font-bold hover:underline">read more</a>
-                            <div class="mt-3 flex gap-2 text-xs text-gray-400">
-                                <span><i class="fas fa-thumbs-up"></i> Europe</span>
-                            </div>
-                        </div>
-                        <div class="w-24 flex flex-col items-center justify-center gap-2">
-                            <img src="https://randomuser.me/api/portraits/men/32.jpg"
-                                class="w-16 h-16 rounded-full object-cover border-2 border-white shadow-sm">
-                            <button
-                                class="text-[10px] border border-blue-400 text-blue-500 px-2 py-1 rounded bg-blue-50 hover:bg-blue-100">View
-                                Tour</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="relative group">
-                <h2 class="text-lg font-bold text-gray-800 mb-4">Easy-visa destinations</h2>
-                <button onclick="scrollContainer('visa-scroll', -200)"
-                    class="absolute left-[-20px] top-[50%] z-10 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-gray-100 border border-gray-100 text-gray-600 transition hover:scale-110"><i
-                        class="fas fa-chevron-left"></i></button>
-                <button onclick="scrollContainer('visa-scroll', 200)"
-                    class="absolute right-[-20px] top-[50%] z-10 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-gray-100 border border-gray-100 text-gray-600 transition hover:scale-110"><i
-                        class="fas fa-chevron-right"></i></button>
-
-                <div id="visa-scroll" class="flex gap-8 overflow-x-auto no-scrollbar scroll-smooth py-4 px-2">
-                    <a href="/visa.html"
-                        class="flex flex-col items-center min-w-[100px] cursor-pointer hover:scale-110 transition duration-300">
-                        <img src="https://images.unsplash.com/photo-1565967511849-76a60a516170?auto=format&fit=crop&w=150&q=80"
-                            class="w-24 h-24 rounded-full object-cover shadow-md mb-2 border-2 border-white"
-                            alt="Singapore">
-                        <h3 class="font-bold text-sm text-center">Singapore</h3>
-                        <p class="text-xs text-gray-500">50+ Tours</p>
-                    </a>
-
-                    <a href="/visa.html"
-                        class="flex flex-col items-center min-w-[100px] cursor-pointer hover:scale-110 transition duration-300">
-                        <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=150&q=80"
-                            class="w-24 h-24 rounded-full object-cover shadow-md mb-2 border-2 border-white"
-                            alt="Paris">
-                        <h3 class="font-bold text-sm text-center">Paris</h3>
-                        <p class="text-xs text-gray-500">85+ Tours</p>
-                    </a>
-
-                    <a href="/visa.html"
-                        class="flex flex-col items-center min-w-[100px] cursor-pointer hover:scale-110 transition duration-300">
-                        <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=150&q=80"
-                            class="w-24 h-24 rounded-full object-cover shadow-md mb-2 border-2 border-white" alt="Bali">
-                        <h3 class="font-bold text-sm text-center">Bali</h3>
-                        <p class="text-xs text-gray-500">120+ Tours</p>
-                    </a>
-
-                    <a href="/visa.html"
-                        class="flex flex-col items-center min-w-[100px] cursor-pointer hover:scale-110 transition duration-300">
-                        <img src="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=150&q=80"
-                            class="w-24 h-24 rounded-full object-cover shadow-md mb-2 border-2 border-white"
-                            alt="Tokyo">
-                        <h3 class="font-bold text-sm text-center">Tokyo</h3>
-                        <p class="text-xs text-gray-500">60+ Tours</p>
-                    </a>
-
-                    <a href="/visa.html"
-                        class="flex flex-col items-center min-w-[100px] cursor-pointer hover:scale-110 transition duration-300">
-                        <img src="https://images.unsplash.com/photo-1552832230-c0197dd311b5?auto=format&fit=crop&w=150&q=80"
-                            class="w-24 h-24 rounded-full object-cover shadow-md mb-2 border-2 border-white" alt="Rome">
-                        <h3 class="font-bold text-sm text-center">Rome</h3>
-                        <p class="text-xs text-gray-500">45+ Tours</p>
-                    </a>
-
-                    <a href="/visa.html"
-                        class="flex flex-col items-center min-w-[100px] cursor-pointer hover:scale-110 transition duration-300">
-                        <img src="https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?auto=format&fit=crop&w=150&q=80"
-                            class="w-24 h-24 rounded-full object-cover shadow-md mb-2 border-2 border-white"
-                            alt="New York">
-                        <h3 class="font-bold text-sm text-center">New York</h3>
-                        <p class="text-xs text-gray-500">90+ Tours</p>
-                    </a>
-
-                    <a href="/visa.html"
-                        class="flex flex-col items-center min-w-[100px] cursor-pointer hover:scale-110 transition duration-300">
-                        <img src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=150&q=80"
-                            class="w-24 h-24 rounded-full object-cover shadow-md mb-2 border-2 border-white"
-                            alt="Santorini">
-                        <h3 class="font-bold text-sm text-center">Santorini</h3>
-                        <p class="text-xs text-gray-500">30+ Tours</p>
-                    </a>
-
-                    <a href="/visa.html"
-                        class="flex flex-col items-center min-w-[100px] cursor-pointer hover:scale-110 transition duration-300">
-                        <img src="https://images.unsplash.com/photo-1572252009286-268acec5ca0a?auto=format&fit=crop&w=150&q=80"
-                            class="w-24 h-24 rounded-full object-cover shadow-md mb-2 border-2 border-white"
-                            alt="Cairo">
-                        <h3 class="font-bold text-sm text-center">Cairo</h3>
-                        <p class="text-xs text-gray-500">25+ Tours</p>
-                    </a>
-
-                    <a href="/visa.html"
-                        class="flex flex-col items-center min-w-[100px] cursor-pointer hover:scale-110 transition duration-300">
-                        <img src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=150&q=80"
-                            class="w-24 h-24 rounded-full object-cover shadow-md mb-2 border-2 border-white"
-                            alt="London">
-                        <h3 class="font-bold text-sm text-center">London</h3>
-                        <p class="text-xs text-gray-500">75+ Tours</p>
-                    </a>
-
-                    <a href="/visa.html"
-                        class="flex flex-col items-center min-w-[100px] cursor-pointer hover:scale-110 transition duration-300">
-                        <img src="https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?auto=format&fit=crop&w=150&q=80"
-                            class="w-24 h-24 rounded-full object-cover shadow-md mb-2 border-2 border-white"
-                            alt="Sydney">
-                        <h3 class="font-bold text-sm text-center">Sydney</h3>
-                        <p class="text-xs text-gray-500">20+ Tours</p>
-                    </a>
-
-                    <a href="/visa.html"
-                        class="flex flex-col items-center min-w-[100px] cursor-pointer hover:scale-110 transition duration-300">
-                        <img src="https://images.unsplash.com/photo-1512453979798-5ea932a23518?auto=format&fit=crop&w=150&q=80"
-                            class="w-24 h-24 rounded-full object-cover shadow-md mb-2 border-2 border-white"
-                            alt="Dubai">
-                        <h3 class="font-bold text-sm text-center">Dubai</h3>
-                        <p class="text-xs text-gray-500">100+ Tours</p>
-                    </a>
-                </div>
-            </div>
-
-
-
-            <div class="relative group">
                 <div>
-                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
-                        <h2 class="text-lg font-bold text-gray-800">Best Budget Travel Destinations</h2>
-                        <div class="flex flex-wrap bg-white rounded-lg p-1 border border-gray-200 shadow-sm">
-                            <button onclick="toggleFilter(this)"
-                                class="budget-filter filter-active px-3 py-1 text-xs font-bold rounded transition">Under
-                                50K</button>
-                            <button onclick="toggleFilter(this)"
-                                class="budget-filter filter-inactive px-3 py-1 text-xs font-bold rounded transition">50K
-                                - 1
-                                Lac</button>
-                            <button onclick="toggleFilter(this)"
-                                class="budget-filter filter-inactive px-3 py-1 text-xs font-bold rounded transition">1
-                                Lac -
-                                2 Lac</button>
-                            <button onclick="toggleFilter(this)"
-                                class="budget-filter filter-inactive px-3 py-1 text-xs font-bold rounded transition">More
-                                than 2 Lac</button>
+
+                    <div class="lg:col-span-8 space-y-8">
+
+
+
+                        <div class="relative group">
+                            <h2 class="text-lg font-bold text-gray-800 mb-4">Explore Tour Packages by Theme</h2>
+                            <button onclick="scrollContainer('themes-scroll', -200)"
+                                class="absolute left-[-15px] top-[60%] z-10 w-8 h-8 bg-white rounded-full shadow-md flex items-center justify-center hover:bg-gray-100 border border-gray-100 transition hover:scale-110"><i
+                                    class="fas fa-chevron-left text-gray-600"></i></button>
+                            <button onclick="scrollContainer('themes-scroll', 200)"
+                                class="absolute right-[-15px] top-[60%] z-10 w-8 h-8 bg-white rounded-full shadow-md flex items-center justify-center hover:bg-gray-100 border border-gray-100 transition hover:scale-110"><i
+                                    class="fas fa-chevron-right text-gray-600"></i></button>
+
+                            <div id="themes-scroll" class="flex gap-4 overflow-x-auto no-scrollbar scroll-smooth pb-2">
+
+
+                                <div
+                                    class="min-w-[140px] h-[160px] relative rounded-xl overflow-hidden cursor-pointer hover:-translate-y-1 transition transform duration-300 shadow-sm">
+                                    <img src="https://images.unsplash.com/photo-1507608616759-54f48f0af0ee?auto=format&fit=crop&w=300&q=80"
+                                        class="w-full h-full object-cover">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                                    <span
+                                        class="absolute bottom-3 left-3 text-white font-bold text-sm leading-tight">Super
+                                        Saver</span>
+                                </div>
+                                <div
+                                    class="min-w-[140px] h-[160px] relative rounded-xl overflow-hidden cursor-pointer hover:-translate-y-1 transition transform duration-300 shadow-sm">
+                                    <img src="https://images.unsplash.com/photo-1483921020237-2ff51e8e4b22?auto=format&fit=crop&w=300&q=80"
+                                        class="w-full h-full object-cover">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                                    <span class="absolute bottom-3 left-3 text-white font-bold text-sm">Winter
+                                        Tours</span>
+                                </div>
+                                <div
+                                    class="min-w-[140px] h-[160px] relative rounded-xl overflow-hidden cursor-pointer hover:-translate-y-1 transition transform duration-300 shadow-sm">
+                                    <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=300&q=80"
+                                        class="w-full h-full object-cover">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                                    <span class="absolute bottom-3 left-3 text-white font-bold text-sm">Honeymoon</span>
+                                </div>
+                                <div
+                                    class="min-w-[140px] h-[160px] relative rounded-xl overflow-hidden cursor-pointer hover:-translate-y-1 transition transform duration-300 shadow-sm">
+                                    <img src="https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&w=300&q=80"
+                                        class="w-full h-full object-cover">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                                    <span class="absolute bottom-3 left-3 text-white font-bold text-sm">Group
+                                        Tours</span>
+                                </div>
+                                <div
+                                    class="min-w-[140px] h-[160px] relative rounded-xl overflow-hidden cursor-pointer hover:-translate-y-1 transition transform duration-300 shadow-sm">
+                                    <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=300&q=80"
+                                        class="w-full h-full object-cover">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                                    <span class="absolute bottom-3 left-3 text-white font-bold text-sm">Short
+                                        Breaks</span>
+                                </div>
+
+                                <div
+                                    class="min-w-[140px] h-[160px] relative rounded-xl overflow-hidden cursor-pointer hover:-translate-y-1 transition transform duration-300 shadow-sm">
+                                    <img src="https://images.unsplash.com/photo-1507608616759-54f48f0af0ee?auto=format&fit=crop&w=300&q=80"
+                                        class="w-full h-full object-cover">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                                    <span
+                                        class="absolute bottom-3 left-3 text-white font-bold text-sm leading-tight">Super
+                                        Saver</span>
+                                </div>
+                                <div
+                                    class="min-w-[140px] h-[160px] relative rounded-xl overflow-hidden cursor-pointer hover:-translate-y-1 transition transform duration-300 shadow-sm">
+                                    <img src="https://images.unsplash.com/photo-1507608616759-54f48f0af0ee?auto=format&fit=crop&w=300&q=80"
+                                        class="w-full h-full object-cover">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                                    <span
+                                        class="absolute bottom-3 left-3 text-white font-bold text-sm leading-tight">Super
+                                        Saver</span>
+                                </div>
+                                <div
+                                    class="min-w-[140px] h-[160px] relative rounded-xl overflow-hidden cursor-pointer hover:-translate-y-1 transition transform duration-300 shadow-sm">
+                                    <img src="https://images.unsplash.com/photo-1507608616759-54f48f0af0ee?auto=format&fit=crop&w=300&q=80"
+                                        class="w-full h-full object-cover">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                                    <span
+                                        class="absolute bottom-3 left-3 text-white font-bold text-sm leading-tight">Super
+                                        Saver</span>
+                                </div>
+                                <div
+                                    class="min-w-[140px] h-[160px] relative rounded-xl overflow-hidden cursor-pointer hover:-translate-y-1 transition transform duration-300 shadow-sm">
+                                    <img src="https://images.unsplash.com/photo-1507608616759-54f48f0af0ee?auto=format&fit=crop&w=300&q=80"
+                                        class="w-full h-full object-cover">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                                    <span
+                                        class="absolute bottom-3 left-3 text-white font-bold text-sm leading-tight">Super
+                                        Saver</span>
+                                </div>
+                                <div
+                                    class="min-w-[140px] h-[160px] relative rounded-xl overflow-hidden cursor-pointer hover:-translate-y-1 transition transform duration-300 shadow-sm">
+                                    <img src="https://images.unsplash.com/photo-1507608616759-54f48f0af0ee?auto=format&fit=crop&w=300&q=80"
+                                        class="w-full h-full object-cover">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                                    <span
+                                        class="absolute bottom-3 left-3 text-white font-bold text-sm leading-tight">Super
+                                        Saver</span>
+                                </div>
+                                <div
+                                    class="min-w-[140px] h-[160px] relative rounded-xl overflow-hidden cursor-pointer hover:-translate-y-1 transition transform duration-300 shadow-sm">
+                                    <img src="https://images.unsplash.com/photo-1507608616759-54f48f0af0ee?auto=format&fit=crop&w=300&q=80"
+                                        class="w-full h-full object-cover">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                                    <span
+                                        class="absolute bottom-3 left-3 text-white font-bold text-sm leading-tight">Super
+                                        Saver</span>
+                                </div>
+                                <div
+                                    class="min-w-[140px] h-[160px] relative rounded-xl overflow-hidden cursor-pointer hover:-translate-y-1 transition transform duration-300 shadow-sm">
+                                    <img src="https://images.unsplash.com/photo-1507608616759-54f48f0af0ee?auto=format&fit=crop&w=300&q=80"
+                                        class="w-full h-full object-cover">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                                    <span
+                                        class="absolute bottom-3 left-3 text-white font-bold text-sm leading-tight">Super
+                                        Saver</span>
+                                </div>
+                                <div
+                                    class="min-w-[140px] h-[160px] relative rounded-xl overflow-hidden cursor-pointer hover:-translate-y-1 transition transform duration-300 shadow-sm">
+                                    <img src="https://images.unsplash.com/photo-1507608616759-54f48f0af0ee?auto=format&fit=crop&w=300&q=80"
+                                        class="w-full h-full object-cover">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                                    <span
+                                        class="absolute bottom-3 left-3 text-white font-bold text-sm leading-tight">Super
+                                        Saver</span>
+                                </div>
+                                <div
+                                    class="min-w-[140px] h-[160px] relative rounded-xl overflow-hidden cursor-pointer hover:-translate-y-1 transition transform duration-300 shadow-sm">
+                                    <img src="https://images.unsplash.com/photo-1507608616759-54f48f0af0ee?auto=format&fit=crop&w=300&q=80"
+                                        class="w-full h-full object-cover">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                                    <span
+                                        class="absolute bottom-3 left-3 text-white font-bold text-sm leading-tight">Super
+                                        Saver</span>
+                                </div>
+                                <div
+                                    class="min-w-[140px] h-[160px] relative rounded-xl overflow-hidden cursor-pointer hover:-translate-y-1 transition transform duration-300 shadow-sm">
+                                    <img src="https://images.unsplash.com/photo-1507608616759-54f48f0af0ee?auto=format&fit=crop&w=300&q=80"
+                                        class="w-full h-full object-cover">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                                    <span
+                                        class="absolute bottom-3 left-3 text-white font-bold text-sm leading-tight">Super
+                                        Saver</span>
+                                </div>
+                                <div
+                                    class="min-w-[140px] h-[160px] relative rounded-xl overflow-hidden cursor-pointer hover:-translate-y-1 transition transform duration-300 shadow-sm">
+                                    <img src="https://images.unsplash.com/photo-1507608616759-54f48f0af0ee?auto=format&fit=crop&w=300&q=80"
+                                        class="w-full h-full object-cover">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                                    <span
+                                        class="absolute bottom-3 left-3 text-white font-bold text-sm leading-tight">Super
+                                        Saver</span>
+                                </div>
+                                <div
+                                    class="min-w-[140px] h-[160px] relative rounded-xl overflow-hidden cursor-pointer hover:-translate-y-1 transition transform duration-300 shadow-sm">
+                                    <img src="https://images.unsplash.com/photo-1507608616759-54f48f0af0ee?auto=format&fit=crop&w=300&q=80"
+                                        class="w-full h-full object-cover">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                                    <span
+                                        class="absolute bottom-3 left-3 text-white font-bold text-sm leading-tight">Super
+                                        Saver</span>
+                                </div>
+                            </div>
                         </div>
-                    </div </div>
+
+                        <div class="relative group">
+                            <div class="flex justify-between items-center mb-4">
+                                <h2 class="text-lg font-bold text-gray-800">Travel Offers by traveller</h2>
+                                <div class="flex gap-2">
+                                    <button onclick="toggleTab(this, 'offer-tab')"
+                                        class="offer-tab tab-active px-4 py-1 text-xs font-bold rounded-full border transition">Tour
+                                        Packages</button>
+                                    <button onclick="toggleTab(this, 'offer-tab')"
+                                        class="offer-tab tab-inactive px-4 py-1 text-xs font-bold rounded-full border transition">Hotels</button>
+                                </div>
+                            </div>
+
+                            <button onclick="scrollContainer('offers-scroll', -360)"
+                                class="absolute left-[-15px] top-[55%] z-10 w-8 h-8 bg-white rounded-full shadow-md flex items-center justify-center hover:bg-gray-100 border border-gray-100 transition hover:scale-110"><i
+                                    class="fas fa-chevron-left text-gray-600"></i></button>
+                            <button onclick="scrollContainer('offers-scroll', 360)"
+                                class="absolute right-[-15px] top-[55%] z-10 w-8 h-8 bg-white rounded-full shadow-md flex items-center justify-center hover:bg-gray-100 border border-gray-100 transition hover:scale-110"><i
+                                    class="fas fa-chevron-right text-gray-600"></i></button>
+
+                            <div id="offers-scroll" class="flex gap-5 overflow-x-auto no-scrollbar scroll-smooth pb-4">
+                                <div
+                                    class="min-w-[360px] bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex hover:shadow-md transition">
+                                    <div class="w-2/5 relative">
+                                        <img src="https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&w=300&q=80"
+                                            class="w-full h-full object-cover">
+                                    </div>
+                                    <div class="w-3/5 p-4 flex flex-col justify-between">
+                                        <div>
+                                            <h3 class="font-bold text-sm text-gray-800 mb-1">Vietnam Saver Tour</h3>
+                                            <div class="text-yellow-400 text-xs mb-1"><i class="fas fa-star"></i><i
+                                                    class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                                    class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
+                                        </div>
+                                        <div>
+                                            <p class="text-xs text-gray-500">Starting From</p>
+                                            <p class="text-lg font-bold text-gray-800">₹ 1,03,117</p>
+                                            <button onclick="toggleModal(true)"
+                                                class="mt-2 bg-traveller-blue text-white text-xs px-4 py-1.5 rounded hover:bg-blue-800 transition">view
+                                                details</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div
+                                    class="min-w-[360px] bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex hover:shadow-md transition">
+                                    <div class="w-2/5 relative">
+                                        <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=300&q=80"
+                                            class="w-full h-full object-cover">
+                                    </div>
+                                    <div class="w-3/5 p-4 flex flex-col justify-between">
+                                        <div>
+                                            <h3 class="font-bold text-sm text-gray-800 mb-1">Bali Discovery</h3>
+                                            <div class="text-yellow-400 text-xs mb-1"><i class="fas fa-star"></i><i
+                                                    class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                                    class="fas fa-star"></i></div>
+                                        </div>
+                                        <div>
+                                            <p class="text-xs text-gray-500">Starting From</p>
+                                            <p class="text-lg font-bold text-gray-800">₹ 1,00,010</p>
+                                            <button onclick="toggleModal(true)"
+                                                class="mt-2 bg-traveller-blue text-white text-xs px-4 py-1.5 rounded hover:bg-blue-800 transition">view
+                                                details</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div
+                                    class="min-w-[360px] bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex hover:shadow-md transition">
+                                    <div class="w-2/5 relative">
+                                        <img src="https://images.unsplash.com/photo-1506929562872-bb421503ef21?auto=format&fit=crop&w=300&q=80"
+                                            class="w-full h-full object-cover">
+                                    </div>
+                                    <div class="w-3/5 p-4 flex flex-col justify-between">
+                                        <div>
+                                            <h3 class="font-bold text-sm text-gray-800 mb-1">Thailand Getaway</h3>
+                                            <div class="text-yellow-400 text-xs mb-1"><i class="fas fa-star"></i><i
+                                                    class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                                        </div>
+                                        <div>
+                                            <p class="text-xs text-gray-500">Starting From</p>
+                                            <p class="text-lg font-bold text-gray-800">₹ 45,500</p>
+                                            <button onclick="toggleModal(true)"
+                                                class="mt-2 bg-traveller-blue text-white text-xs px-4 py-1.5 rounded hover:bg-blue-800 transition">view
+                                                details</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
                 </div>
 
-                <div class="flex gap-4 overflow-x-auto no-scrollbar pb-4">
-                    <div
-                        class="min-w-[250px] bg-white border border-gray-200 rounded-lg overflow-hidden shadow-sm hover:shadow-xl transition transform hover:-translate-y-1 duration-300">
-                        <div class="h-36 relative">
-                            <img src="https://images.unsplash.com/photo-1573790387438-4da905039392?auto=format&fit=crop&w=300&q=80"
-                                class="w-full h-full object-cover">
-                            <div
-                                class="absolute bottom-2 right-2 bg-white/95 px-2 py-0.5 text-[10px] font-bold rounded shadow text-gray-700">
-                                4N 5D</div>
-                        </div>
-                        <div class="p-3">
-                            <h3 class="font-bold text-sm text-gray-800 mb-2 truncate">Bali Honeymoon Special</h3>
-                            <div class="text-[10px] text-gray-500 mb-2">Bali (4N) | Pool Villa (1N)</div>
-                            <div class="flex justify-between items-end mb-3">
-                                <i class="fas fa-umbrella-beach text-gray-300"></i>
-                                <div class="text-right">
-                                    <span class="block text-lg font-bold text-gray-800">₹ 31,190</span>
-                                    <span class="block text-[10px] text-gray-500">per person</span>
+                <div class="relative group">
+                    <h2 class="text-lg font-bold text-gray-800 mb-4">Top Trending Travel Destinations</h2>
+                    <button onclick="scrollContainer('trending-scroll', -200)"
+                        class="absolute left-[-20px] top-[60%] z-10 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-gray-100 border border-gray-100 text-gray-600 transition hover:scale-110"><i
+                            class="fas fa-chevron-left"></i></button>
+                    <button onclick="scrollContainer('trending-scroll', 200)"
+                        class="absolute right-[-20px] top-[60%] z-10 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-gray-100 border border-gray-100 text-gray-600 transition hover:scale-110"><i
+                            class="fas fa-chevron-right"></i></button>
+
+                    <div id="trending-scroll" class="flex gap-4 overflow-x-auto no-scrollbar scroll-smooth pb-4 p-2">
+                        <div class="min-w-[180px] group/card cursor-pointer">
+                            <div class="h-[220px] rounded-2xl overflow-hidden relative mb-2 shadow-md">
+                                <img src="https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=300&q=80"
+                                    class="w-full h-full object-cover group-hover/card:scale-110 transition duration-700">
+                                <div
+                                    class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent">
+                                </div>
+                                <div class="absolute bottom-3 left-3 text-white">
+                                    <h3 class="font-bold text-lg leading-none mb-1">South Africa</h3>
                                 </div>
                             </div>
-                            <div class="grid grid-cols-2 gap-2">
-                                <button onclick="toggleModal(true)"
-                                    class="border border-blue-400 text-blue-500 text-[10px] font-bold py-1 rounded hover:bg-blue-50">View
-                                    Details</button>
-                                <button onclick="toggleModal(true)"
-                                    class="bg-traveller-red text-white text-[10px] font-bold py-1 rounded hover:bg-red-600">Book
-                                    Now</button>
+                            <div class="flex justify-between items-center text-xs">
+                                <span class="text-gray-500">10+ Packages</span>
+                                <span class="text-green-600 font-bold">From ₹ 1,50,000</span>
+                            </div>
+                        </div>
+                        <div class="min-w-[180px] group/card cursor-pointer">
+                            <div class="h-[220px] rounded-2xl overflow-hidden relative mb-2 shadow-md">
+                                <img src="https://images.unsplash.com/photo-1528164344705-47542687000d?auto=format&fit=crop&w=300&q=80"
+                                    class="w-full h-full object-cover group-hover/card:scale-110 transition duration-700">
+                                <div
+                                    class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent">
+                                </div>
+                                <div class="absolute bottom-3 left-3 text-white">
+                                    <h3 class="font-bold text-lg leading-none mb-1">Japan</h3>
+                                </div>
+                            </div>
+                            <div class="flex justify-between items-center text-xs">
+                                <span class="text-gray-500">20+ Packages</span>
+                                <span class="text-green-600 font-bold">From ₹ 1,85,000</span>
+                            </div>
+                        </div>
+                        <div class="min-w-[180px] group/card cursor-pointer">
+                            <div class="h-[220px] rounded-2xl overflow-hidden relative mb-2 shadow-md">
+                                <img src="https://images.unsplash.com/photo-1476900543704-4312b78632f8?auto=format&fit=crop&w=300&q=80"
+                                    class="w-full h-full object-cover group-hover/card:scale-110 transition duration-700">
+                                <div
+                                    class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent">
+                                </div>
+                                <div class="absolute bottom-3 left-3 text-white">
+                                    <h3 class="font-bold text-lg leading-none mb-1">All Of Europe</h3>
+                                </div>
+                            </div>
+                            <div class="flex justify-between items-center text-xs">
+                                <span class="text-gray-500">50+ Packages</span>
+                                <span class="text-green-600 font-bold">From ₹ 2,00,000</span>
+                            </div>
+                        </div>
+                        <div class="min-w-[180px] group/card cursor-pointer">
+                            <div class="h-[220px] rounded-2xl overflow-hidden relative mb-2 shadow-md">
+                                <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=300&q=80"
+                                    class="w-full h-full object-cover group-hover/card:scale-110 transition duration-700">
+                                <div
+                                    class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent">
+                                </div>
+                                <div class="absolute bottom-3 left-3 text-white">
+                                    <h3 class="font-bold text-lg leading-none mb-1">New Zealand</h3>
+                                </div>
+                            </div>
+                            <div class="flex justify-between items-center text-xs">
+                                <span class="text-gray-500">15+ Packages</span>
+                                <span class="text-green-600 font-bold">From ₹ 3,15,500</span>
+                            </div>
+                        </div>
+                        <div class="min-w-[180px] group/card cursor-pointer">
+                            <div class="h-[220px] rounded-2xl overflow-hidden relative mb-2 shadow-md">
+                                <img src="https://images.unsplash.com/photo-1559592413-7cec4d0ea49b?auto=format&fit=crop&w=300&q=80"
+                                    class="w-full h-full object-cover group-hover/card:scale-110 transition duration-700">
+                                <div
+                                    class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent">
+                                </div>
+                                <div class="absolute bottom-3 left-3 text-white">
+                                    <h3 class="font-bold text-lg leading-none mb-1">Vietnam</h3>
+                                </div>
+                            </div>
+                            <div class="flex justify-between items-center text-xs">
+                                <span class="text-gray-500">18+ Packages</span>
+                                <span class="text-green-600 font-bold">From ₹ 55,000</span>
+                            </div>
+                        </div>
+                        <div class="min-w-[180px] group/card cursor-pointer">
+                            <div class="h-[220px] rounded-2xl overflow-hidden relative mb-2 shadow-md">
+                                <img src="https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=300&q=80"
+                                    class="w-full h-full object-cover group-hover/card:scale-110 transition duration-700">
+                                <div
+                                    class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent">
+                                </div>
+                                <div class="absolute bottom-3 left-3 text-white">
+                                    <h3 class="font-bold text-lg leading-none mb-1">UAE - Dubai</h3>
+                                </div>
+                            </div>
+                            <div class="flex justify-between items-center text-xs">
+                                <span class="text-gray-500">100+ Packages</span>
+                                <span class="text-green-600 font-bold">From ₹ 40,000</span>
+                            </div>
+                        </div>
+                        <div class="min-w-[180px] group/card cursor-pointer">
+                            <div class="h-[220px] rounded-2xl overflow-hidden relative mb-2 shadow-md">
+                                <img src="https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=300&q=80"
+                                    class="w-full h-full object-cover group-hover/card:scale-110 transition duration-700">
+                                <div
+                                    class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent">
+                                </div>
+                                <div class="absolute bottom-3 left-3 text-white">
+                                    <h3 class="font-bold text-lg leading-none mb-1">UAE - Dubai</h3>
+                                </div>
+                            </div>
+                            <div class="flex justify-between items-center text-xs">
+                                <span class="text-gray-500">100+ Packages</span>
+                                <span class="text-green-600 font-bold">From ₹ 40,000</span>
+                            </div>
+                        </div>
+                        <div class="min-w-[180px] group/card cursor-pointer">
+                            <div class="h-[220px] rounded-2xl overflow-hidden relative mb-2 shadow-md">
+                                <img src="https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=300&q=80"
+                                    class="w-full h-full object-cover group-hover/card:scale-110 transition duration-700">
+                                <div
+                                    class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent">
+                                </div>
+                                <div class="absolute bottom-3 left-3 text-white">
+                                    <h3 class="font-bold text-lg leading-none mb-1">UAE - Dubai</h3>
+                                </div>
+                            </div>
+                            <div class="flex justify-between items-center text-xs">
+                                <span class="text-gray-500">100+ Packages</span>
+                                <span class="text-green-600 font-bold">From ₹ 40,000</span>
+                            </div>
+                        </div>
+                        <div class="min-w-[180px] group/card cursor-pointer">
+                            <div class="h-[220px] rounded-2xl overflow-hidden relative mb-2 shadow-md">
+                                <img src="https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=300&q=80"
+                                    class="w-full h-full object-cover group-hover/card:scale-110 transition duration-700">
+                                <div
+                                    class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent">
+                                </div>
+                                <div class="absolute bottom-3 left-3 text-white">
+                                    <h3 class="font-bold text-lg leading-none mb-1">UAE - Dubai</h3>
+                                </div>
+                            </div>
+                            <div class="flex justify-between items-center text-xs">
+                                <span class="text-gray-500">100+ Packages</span>
+                                <span class="text-green-600 font-bold">From ₹ 40,000</span>
+                            </div>
+                        </div>
+                        <div class="min-w-[180px] group/card cursor-pointer">
+                            <div class="h-[220px] rounded-2xl overflow-hidden relative mb-2 shadow-md">
+                                <img src="https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=300&q=80"
+                                    class="w-full h-full object-cover group-hover/card:scale-110 transition duration-700">
+                                <div
+                                    class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent">
+                                </div>
+                                <div class="absolute bottom-3 left-3 text-white">
+                                    <h3 class="font-bold text-lg leading-none mb-1">UAE - Dubai</h3>
+                                </div>
+                            </div>
+                            <div class="flex justify-between items-center text-xs">
+                                <span class="text-gray-500">100+ Packages</span>
+                                <span class="text-green-600 font-bold">From ₹ 40,000</span>
+                            </div>
+                        </div>
+                        <div class="min-w-[180px] group/card cursor-pointer">
+                            <div class="h-[220px] rounded-2xl overflow-hidden relative mb-2 shadow-md">
+                                <img src="https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=300&q=80"
+                                    class="w-full h-full object-cover group-hover/card:scale-110 transition duration-700">
+                                <div
+                                    class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent">
+                                </div>
+                                <div class="absolute bottom-3 left-3 text-white">
+                                    <h3 class="font-bold text-lg leading-none mb-1">UAE - Dubai</h3>
+                                </div>
+                            </div>
+                            <div class="flex justify-between items-center text-xs">
+                                <span class="text-gray-500">100+ Packages</span>
+                                <span class="text-green-600 font-bold">From ₹ 40,000</span>
+                            </div>
+                        </div>
+                        <div class="min-w-[180px] group/card cursor-pointer">
+                            <div class="h-[220px] rounded-2xl overflow-hidden relative mb-2 shadow-md">
+                                <img src="https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=300&q=80"
+                                    class="w-full h-full object-cover group-hover/card:scale-110 transition duration-700">
+                                <div
+                                    class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent">
+                                </div>
+                                <div class="absolute bottom-3 left-3 text-white">
+                                    <h3 class="font-bold text-lg leading-none mb-1">UAE - Dubai</h3>
+                                </div>
+                            </div>
+                            <div class="flex justify-between items-center text-xs">
+                                <span class="text-gray-500">100+ Packages</span>
+                                <span class="text-green-600 font-bold">From ₹ 40,000</span>
+                            </div>
+                        </div>
+                        <div class="min-w-[180px] group/card cursor-pointer">
+                            <div class="h-[220px] rounded-2xl overflow-hidden relative mb-2 shadow-md">
+                                <img src="https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=300&q=80"
+                                    class="w-full h-full object-cover group-hover/card:scale-110 transition duration-700">
+                                <div
+                                    class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent">
+                                </div>
+                                <div class="absolute bottom-3 left-3 text-white">
+                                    <h3 class="font-bold text-lg leading-none mb-1">UAE - Dubai</h3>
+                                </div>
+                            </div>
+                            <div class="flex justify-between items-center text-xs">
+                                <span class="text-gray-500">100+ Packages</span>
+                                <span class="text-green-600 font-bold">From ₹ 40,000</span>
                             </div>
                         </div>
                     </div>
+                </div>
 
-                    <div
-                        class="min-w-[250px] bg-white border border-gray-200 rounded-lg overflow-hidden shadow-sm hover:shadow-xl transition transform hover:-translate-y-1 duration-300">
-                        <div class="h-36 relative">
-                            <img src="https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?auto=format&fit=crop&w=300&q=80"
-                                class="w-full h-full object-cover">
-                            <div
-                                class="absolute bottom-2 right-2 bg-white/95 px-2 py-0.5 text-[10px] font-bold rounded shadow text-gray-700">
-                                5N 6D</div>
-                        </div>
-                        <div class="p-3">
-                            <h3 class="font-bold text-sm text-gray-800 mb-2 truncate">Simply Bali Seminyak</h3>
-                            <div class="text-[10px] text-gray-500 mb-2">Bali (5N)</div>
-                            <div class="flex justify-between items-end mb-3">
-                                <i class="fas fa-umbrella-beach text-gray-300"></i>
-                                <div class="text-right">
-                                    <span class="block text-lg font-bold text-gray-800">₹ 18,370</span>
-                                    <span class="block text-[10px] text-gray-500">per person</span>
+                <div class="relative group">
+                    <h2 class="text-lg font-bold text-gray-800 mb-4">Happy Travellers</h2>
+                    <button onclick="scrollContainer('testimonial-scroll', -350)"
+                        class="absolute left-[-20px] top-[50%] z-10 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-gray-100 border border-gray-100 text-gray-600 transition hover:scale-110"><i
+                            class="fas fa-chevron-left"></i></button>
+                    <button onclick="scrollContainer('testimonial-scroll', 350)"
+                        class="absolute right-[-20px] top-[50%] z-10 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-gray-100 border border-gray-100 text-gray-600 transition hover:scale-110"><i
+                            class="fas fa-chevron-right"></i></button>
+
+                    <div id="testimonial-scroll" class="flex gap-6 overflow-x-auto no-scrollbar scroll-smooth pb-2 p-1">
+                        <div
+                            class="min-w-[400px] bg-white p-5 rounded-2xl shadow-sm hover:shadow-md transition border border-gray-100 flex gap-4">
+                            <div class="flex-1">
+                                <h3 class="font-bold text-sm text-gray-800 mb-1 leading-tight">Beautiful Memories with
+                                    traveller
+                                    Transworld</h3>
+                                <p class="text-xs text-gray-500 font-semibold mb-2">Ms. Stuti Patel</p>
+                                <p class="text-xs text-gray-600 line-clamp-3 mb-2">We had an unforgettable experience in
+                                    Paris
+                                    and Switzerland with traveller. The hotels were top notch...</p>
+                                <a href="#" class="text-xs text-blue-500 font-bold hover:underline">read more</a>
+                                <div class="mt-3 flex gap-2 text-xs text-gray-400">
+                                    <span><i class="fas fa-thumbs-up"></i> Santa Europe</span>
                                 </div>
                             </div>
-                            <div class="grid grid-cols-2 gap-2">
-                                <button onclick="toggleModal(true)"
-                                    class="border border-blue-400 text-blue-500 text-[10px] font-bold py-1 rounded hover:bg-blue-50">View
-                                    Details</button>
-                                <button onclick="toggleModal(true)"
-                                    class="bg-traveller-red text-white text-[10px] font-bold py-1 rounded hover:bg-red-600">Book
-                                    Now</button>
+                            <div class="w-24 flex flex-col items-center justify-center gap-2">
+                                <img src="https://randomuser.me/api/portraits/women/44.jpg"
+                                    class="w-16 h-16 rounded-full object-cover border-2 border-white shadow-sm">
+                                <button
+                                    class="text-[10px] border border-blue-400 text-blue-500 px-2 py-1 rounded bg-blue-50 hover:bg-blue-100">View
+                                    Tour</button>
+                            </div>
+                        </div>
+                        <div
+                            class="min-w-[400px] bg-white p-5 rounded-2xl shadow-sm hover:shadow-md transition border border-gray-100 flex gap-4">
+                            <div class="flex-1">
+                                <h3 class="font-bold text-sm text-gray-800 mb-1 leading-tight">Dream Trip to France and
+                                    Swiss
+                                </h3>
+                                <p class="text-xs text-gray-500 font-semibold mb-2">Mr. Dharmesh Shah</p>
+                                <p class="text-xs text-gray-600 line-clamp-3 mb-2">Me and my family had an amazing
+                                    experience on
+                                    our first trip. The management was excellent.</p>
+                                <a href="#" class="text-xs text-blue-500 font-bold hover:underline">read more</a>
+                                <div class="mt-3 flex gap-2 text-xs text-gray-400">
+                                    <span><i class="fas fa-thumbs-up"></i> Europe</span>
+                                </div>
+                            </div>
+                            <div class="w-24 flex flex-col items-center justify-center gap-2">
+                                <img src="https://randomuser.me/api/portraits/men/32.jpg"
+                                    class="w-16 h-16 rounded-full object-cover border-2 border-white shadow-sm">
+                                <button
+                                    class="text-[10px] border border-blue-400 text-blue-500 px-2 py-1 rounded bg-blue-50 hover:bg-blue-100">View
+                                    Tour</button>
+                            </div>
+                        </div>
+                        <div
+                            class="min-w-[400px] bg-white p-5 rounded-2xl shadow-sm hover:shadow-md transition border border-gray-100 flex gap-4">
+                            <div class="flex-1">
+                                <h3 class="font-bold text-sm text-gray-800 mb-1 leading-tight">Dream Trip to France and
+                                    Swiss
+                                </h3>
+                                <p class="text-xs text-gray-500 font-semibold mb-2">Mr. Dharmesh Shah</p>
+                                <p class="text-xs text-gray-600 line-clamp-3 mb-2">Me and my family had an amazing
+                                    experience on
+                                    our first trip. The management was excellent.</p>
+                                <a href="#" class="text-xs text-blue-500 font-bold hover:underline">read more</a>
+                                <div class="mt-3 flex gap-2 text-xs text-gray-400">
+                                    <span><i class="fas fa-thumbs-up"></i> Europe</span>
+                                </div>
+                            </div>
+                            <div class="w-24 flex flex-col items-center justify-center gap-2">
+                                <img src="https://randomuser.me/api/portraits/men/32.jpg"
+                                    class="w-16 h-16 rounded-full object-cover border-2 border-white shadow-sm">
+                                <button
+                                    class="text-[10px] border border-blue-400 text-blue-500 px-2 py-1 rounded bg-blue-50 hover:bg-blue-100">View
+                                    Tour</button>
+                            </div>
+                        </div>
+                        <div
+                            class="min-w-[400px] bg-white p-5 rounded-2xl shadow-sm hover:shadow-md transition border border-gray-100 flex gap-4">
+                            <div class="flex-1">
+                                <h3 class="font-bold text-sm text-gray-800 mb-1 leading-tight">Dream Trip to France and
+                                    Swiss
+                                </h3>
+                                <p class="text-xs text-gray-500 font-semibold mb-2">Mr. Dharmesh Shah</p>
+                                <p class="text-xs text-gray-600 line-clamp-3 mb-2">Me and my family had an amazing
+                                    experience on
+                                    our first trip. The management was excellent.</p>
+                                <a href="#" class="text-xs text-blue-500 font-bold hover:underline">read more</a>
+                                <div class="mt-3 flex gap-2 text-xs text-gray-400">
+                                    <span><i class="fas fa-thumbs-up"></i> Europe</span>
+                                </div>
+                            </div>
+                            <div class="w-24 flex flex-col items-center justify-center gap-2">
+                                <img src="https://randomuser.me/api/portraits/men/32.jpg"
+                                    class="w-16 h-16 rounded-full object-cover border-2 border-white shadow-sm">
+                                <button
+                                    class="text-[10px] border border-blue-400 text-blue-500 px-2 py-1 rounded bg-blue-50 hover:bg-blue-100">View
+                                    Tour</button>
+                            </div>
+                        </div>
+                        <div
+                            class="min-w-[400px] bg-white p-5 rounded-2xl shadow-sm hover:shadow-md transition border border-gray-100 flex gap-4">
+                            <div class="flex-1">
+                                <h3 class="font-bold text-sm text-gray-800 mb-1 leading-tight">Dream Trip to France and
+                                    Swiss
+                                </h3>
+                                <p class="text-xs text-gray-500 font-semibold mb-2">Mr. Dharmesh Shah</p>
+                                <p class="text-xs text-gray-600 line-clamp-3 mb-2">Me and my family had an amazing
+                                    experience on
+                                    our first trip. The management was excellent.</p>
+                                <a href="#" class="text-xs text-blue-500 font-bold hover:underline">read more</a>
+                                <div class="mt-3 flex gap-2 text-xs text-gray-400">
+                                    <span><i class="fas fa-thumbs-up"></i> Europe</span>
+                                </div>
+                            </div>
+                            <div class="w-24 flex flex-col items-center justify-center gap-2">
+                                <img src="https://randomuser.me/api/portraits/men/32.jpg"
+                                    class="w-16 h-16 rounded-full object-cover border-2 border-white shadow-sm">
+                                <button
+                                    class="text-[10px] border border-blue-400 text-blue-500 px-2 py-1 rounded bg-blue-50 hover:bg-blue-100">View
+                                    Tour</button>
+                            </div>
+                        </div>
+                        <div
+                            class="min-w-[400px] bg-white p-5 rounded-2xl shadow-sm hover:shadow-md transition border border-gray-100 flex gap-4">
+                            <div class="flex-1">
+                                <h3 class="font-bold text-sm text-gray-800 mb-1 leading-tight">Dream Trip to France and
+                                    Swiss
+                                </h3>
+                                <p class="text-xs text-gray-500 font-semibold mb-2">Mr. Dharmesh Shah</p>
+                                <p class="text-xs text-gray-600 line-clamp-3 mb-2">Me and my family had an amazing
+                                    experience on
+                                    our first trip. The management was excellent.</p>
+                                <a href="#" class="text-xs text-blue-500 font-bold hover:underline">read more</a>
+                                <div class="mt-3 flex gap-2 text-xs text-gray-400">
+                                    <span><i class="fas fa-thumbs-up"></i> Europe</span>
+                                </div>
+                            </div>
+                            <div class="w-24 flex flex-col items-center justify-center gap-2">
+                                <img src="https://randomuser.me/api/portraits/men/32.jpg"
+                                    class="w-16 h-16 rounded-full object-cover border-2 border-white shadow-sm">
+                                <button
+                                    class="text-[10px] border border-blue-400 text-blue-500 px-2 py-1 rounded bg-blue-50 hover:bg-blue-100">View
+                                    Tour</button>
                             </div>
                         </div>
                     </div>
+                </div>
+
+                <div class="relative group">
+                    <h2 class="text-lg font-bold text-gray-800 mb-4">Easy-visa destinations</h2>
+                    <button onclick="scrollContainer('visa-scroll', -200)"
+                        class="absolute left-[-20px] top-[50%] z-10 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-gray-100 border border-gray-100 text-gray-600 transition hover:scale-110"><i
+                            class="fas fa-chevron-left"></i></button>
+                    <button onclick="scrollContainer('visa-scroll', 200)"
+                        class="absolute right-[-20px] top-[50%] z-10 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-gray-100 border border-gray-100 text-gray-600 transition hover:scale-110"><i
+                            class="fas fa-chevron-right"></i></button>
+
+                    <div id="visa-scroll" class="flex gap-8 overflow-x-auto no-scrollbar scroll-smooth py-4 px-2">
+                        <a href="visa.html"
+                            class="flex flex-col items-center min-w-[100px] cursor-pointer hover:scale-110 transition duration-300">
+                            <img src="https://images.unsplash.com/photo-1565967511849-76a60a516170?auto=format&fit=crop&w=150&q=80"
+                                class="w-24 h-24 rounded-full object-cover shadow-md mb-2 border-2 border-white"
+                                alt="Singapore">
+                            <h3 class="font-bold text-sm text-center">Singapore</h3>
+                            <p class="text-xs text-gray-500">50+ Tours</p>
+                        </a>
+
+                        <a href="visa.html"
+                            class="flex flex-col items-center min-w-[100px] cursor-pointer hover:scale-110 transition duration-300">
+                            <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=150&q=80"
+                                class="w-24 h-24 rounded-full object-cover shadow-md mb-2 border-2 border-white"
+                                alt="Paris">
+                            <h3 class="font-bold text-sm text-center">Paris</h3>
+                            <p class="text-xs text-gray-500">85+ Tours</p>
+                        </a>
+
+                        <a href="visa.html"
+                            class="flex flex-col items-center min-w-[100px] cursor-pointer hover:scale-110 transition duration-300">
+                            <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=150&q=80"
+                                class="w-24 h-24 rounded-full object-cover shadow-md mb-2 border-2 border-white"
+                                alt="Bali">
+                            <h3 class="font-bold text-sm text-center">Bali</h3>
+                            <p class="text-xs text-gray-500">120+ Tours</p>
+                        </a>
+
+                        <a href="visa.html"
+                            class="flex flex-col items-center min-w-[100px] cursor-pointer hover:scale-110 transition duration-300">
+                            <img src="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=150&q=80"
+                                class="w-24 h-24 rounded-full object-cover shadow-md mb-2 border-2 border-white"
+                                alt="Tokyo">
+                            <h3 class="font-bold text-sm text-center">Tokyo</h3>
+                            <p class="text-xs text-gray-500">60+ Tours</p>
+                        </a>
+
+                        <a href="visa.html"
+                            class="flex flex-col items-center min-w-[100px] cursor-pointer hover:scale-110 transition duration-300">
+                            <img src="https://images.unsplash.com/photo-1552832230-c0197dd311b5?auto=format&fit=crop&w=150&q=80"
+                                class="w-24 h-24 rounded-full object-cover shadow-md mb-2 border-2 border-white"
+                                alt="Rome">
+                            <h3 class="font-bold text-sm text-center">Rome</h3>
+                            <p class="text-xs text-gray-500">45+ Tours</p>
+                        </a>
+
+                        <a href="visa.html"
+                            class="flex flex-col items-center min-w-[100px] cursor-pointer hover:scale-110 transition duration-300">
+                            <img src="https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?auto=format&fit=crop&w=150&q=80"
+                                class="w-24 h-24 rounded-full object-cover shadow-md mb-2 border-2 border-white"
+                                alt="New York">
+                            <h3 class="font-bold text-sm text-center">New York</h3>
+                            <p class="text-xs text-gray-500">90+ Tours</p>
+                        </a>
+
+                        <a href="visa.html"
+                            class="flex flex-col items-center min-w-[100px] cursor-pointer hover:scale-110 transition duration-300">
+                            <img src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=150&q=80"
+                                class="w-24 h-24 rounded-full object-cover shadow-md mb-2 border-2 border-white"
+                                alt="Santorini">
+                            <h3 class="font-bold text-sm text-center">Santorini</h3>
+                            <p class="text-xs text-gray-500">30+ Tours</p>
+                        </a>
+
+                        <a href="visa.html"
+                            class="flex flex-col items-center min-w-[100px] cursor-pointer hover:scale-110 transition duration-300">
+                            <img src="https://images.unsplash.com/photo-1572252009286-268acec5ca0a?auto=format&fit=crop&w=150&q=80"
+                                class="w-24 h-24 rounded-full object-cover shadow-md mb-2 border-2 border-white"
+                                alt="Cairo">
+                            <h3 class="font-bold text-sm text-center">Cairo</h3>
+                            <p class="text-xs text-gray-500">25+ Tours</p>
+                        </a>
+
+                        <a href="visa.html"
+                            class="flex flex-col items-center min-w-[100px] cursor-pointer hover:scale-110 transition duration-300">
+                            <img src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=150&q=80"
+                                class="w-24 h-24 rounded-full object-cover shadow-md mb-2 border-2 border-white"
+                                alt="London">
+                            <h3 class="font-bold text-sm text-center">London</h3>
+                            <p class="text-xs text-gray-500">75+ Tours</p>
+                        </a>
+
+                        <a href="visa.html"
+                            class="flex flex-col items-center min-w-[100px] cursor-pointer hover:scale-110 transition duration-300">
+                            <img src="https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?auto=format&fit=crop&w=150&q=80"
+                                class="w-24 h-24 rounded-full object-cover shadow-md mb-2 border-2 border-white"
+                                alt="Sydney">
+                            <h3 class="font-bold text-sm text-center">Sydney</h3>
+                            <p class="text-xs text-gray-500">20+ Tours</p>
+                        </a>
+
+                        <a href="visa.html"
+                            class="flex flex-col items-center min-w-[100px] cursor-pointer hover:scale-110 transition duration-300">
+                            <img src="https://images.unsplash.com/photo-1512453979798-5ea932a23518?auto=format&fit=crop&w=150&q=80"
+                                class="w-24 h-24 rounded-full object-cover shadow-md mb-2 border-2 border-white"
+                                alt="Dubai">
+                            <h3 class="font-bold text-sm text-center">Dubai</h3>
+                            <p class="text-xs text-gray-500">100+ Tours</p>
+                        </a>
+                    </div>
+                </div>
 
 
-                    <div
-                        class="min-w-[250px] bg-white border border-gray-200 rounded-lg overflow-hidden shadow-sm hover:shadow-xl transition transform hover:-translate-y-1 duration-300">
-                        <div class="h-36 relative">
-                            <img src="https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?auto=format&fit=crop&w=300&q=80"
-                                class="w-full h-full object-cover">
-                            <div
-                                class="absolute bottom-2 right-2 bg-white/95 px-2 py-0.5 text-[10px] font-bold rounded shadow text-gray-700">
-                                4N 5D</div>
-                        </div>
-                        <div class="p-3">
-                            <h3 class="font-bold text-sm text-gray-800 mb-2 truncate">Free And Easy Thailand</h3>
-                            <div class="text-[10px] text-gray-500 mb-2">Pattaya (2N) | Bangkok (2N)</div>
-                            <div class="flex justify-between items-end mb-3">
-                                <i class="fas fa-umbrella-beach text-gray-300"></i>
-                                <div class="text-right">
-                                    <span class="block text-lg font-bold text-gray-800">₹ 18,910</span>
-                                    <span class="block text-[10px] text-gray-500">per person</span>
-                                </div>
+
+                <div class="relative group">
+                    <div>
+                        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
+                            <h2 class="text-lg font-bold text-gray-800">Best Budget Travel Destinations</h2>
+                            <div class="flex flex-wrap bg-white rounded-lg p-1 border border-gray-200 shadow-sm">
+                                <button onclick="toggleFilter(this)"
+                                    class="budget-filter filter-active px-3 py-1 text-xs font-bold rounded transition">Under
+                                    50K</button>
+                                <button onclick="toggleFilter(this)"
+                                    class="budget-filter filter-inactive px-3 py-1 text-xs font-bold rounded transition">50K
+                                    - 1
+                                    Lac</button>
+                                <button onclick="toggleFilter(this)"
+                                    class="budget-filter filter-inactive px-3 py-1 text-xs font-bold rounded transition">1
+                                    Lac -
+                                    2 Lac</button>
+                                <button onclick="toggleFilter(this)"
+                                    class="budget-filter filter-inactive px-3 py-1 text-xs font-bold rounded transition">More
+                                    than 2 Lac</button>
                             </div>
-                            <div class="grid grid-cols-2 gap-2">
-                                <button onclick="toggleModal(true)"
-                                    class="border border-blue-400 text-blue-500 text-[10px] font-bold py-1 rounded hover:bg-blue-50">View
-                                    Details</button>
-                                <button onclick="toggleModal(true)"
-                                    class="bg-traveller-red text-white text-[10px] font-bold py-1 rounded hover:bg-red-600">Book
-                                    Now</button>
-                            </div>
-                        </div>
+                        </div </div>
                     </div>
 
-                    <div
-                        class="min-w-[250px] bg-white border border-gray-200 rounded-lg overflow-hidden shadow-sm hover:shadow-xl transition transform hover:-translate-y-1 duration-300">
-                        <div class="h-36 relative">
-                            <img src="https://images.unsplash.com/photo-1565967511849-76a60a516170?auto=format&fit=crop&w=300&q=80"
-                                class="w-full h-full object-cover">
-                            <div
-                                class="absolute bottom-2 right-2 bg-white/95 px-2 py-0.5 text-[10px] font-bold rounded shadow text-gray-700">
-                                5N 6D</div>
-                        </div>
-                        <div class="p-3">
-                            <h3 class="font-bold text-sm text-gray-800 mb-2 truncate">Vietnam Classic</h3>
-                            <div class="text-[10px] text-gray-500 mb-2">Hanoi (1N) | Ha Long (1N)</div>
-                            <div class="flex justify-between items-end mb-3">
-                                <i class="fas fa-umbrella-beach text-gray-300"></i>
-                                <div class="text-right">
-                                    <span class="block text-lg font-bold text-gray-800">₹ 37,280</span>
-                                    <span class="block text-[10px] text-gray-500">per person</span>
+                    <div class="flex gap-4 overflow-x-auto no-scrollbar pb-4">
+                        <div
+                            class="min-w-[250px] bg-white border border-gray-200 rounded-lg overflow-hidden shadow-sm hover:shadow-xl transition transform hover:-translate-y-1 duration-300">
+                            <div class="h-36 relative">
+                                <img src="https://images.unsplash.com/photo-1573790387438-4da905039392?auto=format&fit=crop&w=300&q=80"
+                                    class="w-full h-full object-cover">
+                                <div
+                                    class="absolute bottom-2 right-2 bg-white/95 px-2 py-0.5 text-[10px] font-bold rounded shadow text-gray-700">
+                                    4N 5D</div>
+                            </div>
+                            <div class="p-3">
+                                <h3 class="font-bold text-sm text-gray-800 mb-2 truncate">Bali Honeymoon Special</h3>
+                                <div class="text-[10px] text-gray-500 mb-2">Bali (4N) | Pool Villa (1N)</div>
+                                <div class="flex justify-between items-end mb-3">
+                                    <i class="fas fa-umbrella-beach text-gray-300"></i>
+                                    <div class="text-right">
+                                        <span class="block text-lg font-bold text-gray-800">₹ 31,190</span>
+                                        <span class="block text-[10px] text-gray-500">per person</span>
+                                    </div>
+                                </div>
+                                <div class="grid grid-cols-2 gap-2">
+                                    <button onclick="toggleModal(true)"
+                                        class="border border-blue-400 text-blue-500 text-[10px] font-bold py-1 rounded hover:bg-blue-50">View
+                                        Details</button>
+                                    <button onclick="toggleModal(true)"
+                                        class="bg-traveller-red text-white text-[10px] font-bold py-1 rounded hover:bg-red-600">Book
+                                        Now</button>
                                 </div>
                             </div>
-                            <div class="grid grid-cols-2 gap-2">
-                                <button onclick="toggleModal(true)"
-                                    class="border border-blue-400 text-blue-500 text-[10px] font-bold py-1 rounded hover:bg-blue-50">View
-                                    Details</button>
-                                <button onclick="toggleModal(true)"
-                                    class="bg-traveller-red text-white text-[10px] font-bold py-1 rounded hover:bg-red-600">Book
-                                    Now</button>
-                            </div>
                         </div>
-                    </div>
 
-                    <div
-                        class="min-w-[250px] bg-white border border-gray-200 rounded-lg overflow-hidden shadow-sm hover:shadow-xl transition transform hover:-translate-y-1 duration-300">
-                        <div class="h-36 relative">
-                            <img src="https://images.unsplash.com/photo-1565967511849-76a60a516170?auto=format&fit=crop&w=300&q=80"
-                                class="w-full h-full object-cover">
-                            <div
-                                class="absolute bottom-2 right-2 bg-white/95 px-2 py-0.5 text-[10px] font-bold rounded shadow text-gray-700">
-                                3N 4D</div>
-                        </div>
-                        <div class="p-3">
-                            <h3 class="font-bold text-sm text-gray-800 mb-2 truncate">Singapore Escape</h3>
-                            <div class="text-[10px] text-gray-500 mb-2">Singapore (3N)</div>
-                            <div class="flex justify-between items-end mb-3">
-                                <i class="fas fa-umbrella-beach text-gray-300"></i>
-                                <div class="text-right">
-                                    <span class="block text-lg font-bold text-gray-800">₹ 35,820</span>
-                                    <span class="block text-[10px] text-gray-500">per person</span>
+                        <div
+                            class="min-w-[250px] bg-white border border-gray-200 rounded-lg overflow-hidden shadow-sm hover:shadow-xl transition transform hover:-translate-y-1 duration-300">
+                            <div class="h-36 relative">
+                                <img src="https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?auto=format&fit=crop&w=300&q=80"
+                                    class="w-full h-full object-cover">
+                                <div
+                                    class="absolute bottom-2 right-2 bg-white/95 px-2 py-0.5 text-[10px] font-bold rounded shadow text-gray-700">
+                                    5N 6D</div>
+                            </div>
+                            <div class="p-3">
+                                <h3 class="font-bold text-sm text-gray-800 mb-2 truncate">Simply Bali Seminyak</h3>
+                                <div class="text-[10px] text-gray-500 mb-2">Bali (5N)</div>
+                                <div class="flex justify-between items-end mb-3">
+                                    <i class="fas fa-umbrella-beach text-gray-300"></i>
+                                    <div class="text-right">
+                                        <span class="block text-lg font-bold text-gray-800">₹ 18,370</span>
+                                        <span class="block text-[10px] text-gray-500">per person</span>
+                                    </div>
+                                </div>
+                                <div class="grid grid-cols-2 gap-2">
+                                    <button onclick="toggleModal(true)"
+                                        class="border border-blue-400 text-blue-500 text-[10px] font-bold py-1 rounded hover:bg-blue-50">View
+                                        Details</button>
+                                    <button onclick="toggleModal(true)"
+                                        class="bg-traveller-red text-white text-[10px] font-bold py-1 rounded hover:bg-red-600">Book
+                                        Now</button>
                                 </div>
                             </div>
-                            <div class="grid grid-cols-2 gap-2">
-                                <button onclick="toggleModal(true)"
-                                    class="border border-blue-400 text-blue-500 text-[10px] font-bold py-1 rounded hover:bg-blue-50">View
-                                    Details</button>
-                                <button onclick="toggleModal(true)"
-                                    class="bg-traveller-red text-white text-[10px] font-bold py-1 rounded hover:bg-red-600">Book
-                                    Now</button>
+                        </div>
+
+
+                        <div
+                            class="min-w-[250px] bg-white border border-gray-200 rounded-lg overflow-hidden shadow-sm hover:shadow-xl transition transform hover:-translate-y-1 duration-300">
+                            <div class="h-36 relative">
+                                <img src="https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?auto=format&fit=crop&w=300&q=80"
+                                    class="w-full h-full object-cover">
+                                <div
+                                    class="absolute bottom-2 right-2 bg-white/95 px-2 py-0.5 text-[10px] font-bold rounded shadow text-gray-700">
+                                    4N 5D</div>
                             </div>
+                            <div class="p-3">
+                                <h3 class="font-bold text-sm text-gray-800 mb-2 truncate">Free And Easy Thailand</h3>
+                                <div class="text-[10px] text-gray-500 mb-2">Pattaya (2N) | Bangkok (2N)</div>
+                                <div class="flex justify-between items-end mb-3">
+                                    <i class="fas fa-umbrella-beach text-gray-300"></i>
+                                    <div class="text-right">
+                                        <span class="block text-lg font-bold text-gray-800">₹ 18,910</span>
+                                        <span class="block text-[10px] text-gray-500">per person</span>
+                                    </div>
+                                </div>
+                                <div class="grid grid-cols-2 gap-2">
+                                    <button onclick="toggleModal(true)"
+                                        class="border border-blue-400 text-blue-500 text-[10px] font-bold py-1 rounded hover:bg-blue-50">View
+                                        Details</button>
+                                    <button onclick="toggleModal(true)"
+                                        class="bg-traveller-red text-white text-[10px] font-bold py-1 rounded hover:bg-red-600">Book
+                                        Now</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div
+                            class="min-w-[250px] bg-white border border-gray-200 rounded-lg overflow-hidden shadow-sm hover:shadow-xl transition transform hover:-translate-y-1 duration-300">
+                            <div class="h-36 relative">
+                                <img src="https://images.unsplash.com/photo-1565967511849-76a60a516170?auto=format&fit=crop&w=300&q=80"
+                                    class="w-full h-full object-cover">
+                                <div
+                                    class="absolute bottom-2 right-2 bg-white/95 px-2 py-0.5 text-[10px] font-bold rounded shadow text-gray-700">
+                                    5N 6D</div>
+                            </div>
+                            <div class="p-3">
+                                <h3 class="font-bold text-sm text-gray-800 mb-2 truncate">Vietnam Classic</h3>
+                                <div class="text-[10px] text-gray-500 mb-2">Hanoi (1N) | Ha Long (1N)</div>
+                                <div class="flex justify-between items-end mb-3">
+                                    <i class="fas fa-umbrella-beach text-gray-300"></i>
+                                    <div class="text-right">
+                                        <span class="block text-lg font-bold text-gray-800">₹ 37,280</span>
+                                        <span class="block text-[10px] text-gray-500">per person</span>
+                                    </div>
+                                </div>
+                                <div class="grid grid-cols-2 gap-2">
+                                    <button onclick="toggleModal(true)"
+                                        class="border border-blue-400 text-blue-500 text-[10px] font-bold py-1 rounded hover:bg-blue-50">View
+                                        Details</button>
+                                    <button onclick="toggleModal(true)"
+                                        class="bg-traveller-red text-white text-[10px] font-bold py-1 rounded hover:bg-red-600">Book
+                                        Now</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div
+                            class="min-w-[250px] bg-white border border-gray-200 rounded-lg overflow-hidden shadow-sm hover:shadow-xl transition transform hover:-translate-y-1 duration-300">
+                            <div class="h-36 relative">
+                                <img src="https://images.unsplash.com/photo-1565967511849-76a60a516170?auto=format&fit=crop&w=300&q=80"
+                                    class="w-full h-full object-cover">
+                                <div
+                                    class="absolute bottom-2 right-2 bg-white/95 px-2 py-0.5 text-[10px] font-bold rounded shadow text-gray-700">
+                                    3N 4D</div>
+                            </div>
+                            <div class="p-3">
+                                <h3 class="font-bold text-sm text-gray-800 mb-2 truncate">Singapore Escape</h3>
+                                <div class="text-[10px] text-gray-500 mb-2">Singapore (3N)</div>
+                                <div class="flex justify-between items-end mb-3">
+                                    <i class="fas fa-umbrella-beach text-gray-300"></i>
+                                    <div class="text-right">
+                                        <span class="block text-lg font-bold text-gray-800">₹ 35,820</span>
+                                        <span class="block text-[10px] text-gray-500">per person</span>
+                                    </div>
+                                </div>
+                                <div class="grid grid-cols-2 gap-2">
+                                    <button onclick="toggleModal(true)"
+                                        class="border border-blue-400 text-blue-500 text-[10px] font-bold py-1 rounded hover:bg-blue-50">View
+                                        Details</button>
+                                    <button onclick="toggleModal(true)"
+                                        class="bg-traveller-red text-white text-[10px] font-bold py-1 rounded hover:bg-red-600">Book
+                                        Now</button>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                        <div
+                            class="min-w-[250px] bg-white border border-gray-200 rounded-lg overflow-hidden shadow-sm hover:shadow-xl transition transform hover:-translate-y-1 duration-300">
+                            <div class="h-36 relative">
+                                <img src="https://images.unsplash.com/photo-1565967511849-76a60a516170?auto=format&fit=crop&w=300&q=80"
+                                    class="w-full h-full object-cover">
+                                <div
+                                    class="absolute bottom-2 right-2 bg-white/95 px-2 py-0.5 text-[10px] font-bold rounded shadow text-gray-700">
+                                    3N 4D</div>
+                            </div>
+                            <div class="p-3">
+                                <h3 class="font-bold text-sm text-gray-800 mb-2 truncate">Singapore Escape</h3>
+                                <div class="text-[10px] text-gray-500 mb-2">Singapore (3N)</div>
+                                <div class="flex justify-between items-end mb-3">
+                                    <i class="fas fa-umbrella-beach text-gray-300"></i>
+                                    <div class="text-right">
+                                        <span class="block text-lg font-bold text-gray-800">₹ 35,820</span>
+                                        <span class="block text-[10px] text-gray-500">per person</span>
+                                    </div>
+                                </div>
+                                <div class="grid grid-cols-2 gap-2">
+                                    <button onclick="toggleModal(true)"
+                                        class="border border-blue-400 text-blue-500 text-[10px] font-bold py-1 rounded hover:bg-blue-50">View
+                                        Details</button>
+                                    <button onclick="toggleModal(true)"
+                                        class="bg-traveller-red text-white text-[10px] font-bold py-1 rounded hover:bg-red-600">Book
+                                        Now</button>
+                                </div>
+                            </div>
+
+
                         </div>
                     </div>
                 </div>
             </div>
-            </div>
 
-            <div class="bg-white p-5 rounded-2xl shadow-sm border border-gray-200">
+            <div class=" container mx-auto bg-white p-5 rounded-2xl  shadow-sm border border-gray-200">
                 <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
                     <h2 class="text-lg font-bold text-gray-800"> Top Packages By Season</h2>
                     <div class="flex flex-wrap gap-1">
@@ -1519,316 +1712,22 @@
                                     Details</button>
                             </div>
                         </div>
+
+
                     </div>
+
+
+
                 </div>
             </div>
 
-            <div>
+           
 
-                <div class="bg-white p-6 rounded-xl shadow-lg w-full max-w-[1400px]">
+               
 
-                    <div class="flex flex-col md:flex-row justify-between items-center mb-6 gap-4">
-                        <h2 class="text-xl font-bold text-gray-700">Best Budget Travel Destinations</h2>
+            
 
-                        <div class="flex bg-gray-100 p-1 rounded-lg overflow-hidden text-sm font-medium">
-                            <button onclick="switchTab(this)"
-                                class="tab-btn px-4 py-2 rounded-md bg-[#002B45] text-white shadow transition-all">Under
-                                50
-                                K</button>
-                            <button onclick="switchTab(this)"
-                                class="tab-btn px-4 py-2 rounded-md text-gray-600 hover:bg-gray-200 transition-all">50 K
-                                - 1
-                                Lac</button>
-                            <button onclick="switchTab(this)"
-                                class="tab-btn px-4 py-2 rounded-md text-gray-600 hover:bg-gray-200 transition-all">1
-                                Lac -
-                                2 Lac</button>
-                            <button onclick="switchTab(this)"
-                                class="tab-btn px-4 py-2 rounded-md text-gray-600 hover:bg-gray-200 transition-all">More
-                                than 2 Lac</button>
-                        </div>
-                    </div>
-
-                    <div class="flex overflow-x-auto gap-5 pb-4 no-scrollbar scroll-smooth">
-
-                        <div
-                            class="min-w-[300px] max-w-[300px] border border-gray-200 rounded-xl bg-white shadow-sm flex flex-col flex-shrink-0">
-                            <div
-                                class="flex justify-between text-[10px] font-semibold text-gray-700 border-b border-gray-200">
-                                <span class="w-1/2 text-center py-1.5 border-r border-gray-200">Private Van Tour</span>
-                                <span class="w-1/2 text-center py-1.5">Under 50 K</span>
-                            </div>
-
-                            <div class="relative h-40 w-full">
-                                <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
-                                    alt="Bali" class="w-full h-full object-cover rounded-none">
-                                <div
-                                    class="absolute bottom-2 right-2 bg-white px-2 py-1 text-xs font-bold rounded shadow text-gray-800">
-                                    5 Nights / 6 Days
-                                </div>
-                            </div>
-
-                            <div class="p-4 flex flex-col flex-grow">
-                                <h3 class="font-bold text-gray-800 text-sm mb-1 leading-tight">Bali Honeymoon Special
-                                    With
-                                    Pool Villa</h3>
-                                <p class="text-xs text-gray-500 mb-4">Bali Island (3N), Bali Island (2N)</p>
-
-                                <div class="mt-auto">
-                                    <div class="flex items-center justify-between mb-1">
-                                        <div class="flex items-center text-xs text-gray-500">
-                                            <i class="fas fa-plane-slash mr-1"></i> <span
-                                                class="text-[10px] italic">Flight
-                                                Not Included</span>
-                                        </div>
-                                        <div class="text-right">
-                                            <span class="text-xl font-bold text-gray-800">₹31,190</span>
-                                        </div>
-                                    </div>
-                                    <div class="flex justify-end mb-3">
-                                        <span class="text-[10px] text-gray-500">per person</span>
-                                    </div>
-                                    <div class="flex justify-end mb-4">
-                                        <a href="#" class="text-[10px] text-blue-500 underline decoration-dotted">EMI
-                                            from
-                                            ₹1,579/month</a>
-                                    </div>
-                                </div>
-
-                                <div class="border-t border-dashed border-gray-300 pt-2 mb-3 text-center">
-                                    <p class="text-[10px] text-gray-500">Valid upto 31 Mar 2026</p>
-                                </div>
-
-                                <div class="grid grid-cols-2 gap-2">
-                                    <button
-                                        class="border border-blue-400 text-blue-400 text-xs font-semibold py-2 rounded hover:bg-blue-50 transition">Call
-                                        Now</button>
-                                    <button
-                                        class="bg-[#ff3b59] text-white text-xs font-semibold py-2 rounded hover:bg-[#e63550] transition">View
-                                        Details</button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div
-                            class="min-w-[300px] max-w-[300px] border border-gray-200 rounded-xl bg-white shadow-sm flex flex-col flex-shrink-0">
-                            <div
-                                class="flex justify-between text-[10px] font-semibold text-gray-700 border-b border-gray-200">
-                                <span class="w-1/2 text-center py-1.5 border-r border-gray-200">Private Van Tour</span>
-                                <span class="w-1/2 text-center py-1.5">Under 50 K</span>
-                            </div>
-                            <div class="relative h-40 w-full">
-                                <img src="https://images.unsplash.com/photo-1555400038-63f5ba517a47?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
-                                    alt="Bali Seminyak" class="w-full h-full object-cover">
-                                <div
-                                    class="absolute bottom-2 right-2 bg-white px-2 py-1 text-xs font-bold rounded shadow text-gray-800">
-                                    4 Nights / 5 Days
-                                </div>
-                            </div>
-                            <div class="p-4 flex flex-col flex-grow">
-                                <h3 class="font-bold text-gray-800 text-sm mb-1 leading-tight">Simply Bali With Seminyak
-                                </h3>
-                                <p class="text-xs text-gray-500 mb-4">Bali Island (2N), Bali Island (2N)</p>
-                                <div class="mt-auto">
-                                    <div class="flex items-center justify-between mb-1">
-                                        <div class="flex items-center text-xs text-gray-500">
-                                            <i class="fas fa-plane-slash mr-1"></i> <span
-                                                class="text-[10px] italic">Flight
-                                                Not Included</span>
-                                        </div>
-                                        <div class="text-right">
-                                            <span class="text-xl font-bold text-gray-800">₹18,370</span>
-                                        </div>
-                                    </div>
-                                    <div class="flex justify-end mb-3">
-                                        <span class="text-[10px] text-gray-500">per person</span>
-                                    </div>
-                                    <div class="flex justify-end mb-4">
-                                        <a href="#" class="text-[10px] text-blue-500 underline decoration-dotted">EMI
-                                            from
-                                            ₹930/month</a>
-                                    </div>
-                                </div>
-                                <div class="border-t border-dashed border-gray-300 pt-2 mb-3 text-center">
-                                    <p class="text-[10px] text-gray-500">Valid upto 31 Mar 2026</p>
-                                </div>
-                                <div class="grid grid-cols-2 gap-2">
-                                    <button
-                                        class="border border-blue-400 text-blue-400 text-xs font-semibold py-2 rounded hover:bg-blue-50 transition">Call
-                                        Now</button>
-                                    <button
-                                        class="bg-[#ff3b59] text-white text-xs font-semibold py-2 rounded hover:bg-[#e63550] transition">View
-                                        Details</button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div
-                            class="min-w-[300px] max-w-[300px] border border-gray-200 rounded-xl bg-white shadow-sm flex flex-col flex-shrink-0">
-                            <div
-                                class="flex justify-between text-[10px] font-semibold text-gray-700 border-b border-gray-200">
-                                <span class="w-1/2 text-center py-1.5 border-r border-gray-200">Private Van Tour</span>
-                                <span class="w-1/2 text-center py-1.5">Under 50 K</span>
-                            </div>
-                            <div class="relative h-40 w-full">
-                                <img src="https://images.unsplash.com/photo-1506665531195-3566af2b4dfa?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
-                                    alt="Thailand" class="w-full h-full object-cover">
-                                <div
-                                    class="absolute bottom-2 right-2 bg-white px-2 py-1 text-xs font-bold rounded shadow text-gray-800">
-                                    4 Nights / 5 Days
-                                </div>
-                            </div>
-                            <div class="p-4 flex flex-col flex-grow">
-                                <h3 class="font-bold text-gray-800 text-sm mb-1 leading-tight">Free And Easy Thailand
-                                    Tour
-                                </h3>
-                                <p class="text-xs text-gray-500 mb-4">Pattaya (2N), Bangkok (2N)</p>
-                                <div class="mt-auto">
-                                    <div class="flex items-center justify-between mb-1">
-                                        <div class="flex items-center text-xs text-gray-500">
-                                            <i class="fas fa-plane-slash mr-1"></i> <span
-                                                class="text-[10px] italic">Flight
-                                                Not Included</span>
-                                        </div>
-                                        <div class="text-right">
-                                            <span class="text-xl font-bold text-gray-800">₹18,910</span>
-                                        </div>
-                                    </div>
-                                    <div class="flex justify-end mb-3">
-                                        <span class="text-[10px] text-gray-500">per person</span>
-                                    </div>
-                                    <div class="flex justify-end mb-4">
-                                        <a href="#" class="text-[10px] text-blue-500 underline decoration-dotted">EMI
-                                            from
-                                            ₹958/month</a>
-                                    </div>
-                                </div>
-                                <div class="border-t border-dashed border-gray-300 pt-2 mb-3 text-center">
-                                    <p class="text-[10px] text-gray-500">Valid upto 31 Mar 2026</p>
-                                </div>
-                                <div class="grid grid-cols-2 gap-2">
-                                    <button
-                                        class="border border-blue-400 text-blue-400 text-xs font-semibold py-2 rounded hover:bg-blue-50 transition">Call
-                                        Now</button>
-                                    <button
-                                        class="bg-[#ff3b59] text-white text-xs font-semibold py-2 rounded hover:bg-[#e63550] transition">View
-                                        Details</button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div
-                            class="min-w-[300px] max-w-[300px] border border-gray-200 rounded-xl bg-white shadow-sm flex flex-col flex-shrink-0">
-                            <div
-                                class="flex justify-between text-[10px] font-semibold text-gray-700 border-b border-gray-200">
-                                <span class="w-1/2 text-center py-1.5 border-r border-gray-200">Private Van Tour</span>
-                                <span class="w-1/2 text-center py-1.5">Under 50 K</span>
-                            </div>
-                            <div class="relative h-40 w-full">
-                                <img src="https://images.unsplash.com/photo-1559592413-7cec430aa669?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
-                                    alt="Vietnam" class="w-full h-full object-cover">
-                                <div
-                                    class="absolute bottom-2 right-2 bg-white px-2 py-1 text-xs font-bold rounded shadow text-gray-800">
-                                    5 Nights / 6 Days
-                                </div>
-                            </div>
-                            <div class="p-4 flex flex-col flex-grow">
-                                <h3 class="font-bold text-gray-800 text-sm mb-1 leading-tight">Vietnam Classic</h3>
-                                <p class="text-xs text-gray-500 mb-4">Hanoi (2N), Halong (1N), <span
-                                        class="font-bold">+1
-                                        more</span></p>
-                                <div class="mt-auto">
-                                    <div class="flex items-center justify-between mb-1">
-                                        <div class="flex items-center text-xs text-gray-500">
-                                            <i class="fas fa-plane-slash mr-1"></i> <span
-                                                class="text-[10px] italic">Flight
-                                                Not Included</span>
-                                        </div>
-                                        <div class="text-right">
-                                            <span class="text-xl font-bold text-gray-800">₹37,280</span>
-                                        </div>
-                                    </div>
-                                    <div class="flex justify-end mb-3">
-                                        <span class="text-[10px] text-gray-500">per person</span>
-                                    </div>
-                                    <div class="flex justify-end mb-4">
-                                        <a href="#" class="text-[10px] text-blue-500 underline decoration-dotted">EMI
-                                            from
-                                            ₹1,888/month</a>
-                                    </div>
-                                </div>
-                                <div class="border-t border-dashed border-gray-300 pt-2 mb-3 text-center">
-                                    <p class="text-[10px] text-gray-500">Valid upto 31 Mar 2026</p>
-                                </div>
-                                <div class="grid grid-cols-2 gap-2">
-                                    <button
-                                        class="border border-blue-400 text-blue-400 text-xs font-semibold py-2 rounded hover:bg-blue-50 transition">Call
-                                        Now</button>
-                                    <button
-                                        class="bg-[#ff3b59] text-white text-xs font-semibold py-2 rounded hover:bg-[#e63550] transition">View
-                                        Details</button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div
-                            class="min-w-[300px] max-w-[300px] border border-gray-200 rounded-xl bg-white shadow-sm flex flex-col flex-shrink-0">
-                            <div
-                                class="flex justify-between text-[10px] font-semibold text-gray-700 border-b border-gray-200">
-                                <span class="w-1/2 text-center py-1.5 border-r border-gray-200">Private Van Tour</span>
-                                <span class="w-1/2 text-center py-1.5">Under 50 K</span>
-                            </div>
-                            <div class="relative h-40 w-full">
-                                <img src="https://images.unsplash.com/photo-1525625293386-3f8f99389edd?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
-                                    alt="Singapore" class="w-full h-full object-cover">
-                                <div
-                                    class="absolute bottom-2 right-2 bg-white px-2 py-1 text-xs font-bold rounded shadow text-gray-800">
-                                    4 Nights / 5 Days
-                                </div>
-                            </div>
-                            <div class="p-4 flex flex-col flex-grow">
-                                <h3 class="font-bold text-gray-800 text-sm mb-1 leading-tight">Singapore Escape</h3>
-                                <p class="text-xs text-gray-500 mb-4">Singapore (4N)</p>
-                                <div class="mt-auto">
-                                    <div class="flex items-center justify-between mb-1">
-                                        <div class="flex items-center text-xs text-gray-500">
-                                            <i class="fas fa-plane-slash mr-1"></i> <span
-                                                class="text-[10px] italic">Flight
-                                                Not Included</span>
-                                        </div>
-                                        <div class="text-right">
-                                            <span class="text-xl font-bold text-gray-800">₹35,820</span>
-                                        </div>
-                                    </div>
-                                    <div class="flex justify-end mb-3">
-                                        <span class="text-[10px] text-gray-500">per person</span>
-                                    </div>
-                                    <div class="flex justify-end mb-4">
-                                        <a href="#" class="text-[10px] text-blue-500 underline decoration-dotted">EMI
-                                            from
-                                            ₹1,814/month</a>
-                                    </div>
-                                </div>
-                                <div class="border-t border-dashed border-gray-300 pt-2 mb-3 text-center">
-                                    <p class="text-[10px] text-gray-500">Valid upto 31 Mar 2026</p>
-                                </div>
-                                <div class="grid grid-cols-2 gap-2">
-                                    <button
-                                        class="border border-blue-400 text-blue-400 text-xs font-semibold py-2 rounded hover:bg-blue-50 transition">Call
-                                        Now</button>
-                                    <button
-                                        class="bg-[#ff3b59] text-white text-xs font-semibold py-2 rounded hover:bg-[#e63550] transition">View
-                                        Details</button>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="bg-white p-5 rounded-2xl shadow-sm border border-gray-200">
+            <div class=" container mx-auto mt-10 bg-white p-5 rounded-2xl shadow-sm border border-gray-200">
                 <h2 class="text-lg font-bold text-gray-800 mb-4">Trending travel articles</h2>
 
                 <div class="flex gap-4 overflow-x-auto no-scrollbar pb-4">
@@ -1898,7 +1797,7 @@
                 </div>
             </div>
 
-           </div>
+            </div>
 
         </section>
 
@@ -1908,20 +1807,7 @@
     <!-- Footer Component -->
     <footer class="bg-slate-950 text-slate-300 pt-16 pb-8 border-t border-slate-900">
         <div class="container mx-auto px-4">
-            <div
-                class="flex flex-col lg:flex-row justify-between items-center pb-12 border-b border-slate-800 mb-12 gap-8">
-                <div class="max-w-xl">
-                    <h3 class="text-2xl font-bold text-white mb-2">Join our newsletter</h3>
-                    <p class="text-slate-400">We'll send you the best travel deals, visa updates, and destination guides
-                        once a week. No spam.</p>
-                </div>
-                <div class="flex w-full max-w-sm gap-2">
-                    <input type="email" placeholder="Enter your email"
-                        class="w-full px-4 py-2.5 rounded-lg bg-slate-900 border border-slate-800 text-white placeholder-slate-500 focus:outline-none focus:border-slate-600 focus:ring-1 focus:ring-slate-600">
-                    <button
-                        class="px-6 py-2.5 bg-white text-black font-semibold rounded-lg hover:bg-gray-200 transition-colors whitespace-nowrap">Subscribe</button>
-                </div>
-            </div>
+
             <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 mb-16">
                 <div class="col-span-2 lg:col-span-2">
                     <div class="flex items-center gap-2 mb-6">
@@ -1934,47 +1820,47 @@
                     </p>
                     <div class="flex gap-4">
                         <a href="#"
-                            class="h-10 w-10 rounded-full bg-slate-900 flex items-center justify-center hover:bg-slate-800 hover:text-white transition-colors"><i
+                            class="h-10 w-10 rounded-full bg-slate-900 flex items-center justify-center hover:bg-slate-800  transition-colors"><i
                                 data-lucide="twitter" class="h-5 w-5"></i></a>
                         <a href="#"
-                            class="h-10 w-10 rounded-full bg-slate-900 flex items-center justify-center hover:bg-slate-800 hover:text-white transition-colors"><i
+                            class="h-10 w-10 rounded-full bg-slate-900 flex items-center justify-center hover:bg-slate-800  transition-colors"><i
                                 data-lucide="instagram" class="h-5 w-5"></i></a>
                         <a href="#"
-                            class="h-10 w-10 rounded-full bg-slate-900 flex items-center justify-center hover:bg-slate-800 hover:text-white transition-colors"><i
+                            class="h-10 w-10 rounded-full bg-slate-900 flex items-center justify-center hover:bg-slate-800  transition-colors"><i
                                 data-lucide="facebook" class="h-5 w-5"></i></a>
                         <a href="#"
-                            class="h-10 w-10 rounded-full bg-slate-900 flex items-center justify-center hover:bg-slate-800 hover:text-white transition-colors"><i
+                            class="h-10 w-10 rounded-full bg-slate-900 flex items-center justify-center hover:bg-slate-800  transition-colors"><i
                                 data-lucide="youtube" class="h-5 w-5"></i></a>
                     </div>
                 </div>
                 <div>
                     <h4 class="font-bold text-white mb-6">Company</h4>
                     <ul class="space-y-4 text-sm">
-                        <li><a href="#" class="hover:text-white transition-colors">About Us</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Careers</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Press</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Blog</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Sustainability</a></li>
+                        <li><a href="#" class=" transition-colors">About Us</a></li>
+                        <li><a href="#" class=" transition-colors">Careers</a></li>
+                        <li><a href="#" class=" transition-colors">Press</a></li>
+                        <li><a href="#" class=" transition-colors">Blog</a></li>
+                        <li><a href="#" class=" transition-colors">Sustainability</a></li>
                     </ul>
                 </div>
                 <div>
                     <h4 class="font-bold text-white mb-6">Support</h4>
                     <ul class="space-y-4 text-sm">
-                        <li><a href="#" class="hover:text-white transition-colors">Help Center</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Terms of Service</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Legal</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Privacy Policy</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Status</a></li>
+                        <li><a href="#" class=" transition-colors">Help Center</a></li>
+                        <li><a href="#" class=" transition-colors">Terms of Service</a></li>
+                        <li><a href="#" class=" transition-colors">Legal</a></li>
+                        <li><a href="#" class=" transition-colors">Privacy Policy</a></li>
+                        <li><a href="#" class=" transition-colors">Status</a></li>
                     </ul>
                 </div>
                 <div>
                     <h4 class="font-bold text-white mb-6">Top Routes</h4>
                     <ul class="space-y-4 text-sm">
-                        <li><a href="#" class="hover:text-white transition-colors">Flights to London</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Flights to Paris</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Flights to Tokyo</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Flights to New York</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Flights to Dubai</a></li>
+                        <li><a href="#" class=" transition-colors">Flights to London</a></li>
+                        <li><a href="#" class=" transition-colors">Flights to Paris</a></li>
+                        <li><a href="#" class=" transition-colors">Flights to Tokyo</a></li>
+                        <li><a href="#" class=" transition-colors">Flights to New York</a></li>
+                        <li><a href="#" class=" transition-colors">Flights to Dubai</a></li>
                     </ul>
                 </div>
             </div>
@@ -2003,7 +1889,7 @@
                         <p class="text-xs text-white/70">Online now</p>
                     </div>
                 </div>
-                <button onclick="toggleChat()" class="text-white/80 hover:text-white"><i data-lucide="x"
+                <button onclick="toggleChat()" class="text-white/80 "><i data-lucide="x"
                         class="h-5 w-5"></i></button>
             </div>
             <div class="p-4 h-80 overflow-y-auto bg-slate-50 space-y-4">
@@ -2210,9 +2096,20 @@
                 brandText.classList.add('text-black');
 
                 navLinks.forEach(link => {
-                    link.classList.remove('text-white', 'text-white/90');
+                    link.classList.remove('text-white', 'text-white/90', 'hover:text-black');
                     link.classList.add('text-black', 'hover:text-primary');
                 });
+
+                const mobileMenuButton = document.getElementById('mobile-menu-button');
+                if (mobileMenuButton) {
+                    mobileMenuButton.classList.remove('text-white');
+                    mobileMenuButton.classList.add('text-black', 'bg-white/10', 'backdrop-blur-sm', 'rounded-md');
+                    const icon = mobileMenuButton.querySelector('i');
+                    if (icon) {
+                        icon.classList.remove('text-white');
+                        icon.classList.add('text-black');
+                    }
+                }
             } else {
                 navbar.classList.remove('bg-white', 'shadow-md');
                 navbar.classList.add('border-transparent', 'py-2');
@@ -2220,9 +2117,20 @@
                 brandText.classList.remove('text-black');
 
                 navLinks.forEach(link => {
-                    link.classList.add('text-white', 'text-white/90');
-                    link.classList.remove('text-black', 'hover:text-primary');
+                    link.classList.add('text-white', 'text-white/90', 'hover:text-black');
+                    link.classList.remove('text-black', 'hover:text-primary', 'hover:text-white');
                 });
+
+                const mobileMenuButton = document.getElementById('mobile-menu-button');
+                if (mobileMenuButton) {
+                    mobileMenuButton.classList.remove('text-black', 'bg-white/10', 'backdrop-blur-sm', 'rounded-md');
+                    mobileMenuButton.classList.add('text-white');
+                    const icon = mobileMenuButton.querySelector('i');
+                    if (icon) {
+                        icon.classList.remove('text-black');
+                        icon.classList.add('text-white');
+                    }
+                }
             }
         });
 
@@ -2281,6 +2189,39 @@
             setTimeout(() => {
                 openModal('login-modal');
             }, 160);
+        }
+
+        /* --- MOBILE MENU LOGIC --- */
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const overlay = document.getElementById('mobile-overlay');
+            if (menu.classList.contains('translate-x-full')) {
+                menu.classList.remove('translate-x-full');
+                menu.classList.add('translate-x-0');
+                overlay.classList.remove('hidden');
+            } else {
+                closeMobileMenu();
+            }
+        }
+
+        function closeMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const overlay = document.getElementById('mobile-overlay');
+            menu.classList.remove('translate-x-0');
+            menu.classList.add('translate-x-full');
+            overlay.classList.add('hidden');
+        }
+
+        function toggleSubmenu() {
+            const submenu = document.getElementById('mobile-submenu');
+            const icon = document.getElementById('submenu-icon');
+            if (submenu.classList.contains('hidden')) {
+                submenu.classList.remove('hidden');
+                icon.style.transform = 'rotate(180deg)';
+            } else {
+                submenu.classList.add('hidden');
+                icon.style.transform = 'rotate(0deg)';
+            }
         }
     </script>
 

@@ -105,14 +105,14 @@
             </div>
 
             <div class="hidden md:flex gap-8 text-sm font-medium h-full items-center">
-                <a href="index.html" class="nav-link text-white/90 hover:text-white transition-colors">Home</a>
-                  <a href="flights.html" class="nav-link text-white/90 hover:text-white transition-colors">Flights</a>
-                 <a href="hotels.html" class="nav-link text-white/90 hover:text-white transition-colors">Hotels</a>
+                <a href="index.html" class="nav-link text-white/90  transition-colors">Home</a>
+                  <a href="flights.html" class="nav-link text-white/90  transition-colors">Flights</a>
+                 <a href="hotels.html" class="nav-link text-white/90  transition-colors">Hotels</a>
                 
-                <a href="visa.html" class="nav-link text-white/90 hover:text-white transition-colors">Visa Services</a>
+                <a href="visa.html" class="nav-link text-white/90  transition-colors">Visa Services</a>
                 
                 <div class="group h-full flex items-center">
-                    <a href="packages.html" class="nav-link text-white/90 hover:text-white transition-colors flex items-center gap-1">
+                    <a href="packages.html" class="nav-link text-white/90  transition-colors flex items-center gap-1">
                         Travel Packages <i data-lucide="chevron-down" class="h-3 w-3"></i>
                     </a>
                     
@@ -122,7 +122,7 @@
                                 <div>
                                     <h4 class="font-bold text-primary mb-4 uppercase text-xs tracking-widest border-b pb-2">India Tours</h4>
                                     <ul class="space-y-2 text-sm">
-                                        <li><a href="/holiday_packages_goa.html" class="hover:text-red-500 transition-colors">Goa Packages</a></li>
+                                        <li><a href="holiday_packages_goa.html" class="hover:text-red-500 transition-colors">Goa Packages</a></li>
                                         <li><a href="#" class="hover:text-red-500 transition-colors">Kerala Backwaters</a></li>
                                         <li><a href="#" class="hover:text-red-500 transition-colors">Himachal Special</a></li>
                                         <li><a href="#" class="hover:text-red-500 transition-colors">Rajasthan Royal</a></li>
@@ -156,21 +156,68 @@
                     </div>
                 </div>
 
-                    <a href="cruise.html" class="nav-link text-white/90 hover:text-white transition-colors">Cruise</a>
-                <a href="forex.html" class="nav-link text-white/90 hover:text-white transition-colors">Forex</a>
+                    <a href="cruise.html" class="nav-link text-white/90  transition-colors">Cruise</a>
+                <a href="forex.html" class="nav-link text-white/90  transition-colors">Forex</a>
 
-                <a href="contact.html" class="nav-link text-white/90 hover:text-white transition-colors">Contact</a>
+                <a href="contact.html" class="nav-link text-white/90  transition-colors">Contact</a>
             </div>
 
             <div class="flex items-center gap-4">
-                <button onclick="openModal('login-modal')" class="nav-link text-sm font-medium text-white hover:underline transition-colors">Sign In</button>
-                <button onclick="openModal('signup-modal')" class="inline-flex h-9 items-center justify-center rounded-md bg-white text-black px-4 py-2 text-sm font-medium shadow hover:bg-gray-100 transition-colors">
+                <button onclick="openModal('login-modal')" class="hidden md:block nav-link text-sm font-medium text-white hover:underline transition-colors">Sign In</button>
+                <button onclick="openModal('signup-modal')" class="hidden md:block inline-flex h-9 items-center justify-center rounded-md bg-white text-black px-4 py-2 text-sm font-medium shadow hover:bg-gray-100 transition-colors">
                     Join Free
+                </button>
+                <button id="mobile-menu-button" class="md:hidden p-2 text-white" onclick="toggleMobileMenu()">
+                    <i data-lucide="menu" class="h-6 w-6"></i>
                 </button>
             </div>
         </div>
     </nav>
 
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-overlay" class="fixed inset-0 bg-black/50 hidden z-40" onclick="closeMobileMenu()"></div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="fixed top-0 right-0 h-full w-80 bg-white shadow-lg transform translate-x-full transition-transform duration-300 z-50">
+        <div class="p-4">
+            <button onclick="closeMobileMenu()" class="float-right p-2">
+                <i data-lucide="x" class="h-6 w-6 text-gray-600"></i>
+            </button>
+            <div class="mt-8 space-y-4">
+                <a href="index.html" class="block py-2 text-gray-800 hover:text-blue-600" onclick="closeMobileMenu()">Home</a>
+                <a href="flights.html" class="block py-2 text-gray-800 hover:text-blue-600" onclick="closeMobileMenu()">Flights</a>
+                <a href="hotels.html" class="block py-2 text-gray-800 hover:text-blue-600" onclick="closeMobileMenu()">Hotels</a>
+                <a href="visa.html" class="block py-2 text-gray-800 hover:text-blue-600" onclick="closeMobileMenu()">Visa Services</a>
+                <div class="py-2">
+                    <button onclick="toggleSubmenu()" class="text-gray-800 hover:text-blue-600 flex items-center justify-between w-full text-left">
+                        Travel Packages <i id="submenu-icon" data-lucide="chevron-down" class="h-4 w-4 transition-transform"></i>
+                    </button>
+                    <div id="mobile-submenu" class="hidden ml-4 mt-2 space-y-1">
+                        <a href="holiday_packages_goa.html" class="block py-1 text-sm text-gray-600 hover:text-blue-600" onclick="closeMobileMenu()">Goa Packages</a>
+                        <a href="#" class="block py-1 text-sm text-gray-600 hover:text-blue-600" onclick="closeMobileMenu()">Kerala Backwaters</a>
+                        <a href="#" class="block py-1 text-sm text-gray-600 hover:text-blue-600" onclick="closeMobileMenu()">Himachal Special</a>
+                        <a href="#" class="block py-1 text-sm text-gray-600 hover:text-blue-600" onclick="closeMobileMenu()">Rajasthan Royal</a>
+                        <a href="#" class="block py-1 text-sm text-gray-600 hover:text-blue-600" onclick="closeMobileMenu()">Bali Adventure</a>
+                        <a href="#" class="block py-1 text-sm text-gray-600 hover:text-blue-600" onclick="closeMobileMenu()">Thailand Getaway</a>
+                        <a href="#" class="block py-1 text-sm text-gray-600 hover:text-blue-600" onclick="closeMobileMenu()">Dubai Luxury</a>
+                        <a href="#" class="block py-1 text-sm text-gray-600 hover:text-blue-600" onclick="closeMobileMenu()">Europe Wonders</a>
+                        <a href="#" class="block py-1 text-sm text-gray-600 hover:text-blue-600" onclick="closeMobileMenu()">Honeymoon Specials</a>
+                        <a href="#" class="block py-1 text-sm text-gray-600 hover:text-blue-600" onclick="closeMobileMenu()">Family Holidays</a>
+                        <a href="#" class="block py-1 text-sm text-gray-600 hover:text-blue-600" onclick="closeMobileMenu()">Adventure Tours</a>
+                        <a href="#" class="block py-1 text-sm text-gray-600 hover:text-blue-600" onclick="closeMobileMenu()">Luxury Cruises</a>
+                    </div>
+                </div>
+                <a href="cruise.html" class="block py-2 text-gray-800 hover:text-blue-600" onclick="closeMobileMenu()">Cruise</a>
+                <a href="forex.html" class="block py-2 text-gray-800 hover:text-blue-600" onclick="closeMobileMenu()">Forex</a>
+                <a href="contact.html" class="block py-2 text-gray-800 hover:text-blue-600" onclick="closeMobileMenu()">Contact</a>
+                <div class="pt-4 border-t">
+                    <button onclick="openModal('login-modal')" class="block w-full py-2 bg-blue-500 text-white rounded mb-2 hover:bg-blue-600">Sign In</button>
+                    <button onclick="openModal('signup-modal')" class="block w-full py-2 bg-white text-black border rounded hover:bg-gray-100">Join Free</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 <main >
 
@@ -669,16 +716,7 @@
     <!-- Footer Component -->
     <footer class="bg-slate-950 text-slate-300 pt-16 pb-8 border-t border-slate-900">
         <div class="container mx-auto px-4">
-            <div class="flex flex-col lg:flex-row justify-between items-center pb-12 border-b border-slate-800 mb-12 gap-8">
-                <div class="max-w-xl">
-                    <h3 class="text-2xl font-bold text-white mb-2">Join our newsletter</h3>
-                    <p class="text-slate-400">We'll send you the best travel deals, visa updates, and destination guides once a week. No spam.</p>
-                </div>
-                <div class="flex w-full max-w-sm gap-2">
-                    <input type="email" placeholder="Enter your email" class="w-full px-4 py-2.5 rounded-lg bg-slate-900 border border-slate-800 text-white placeholder-slate-500 focus:outline-none focus:border-slate-600 focus:ring-1 focus:ring-slate-600">
-                    <button class="px-6 py-2.5 bg-white text-black font-semibold rounded-lg hover:bg-gray-200 transition-colors whitespace-nowrap">Subscribe</button>
-                </div>
-            </div>
+           
             <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 mb-16">
                 <div class="col-span-2 lg:col-span-2">
                     <div class="flex items-center gap-2 mb-6">
@@ -689,40 +727,40 @@
                         Your trusted partner for AI-powered travel planning. We make exploring the world seamless, from visa applications to luxury stays.
                     </p>
                     <div class="flex gap-4">
-                        <a href="#" class="h-10 w-10 rounded-full bg-slate-900 flex items-center justify-center hover:bg-slate-800 hover:text-white transition-colors"><i data-lucide="twitter" class="h-5 w-5"></i></a>
-                        <a href="#" class="h-10 w-10 rounded-full bg-slate-900 flex items-center justify-center hover:bg-slate-800 hover:text-white transition-colors"><i data-lucide="instagram" class="h-5 w-5"></i></a>
-                        <a href="#" class="h-10 w-10 rounded-full bg-slate-900 flex items-center justify-center hover:bg-slate-800 hover:text-white transition-colors"><i data-lucide="facebook" class="h-5 w-5"></i></a>
-                        <a href="#" class="h-10 w-10 rounded-full bg-slate-900 flex items-center justify-center hover:bg-slate-800 hover:text-white transition-colors"><i data-lucide="youtube" class="h-5 w-5"></i></a>
+                        <a href="#" class="h-10 w-10 rounded-full bg-slate-900 flex items-center justify-center hover:bg-slate-800  transition-colors"><i data-lucide="twitter" class="h-5 w-5"></i></a>
+                        <a href="#" class="h-10 w-10 rounded-full bg-slate-900 flex items-center justify-center hover:bg-slate-800  transition-colors"><i data-lucide="instagram" class="h-5 w-5"></i></a>
+                        <a href="#" class="h-10 w-10 rounded-full bg-slate-900 flex items-center justify-center hover:bg-slate-800  transition-colors"><i data-lucide="facebook" class="h-5 w-5"></i></a>
+                        <a href="#" class="h-10 w-10 rounded-full bg-slate-900 flex items-center justify-center hover:bg-slate-800  transition-colors"><i data-lucide="youtube" class="h-5 w-5"></i></a>
                     </div>
                 </div>
                 <div>
                     <h4 class="font-bold text-white mb-6">Company</h4>
                     <ul class="space-y-4 text-sm">
-                        <li><a href="#" class="hover:text-white transition-colors">About Us</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Careers</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Press</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Blog</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Sustainability</a></li>
+                        <li><a href="#" class=" transition-colors">About Us</a></li>
+                        <li><a href="#" class=" transition-colors">Careers</a></li>
+                        <li><a href="#" class=" transition-colors">Press</a></li>
+                        <li><a href="#" class=" transition-colors">Blog</a></li>
+                        <li><a href="#" class=" transition-colors">Sustainability</a></li>
                     </ul>
                 </div>
                 <div>
                     <h4 class="font-bold text-white mb-6">Support</h4>
                     <ul class="space-y-4 text-sm">
-                        <li><a href="#" class="hover:text-white transition-colors">Help Center</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Terms of Service</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Legal</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Privacy Policy</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Status</a></li>
+                        <li><a href="#" class=" transition-colors">Help Center</a></li>
+                        <li><a href="#" class=" transition-colors">Terms of Service</a></li>
+                        <li><a href="#" class=" transition-colors">Legal</a></li>
+                        <li><a href="#" class=" transition-colors">Privacy Policy</a></li>
+                        <li><a href="#" class=" transition-colors">Status</a></li>
                     </ul>
                 </div>
                 <div>
                     <h4 class="font-bold text-white mb-6">Top Routes</h4>
                     <ul class="space-y-4 text-sm">
-                        <li><a href="#" class="hover:text-white transition-colors">Flights to London</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Flights to Paris</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Flights to Tokyo</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Flights to New York</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Flights to Dubai</a></li>
+                        <li><a href="#" class=" transition-colors">Flights to London</a></li>
+                        <li><a href="#" class=" transition-colors">Flights to Paris</a></li>
+                        <li><a href="#" class=" transition-colors">Flights to Tokyo</a></li>
+                        <li><a href="#" class=" transition-colors">Flights to New York</a></li>
+                        <li><a href="#" class=" transition-colors">Flights to Dubai</a></li>
                     </ul>
                 </div>
             </div>
@@ -747,7 +785,7 @@
                         <p class="text-xs text-white/70">Online now</p>
                     </div>
                 </div>
-                <button onclick="toggleChat()" class="text-white/80 hover:text-white"><i data-lucide="x" class="h-5 w-5"></i></button>
+                <button onclick="toggleChat()" class="text-white/80 "><i data-lucide="x" class="h-5 w-5"></i></button>
             </div>
             <div class="p-4 h-80 overflow-y-auto bg-slate-50 space-y-4">
                 <div class="flex gap-2">
@@ -885,9 +923,20 @@
                 brandText.classList.add('text-black');
 
                 navLinks.forEach(link => {
-                    link.classList.remove('text-white', 'text-white/90');
+                    link.classList.remove('text-white', 'text-white/90', 'hover:text-black');
                     link.classList.add('text-black', 'hover:text-primary');
                 });
+
+                const mobileMenuButton = document.getElementById('mobile-menu-button');
+                if (mobileMenuButton) {
+                    mobileMenuButton.classList.remove('text-white');
+                    mobileMenuButton.classList.add('text-black', 'bg-white/10', 'backdrop-blur-sm', 'rounded-md');
+                    const icon = mobileMenuButton.querySelector('i');
+                    if (icon) {
+                        icon.classList.remove('text-white');
+                        icon.classList.add('text-black');
+                    }
+                }
             } else {
                 navbar.classList.remove('bg-white', 'shadow-md');
                 navbar.classList.add('border-transparent', 'py-2');
@@ -895,9 +944,20 @@
                 brandText.classList.remove('text-black');
 
                 navLinks.forEach(link => {
-                    link.classList.add('text-white', 'text-white/90');
-                    link.classList.remove('text-black', 'hover:text-primary');
+                    link.classList.add('text-white', 'text-white/90', 'hover:text-black');
+                    link.classList.remove('text-black', 'hover:text-primary', 'hover:text-white');
                 });
+
+                const mobileMenuButton = document.getElementById('mobile-menu-button');
+                if (mobileMenuButton) {
+                    mobileMenuButton.classList.remove('text-black', 'bg-white/10', 'backdrop-blur-sm', 'rounded-md');
+                    mobileMenuButton.classList.add('text-white');
+                    const icon = mobileMenuButton.querySelector('i');
+                    if (icon) {
+                        icon.classList.remove('text-black');
+                        icon.classList.add('text-white');
+                    }
+                }
             }
         });
 
@@ -956,6 +1016,39 @@
             setTimeout(() => {
                 openModal('login-modal');
             }, 160);
+        }
+
+        /* --- MOBILE MENU LOGIC --- */
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const overlay = document.getElementById('mobile-overlay');
+            if (menu.classList.contains('translate-x-full')) {
+                menu.classList.remove('translate-x-full');
+                menu.classList.add('translate-x-0');
+                overlay.classList.remove('hidden');
+            } else {
+                closeMobileMenu();
+            }
+        }
+
+        function closeMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const overlay = document.getElementById('mobile-overlay');
+            menu.classList.remove('translate-x-0');
+            menu.classList.add('translate-x-full');
+            overlay.classList.add('hidden');
+        }
+
+        function toggleSubmenu() {
+            const submenu = document.getElementById('mobile-submenu');
+            const icon = document.getElementById('submenu-icon');
+            if (submenu.classList.contains('hidden')) {
+                submenu.classList.remove('hidden');
+                icon.style.transform = 'rotate(180deg)';
+            } else {
+                submenu.classList.add('hidden');
+                icon.style.transform = 'rotate(0deg)';
+            }
         }
     </script>
 </body>
